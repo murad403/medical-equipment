@@ -1,0 +1,18 @@
+@media screen and (max-width: 639px) {
+    .sliderResponsive{
+        height: 250px;
+        width: 100%;
+    }
+}
+@media screen and (min-width: 640px) and (max-width: 1023px) {
+    .sliderResponsive{
+        height: 500px;
+        width: 100%;
+    }
+}
+@media screen and (min-width: 1024px) {
+  .sliderResponsive {
+    height: 600px;
+    width: 100%;
+  }
+}
