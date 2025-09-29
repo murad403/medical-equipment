@@ -1,24 +1,47 @@
+"use client";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
+import auctions from '../../data/auctions';
+import AuctionCard from '../../shared/AuctionCard';
+import "../../styles/slider.css";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import "../../styles/slider.css";
 
 const UpcomingAuctions = () => {
     return (
-        <div>
+        <div className='px-5 lg:px-10 lg:py-16 sliderResponsive'>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary">Upcoming <span className="text-black">Auctions</span></h2>
-            <div>
-                <Swiper slidesPerView={3} spaceBetween={20} navigation={true} modules={[Navigation]} className="mySwiper">
-        <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
-      </Swiper>
+            <div className='md:mt-7 mt-4 relative'>
+                <Swiper centeredSlides={false} slidesPerGroup={3} navigation={{nextEl: '.swiper-button-next-custom', prevEl: '.swiper-button-prev-custom'}} modules={[Navigation]} className="mySwiper" breakpoints={{
+                    320: {
+                        slidesPerView: 1,
+                        spaceBetween: 0
+                    },
+                    640:{
+                        slidesPerView: 2,
+                        spaceBetween: 40
+                    },
+                    1024:{
+                        slidesPerView: 3,
+                        spaceBetween: 120
+                    }
+                }}>
+                    {
+                        auctions.map(product => 
+                            <SwiperSlide key={product.id}>
+                                <AuctionCard product={product} bgColor={"lg:bg-white bg-normal"}></AuctionCard>
+                            </SwiperSlide>
+                        )
+                    }
+                 </Swiper>
+                 <div className="swiper-button-prev-custom">
+                    <IoIosArrowBack/>
+                 </div>
+                <div className="swiper-button-next-custom">
+                    <IoIosArrowForward/>
+                </div>
             </div>
         </div>
     );
