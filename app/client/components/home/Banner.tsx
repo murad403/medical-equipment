@@ -17,7 +17,7 @@ const Banner = () => {
         <SwiperSlide className='w-full sliderResponsive bg-cover bg-center' style={{
           backgroundImage: `url(${slider1.src})`
         }}>
-            <div className='h-full flex flex-col items-start md:w-[55%] justify-center lg:ml-20 md:ml-10 gap-3 md:gap-7 px-3 md:px-0 py-10'>
+            <div className='h-full flex flex-col items-start md:w-[55%] justify-center lg:ml-17 md:ml-10 gap-3 md:gap-7 px-3 md:px-0 py-10'>
                 <h1 className='lg:text-5xl md:text-4xl text-3xl font-extrabold text-white'>Empowering <span className='md:text-2xl text-xl'>Healthcare with the Right Equipment,</span> Right Where It Matters Most</h1>
                 <p className='text-sm text-white'>Trusted platform for hospitals, labs, and individuals to trade medical devices securely.</p>
                 <Link href={'/'} className='bg-normal text-primary text-sm py-2 px-4 rounded-lg'>See All Equipment</Link>
@@ -27,7 +27,7 @@ const Banner = () => {
         <SwiperSlide className='w-full sliderResponsive bg-cover bg-center' style={{
           backgroundImage: `url(${slider2.src})`
         }}>
-            <div className='h-full flex flex-col items-start md:w-[55%] justify-center lg:ml-20 md:ml-10 gap-3 md:gap-7 px-3 md:px-0 py-10'>
+            <div className='h-full flex flex-col items-start md:w-[55%] justify-center lg:ml-17 md:ml-10 gap-3 md:gap-7 px-3 md:px-0 py-10'>
                 <h1 className='lg:text-5xl md:text-4xl text-3xl font-extrabold text-white'>Empowering <span className='md:text-2xl text-xl'>Healthcare with the Right Equipment,</span> Right Where It Matters Most</h1>
                 <p className='text-sm text-white'>Trusted platform for hospitals, labs, and individuals to trade medical devices securely.</p>
                 <Link href={'/'} className='bg-normal text-primary text-sm py-2 px-4 rounded-lg'>See All Equipment</Link>
@@ -37,7 +37,7 @@ const Banner = () => {
         <SwiperSlide className='w-full sliderResponsive bg-cover bg-center' style={{
           backgroundImage: `url(${slider3.src})`
         }}>
-            <div className='h-full flex flex-col items-start md:w-[55%] justify-center lg:ml-20 md:ml-10 gap-3 md:gap-7 px-3 md:px-0 py-10'>
+            <div className='h-full flex flex-col items-start md:w-[55%] justify-center lg:ml-17 md:ml-10 gap-3 md:gap-7 px-3 md:px-0 py-10'>
                 <h1 className='lg:text-5xl md:text-4xl text-3xl font-extrabold text-white'>Empowering <span className='md:text-2xl text-xl'>Healthcare with the Right Equipment,</span> Right Where It Matters Most</h1>
                 <p className='text-sm text-white'>Trusted platform for hospitals, labs, and individuals to trade medical devices securely.</p>
                 <Link href={'/'} className='bg-normal text-primary text-sm py-2 px-4 rounded-lg'>See All Equipment</Link>
@@ -47,7 +47,7 @@ const Banner = () => {
         <SwiperSlide className='w-full sliderResponsive bg-cover bg-center' style={{
           backgroundImage: `url(${slider4.src})`
         }}>
-            <div className='h-full flex flex-col items-start md:w-[55%] justify-center lg:ml-20 md:ml-10 gap-3 md:gap-7 px-3 md:px-0 py-10'>
+            <div className='h-full flex flex-col items-start md:w-[55%] justify-center lg:ml-17 md:ml-10 gap-3 md:gap-7 px-3 md:px-0 py-10'>
                 <h1 className='lg:text-5xl md:text-4xl text-3xl font-extrabold text-white'>Empowering <span className='md:text-2xl text-xl'>Healthcare with the Right Equipment,</span> Right Where It Matters Most</h1>
                 <p className='text-sm text-white'>Trusted platform for hospitals, labs, and individuals to trade medical devices securely.</p>
                 <Link href={'/'} className='bg-normal text-primary text-sm py-2 px-4 rounded-lg'>See All Equipment</Link>

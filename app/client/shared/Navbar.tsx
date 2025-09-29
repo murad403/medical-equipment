@@ -63,8 +63,9 @@ const Navbar = () => {
           <CiMenuFries className="font-bold" size={24} />
         </button>
       </div>
+
       <div
-        className={`absolute top-0 right-0 bg-primary w-[200px] h-screen ${
+        className={`absolute top-0 z-10 right-0 bg-primary w-[200px] h-screen ${
           openMenu ? "block" : "hidden"
         } md:hidden`}
       >
