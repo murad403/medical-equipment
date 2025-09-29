@@ -1,6 +1,7 @@
 import React from 'react';
 import Banner from '../components/home/Banner';
 import ProductCategories from '../components/home/ProductCategories';
+import Achievements from '../components/home/Achievements';
 
 const Home = () => {
     return (
@@ -8,6 +9,7 @@ const Home = () => {
             <Banner></Banner>
             <div className='px-4 md:px-14 lg:px-16'>
                 <ProductCategories></ProductCategories>
+                <Achievements></Achievements>
             </div>
         </div>
     );
