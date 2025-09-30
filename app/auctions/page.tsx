@@ -20,7 +20,6 @@ const page = () => {
                 <AuctionProducts></AuctionProducts>
                 <AuctionPagination></AuctionPagination>
             </div>
-            <h1>murad</h1>
         </div>
     );
 };
