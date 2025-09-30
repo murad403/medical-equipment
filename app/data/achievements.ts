@@ -1,7 +1,7 @@
-import equipment from "../../../public/achievements/equipment.png";
-import sales from "../../../public/achievements/sales.png";
-import client from "../../../public/achievements/client.png";
-import country from "../../../public/achievements/country.png";
+import equipment from "../../public/achievements/equipment.png";
+import sales from "../../public/achievements/sales.png";
+import client from "../../public/achievements/client.png";
+import country from "../../public/achievements/country.png";
 
 
 type TAchievements = {

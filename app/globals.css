@@ -1,8 +1,9 @@
 @import "tailwindcss";
+@plugin "daisyui";
 
 @theme {
     --color-normal: #eef9fe;
-    --color-primary: #48B1DB;
+    --color-hard: #48B1DB;
     --color-heading: #FFFFFF;
 }
 

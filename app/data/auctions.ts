@@ -1,4 +1,4 @@
-import product from "../../../public/product.jpg";
+import product from "../../public/product.jpg";
 
 export type TAuctions = {
     id: number;

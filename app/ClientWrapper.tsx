@@ -1,8 +1,8 @@
 "use client";
 import { usePathname } from 'next/navigation';
 import React from 'react';
-import Navbar from './client/shared/Navbar';
-import Footer from './client/shared/Footer';
+import Navbar from './shared/Navbar';
+import Footer from './shared/Footer';
 
 const ClientWrapper = ({children}: {children: React.ReactNode}) => {
     const pathName = usePathname();

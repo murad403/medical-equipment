@@ -1,7 +1,7 @@
-import equipment from "../../../public/category/equipment.png";
-import devices from "../../../public/category/devices.png";
-import surgical from "../../../public/category/surgical.png";
-import patient from "../../../public/category/patient.png";
+import equipment from "../../public/category/equipment.png";
+import devices from "../../public/category/devices.png";
+import surgical from "../../public/category/surgical.png";
+import patient from "../../public/category/patient.png";
 
 type TProductCategories = {
     id: number;

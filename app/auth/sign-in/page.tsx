@@ -22,7 +22,7 @@ const page = () => {
     return (
         <div className="mt-7">
             <div className="text-center">
-                <h2 className="font-bold text-2xl md:text-3xl lg:text-4xl"><span className="text-primary">Sign In</span> To Your Account</h2>
+                <h2 className="font-bold text-2xl md:text-3xl lg:text-4xl"><span className="text-hard">Sign In</span> To Your Account</h2>
                 <p className="text-sm mt-2">Welcome! Sign in to your account to continue.</p>
             </div>
             <div className="flex justify-center w-full mt-5">
@@ -31,12 +31,12 @@ const page = () => {
                     <form className="w-full space-y-3" onSubmit={handleSubmit(onSubmit)}>
                         <div className="text-[15px]">
                             <label className="block mb-1">Email</label>
-                            <input placeholder="Enter Email" className="appearance-none w-full outline-none border border-primary rounded-lg py-2 px-4" type="email" {...register("email", {required: true})} />
+                            <input placeholder="Enter Email" className="appearance-none w-full outline-none border border-hard rounded-lg py-2 px-4" type="email" {...register("email", {required: true})} />
                             {errors.email && <span className="text-sm text-red-500">Email is required</span>}
                         </div>
                         <div className="text-[15px] relative">
                             <label className="block mb-1">Password</label>
-                            <input placeholder="Enter Password" className="appearance-none w-full outline-none border border-primary rounded-lg py-2 px-4" type={showPassword ? "text" : "password"} {...register("password", {required: true})} />
+                            <input placeholder="Enter Password" className="appearance-none w-full outline-none border border-hard rounded-lg py-2 px-4" type={showPassword ? "text" : "password"} {...register("password", {required: true})} />
                             <p className="absolute right-2 top-10" onClick={() =>setShowPassword(!showPassword)}>
                                 {
                                     showPassword ? <PiEyeLight/> : <PiEyeSlash/>
@@ -48,16 +48,16 @@ const page = () => {
                             <input type="checkbox" {...register("remember", {required: true})}/>
                             <label className="text-sm ml-2">Remember me</label>
                         </div>
-                        <button className="w-full bg-primary rounded-lg text-white  py-2">Sign In</button>
+                        <button className="w-full bg-hard rounded-lg text-white  py-2">Sign In</button>
                     </form>
                     <div className="flex justify-center items-center gap-5 md:gap-7 flex-col mt-5 md:mt-7 w-full">
                         <p>or</p>
                         <p>Sign In With</p>
-                        <button className="flex items-center justify-center text-primary gap-3 py-2 border border-primary rounded-lg w-full">
+                        <button className="flex items-center justify-center text-hard gap-3 py-2 border border-hard rounded-lg w-full">
                             <FaGoogle/>
                             <p>Google</p>
                         </button>
-                        <p>Don’t have an account? <Link href={"/auth/sign-up"} className="text-primary">Sign Up</Link></p>
+                        <p>Don’t have an account? <Link href={"/auth/sign-up"} className="text-hard">Sign Up</Link></p>
                     </div>
                 </div>
             </div>

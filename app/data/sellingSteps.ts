@@ -1,9 +1,9 @@
-import signIn from "../../../public/sellingSteps/signup.png";
-import addProduct from "../../../public/sellingSteps/addproduct.png";
-import chooseAuction from "../../../public/sellingSteps/chooseauction.png";
-import selling from "../../../public/sellingSteps/selling.png";
-import bids from "../../../public/sellingSteps/bids.png";
-import getPaid from "../../../public/sellingSteps/getpaid.png";
+import signIn from "../../public/sellingSteps/signup.png";
+import addProduct from "../../public/sellingSteps/addproduct.png";
+import chooseAuction from "../../public/sellingSteps/chooseauction.png";
+import selling from "../../public/sellingSteps/selling.png";
+import bids from "../../public/sellingSteps/bids.png";
+import getPaid from "../../public/sellingSteps/getpaid.png";
 
 type TSellingSteps = {
     id: number;

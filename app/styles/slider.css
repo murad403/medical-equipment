@@ -28,7 +28,7 @@
 
 @media screen and (min-width: 1024px) {
   .sliderResponsive {
-    background-image: url("../../../public/upcominngAuction.jpg");
+    background-image: url("../../public/upcominngAuction.jpg");
     height: 555px;
     width: 100%;
     background-position: center;

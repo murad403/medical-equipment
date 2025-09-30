@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import logo from "../../../public/logo.png";
+import logo from "../../public/logo.png";
 import React from 'react';
 import Link from 'next/link';
 
@@ -36,7 +36,7 @@ const Footer = () => {
             </div>
             </div>
         </div>
-        <p className='bg-primary text-center font-bold text-[16px] text-white py-2'>©{new Date().getFullYear()}MedAuctionHub. All rights reserved. | Powered by MedAuctionHub</p>
+        <p className='bg-hard text-center font-bold text-[16px] text-white py-2'>©{new Date().getFullYear()}MedAuctionHub. All rights reserved. | Powered by MedAuctionHub</p>
         </div>
     );
 };

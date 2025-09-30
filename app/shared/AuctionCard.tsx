@@ -7,7 +7,7 @@ const AuctionCard = ({product, bgColor}: any) => {
             <h3 className='text-[20px] capitalize'>{product?.title}</h3>
             <p className='text-sm'>{product?.city}</p>
             <div className='flex justify-between items-center'>
-                <p className='text-primary font-bold text-[17px]'>${product?.price}</p>
+                <p className='text-hard font-bold text-[17px]'>${product?.price}</p>
                 <p className='font-bold text-sm'>{product?.bids} Bids</p>
             </div>
             <p className='text-sm text-red-500'>{product?.time}</p>

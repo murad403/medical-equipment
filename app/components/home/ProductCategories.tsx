@@ -6,7 +6,7 @@ const ProductCategories = () => {
   return (
     <div>
       <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold">
-        Product <span className="text-primary">Categories</span>
+        Product <span className="text-hard">Categories</span>
       </h2>
       <div className="flex justify-center items-center flex-wrap gap-20 md:mt-20 mt-14">
         {productCategories.map((category) => (

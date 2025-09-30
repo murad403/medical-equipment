@@ -5,7 +5,7 @@ const TopPickedAuctions = () => {
     return (
         <div>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold">
-        Top-Picked <span className="text-primary">Auctions</span>
+        Top-Picked <span className="text-hard">Auctions</span>
       </h2>
       <div className='md:mt-12 mt-7'>
         <Auctions></Auctions>
