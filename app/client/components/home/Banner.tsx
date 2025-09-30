@@ -13,7 +13,7 @@ import "../../styles/banner.css";
 
 const Banner = () => {
     return (
-        <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
+        <Swiper pagination={true} modules={[Pagination]} className="">
         <SwiperSlide className='w-full sliderResponsive bg-cover bg-center' style={{
           backgroundImage: `url(${slider1.src})`
         }}>
