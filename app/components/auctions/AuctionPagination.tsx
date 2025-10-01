@@ -12,7 +12,7 @@ const AuctionPagination = () => {
     const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) =>{
         setPage(value);
     }
-    console.log(page);
+    // console.log(page);
     return (
         <div className='flex justify-end w-full'>
             <Stack spacing={3}>
