@@ -1,6 +1,8 @@
+"use client"
 import React from 'react';
 import productImage from "../../../public/product.jpg"
 import Image from 'next/image';
+import BidsModal from './BidsModal';
 
 const ProductDetails = () => {
     return (
@@ -21,9 +23,10 @@ const ProductDetails = () => {
                 <p className='text-sm text-hard'>2 Bids</p>
                 <p className='text-sm text-red-500'>2  days  4hour  5min</p>
                 <p className='text-sm font-light'>location</p>
-                <button className='text-sm border border-hard rounded-lg w-full py-2 mt-4'>Place a Bid</button>
+                <button onClick={()=>{(document.getElementById('my_modal_3') as HTMLDialogElement).showModal()}} className='text-sm border border-hard rounded-lg w-full py-2 mt-4 cursor-pointer'>Place a Bid</button>
             </div>
             </div>
+            <BidsModal></BidsModal>
         </div>
     );
 };
