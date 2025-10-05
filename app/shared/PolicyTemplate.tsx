@@ -1,7 +1,7 @@
 import { TPolicyTemplateProps } from "../interface/policy";
 
 const PolicyTemplate: React.FC<TPolicyTemplateProps> = ({policy}) => {
-    console.log(policy.title);
+    // console.log(policy.title);
     return (
         <div className="">
             <div className="bg-gradient-to-l -z-10 to-hard from-normal text-center py-10 md:py-14 relative">

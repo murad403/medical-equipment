@@ -9,3 +9,4 @@ export type TPolicyTemplate = {
 export type TPolicyTemplateProps = {
     policy: TPolicyTemplate;
 }
+
