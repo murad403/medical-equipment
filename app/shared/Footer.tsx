@@ -15,17 +15,17 @@ const Footer = () => {
             </div>
             <div className='flex flex-col gap-2'>
                 <h3 className='font-bold text-[22px]'>About Us</h3>
-                <Link className='text-sm' href={"/"}>About</Link>
-                <Link className='text-sm' href={"/"}>User Agreement</Link>
-                <Link className='text-sm' href={"/"}>Contact Us</Link>
+                <Link className='text-sm' href={"/about"}>About</Link>
+                <Link className='text-sm' href={"/user-agreement"}>User Agreement</Link>
+                <Link className='text-sm' href={"/contact"}>Contact Us</Link>
             </div>
             </div>
             <div className='md:w-1/2 sm:w-full w-full flex flex-col sm:flex-row gap-10 md:gap-0 justify-around md:items-center'>
                 <div className='flex flex-col gap-2'>
                 <h3 className='font-bold text-[22px]'>Legal</h3>
-                <Link className='text-sm' href={"/"}>Terms of Condition</Link>
-                <Link className='text-sm' href={"/"}>Privacy Policy</Link>
-                <Link className='text-sm' href={"/"}>Vendor  Agreement</Link>
+                <Link className='text-sm' href={"/terms-and-condition"}>Terms of Condition</Link>
+                <Link className='text-sm' href={"/privacy-policy"}>Privacy Policy</Link>
+                <Link className='text-sm' href={"/vendor-agreement"}>Vendor  Agreement</Link>
             </div>
             <div className='flex flex-col gap-2'>
                 <h3 className='font-bold text-[22px]'>Contact Us</h3>
