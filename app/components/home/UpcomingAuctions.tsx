@@ -11,7 +11,7 @@ import "../../styles/slider.css";
 
 const UpcomingAuctions = () => {
     return (
-        <div className='px-5 lg:px-10 lg:py-16 sliderResponsive'>
+        <div className='px-5 lg:px-10 lg:py-16 sliderResponsive mb-56 md:mb-0'>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-hard">Upcoming <span className="text-black">Auctions</span></h2>
             <div className='md:mt-7 mt-4 relative'>
                 <Swiper centeredSlides={false} slidesPerGroup={3} navigation={{nextEl: '.swiper-button-next-custom', prevEl: '.swiper-button-prev-custom'}} modules={[Navigation]} className="mySwiper" breakpoints={{
