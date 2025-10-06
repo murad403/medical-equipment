@@ -1,9 +1,11 @@
 import React from 'react';
+import Withdraw from './seller-component/dashboard/Withdraw';
 
 const page = () => {
     return (
         <div>
-            seller
+            <Withdraw></Withdraw>
+            
         </div>
     );
 };

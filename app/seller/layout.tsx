@@ -10,7 +10,7 @@ const layout = ({children}: {children: React.ReactNode}) => {
             </div>
             <div className='w-full'>
                 <SellerHeading></SellerHeading>
-                <div className='px-3 md:px-5 lg:px-7'>
+                <div className='p-3 md:p-5'>
                     {children}
                 </div>
             </div>

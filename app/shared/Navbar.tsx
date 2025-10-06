@@ -7,11 +7,12 @@ import { CiShoppingCart, CiMenuFries } from "react-icons/ci";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const pathName = usePathname();
+  const router = useRouter();
 //   console.log(pathName);
 //   console.log(openMenu);
   return (
@@ -42,7 +43,7 @@ const Navbar = () => {
           >
             <CiShoppingCart size={20} />
           </Link>
-          <button className="bg-normal p-2 rounded-full text-hard cursor-pointer">
+          <button onClick={() => router.push("/notification")} className="bg-normal p-2 rounded-full text-hard cursor-pointer">
             <IoIosNotificationsOutline size={20} />
           </button>
           <Link

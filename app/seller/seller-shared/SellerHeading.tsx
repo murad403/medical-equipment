@@ -5,13 +5,17 @@ import Image from "next/image";
 import { RiMenu2Line } from "react-icons/ri";
 import sellerMenu from "../seller-data/sellerMenu";
 import { useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { TbLogout } from "react-icons/tb";
 
 const SellerHeading = () => {
     const pathName = usePathname();
     const [active, setActive] = useState(pathName);
+    const router = useRouter();
+    const handleNotification = () =>{
+        router.push("/seller/notification")
+    }
     return (
         <div className='bg-hard py-3 md:px-5 px-3 flex w-full items-center md:justify-end justify-between'>
             <div className="block md:hidden">
@@ -41,7 +45,7 @@ const SellerHeading = () => {
                 </div>
             </div>
             <div className="flex items-center md:gap-3 gap-2">
-                <button className="bg-normal text-hard cursor-pointer p-3 rounded-full">
+                <button onClick={handleNotification} className="bg-normal text-hard cursor-pointer p-3 rounded-full">
                     <IoMdNotificationsOutline size={20}/>
                 </button>
                 <Image className="w-10 h-10 rounded-full" src={user} alt="seller"></Image>
