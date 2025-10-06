@@ -1,0 +1,11 @@
+.custom-confirm-button,
+.custom-cancel-button{
+    border: 1px solid gray;
+    background-color: transparent;
+    padding: 5px 10px;
+    color: black;
+    border-radius: 10px;
+}
+.custom-confirm-button{
+    background-color: #48B1DB;
+}

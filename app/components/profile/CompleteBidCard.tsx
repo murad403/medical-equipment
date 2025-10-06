@@ -58,7 +58,8 @@ const CompleteBidCard = () => {
                     </div>
                 </div>
                 </div>
-                <div className="md:w-[2px] bg-hard h-[2px]"></div>
+                <div className="w-[2px] bg-hard hidden md:block"></div>
+                <div className="md:w-[2px] block md:hidden md:h-full bg-hard h-[2px]"></div>
                 <div className="w-full md:w-1/2">
                 <div className="flex items-center gap-4">
                     <Image className="w-[90px] h-[90px] rounded-full" src={user} alt="user"></Image>
