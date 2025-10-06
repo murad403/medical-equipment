@@ -1,4 +1,5 @@
 "use client";
+import { TTabs } from '@/app/interface/tabs';
 import React, { useState } from 'react';
 
 const ProductFilter = () => {
@@ -20,10 +21,6 @@ const ProductFilter = () => {
         </div>
     );
 };
-type TTabs = {
-    id: string;
-    label: string;
-}
 const tabs: TTabs[] = [
     {
         id: "all listing",
