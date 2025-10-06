@@ -28,7 +28,7 @@ const navbarLinks: TNavbarLinks = [
     {
         id: 5,
         path: "Seller portal",
-        route: "/seller-portal"
+        route: "/seller"
     }
 ]
 

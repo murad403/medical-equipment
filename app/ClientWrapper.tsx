@@ -6,7 +6,7 @@ import Footer from './shared/Footer';
 
 const ClientWrapper = ({children}: {children: React.ReactNode}) => {
     const pathName = usePathname();
-    const hideLayout = pathName.startsWith("/auth");
+    const hideLayout = pathName.startsWith("/auth") || pathName.startsWith("/seller");
     return (
         <div>
             {
