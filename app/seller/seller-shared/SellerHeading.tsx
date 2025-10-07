@@ -17,7 +17,7 @@ const SellerHeading = () => {
         router.push("/seller/notification")
     }
     return (
-        <div className='bg-hard py-3 md:px-5 px-3 flex w-full items-center md:justify-end justify-between'>
+        <div className='bg-hard py-3 md:px-5 px-3 flex w-full items-center md:justify-end justify-between sticky top-0 z-10'>
             <div className="block md:hidden">
                 <input id="my-drawer" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content">
@@ -32,6 +32,18 @@ const SellerHeading = () => {
                     sellerMenu.map(link =>
                         <li key={link?.path}>
                             <Link onClick={() =>setActive(link.route)} className={`flex gap-3 px-3 rounded-xl items-center text-[16px] font-medium py-1 ${active === link.route ? "bg-hard text-white" : ""}`} href={link?.route}>{link?.icon && <link.icon/>}{link?.path}</Link>
+                            {
+                                link?.product && 
+                                <ul className={`${active === "/seller/product" ? "block" : "hidden"} space-y-2 mt-2`}>
+                                    {
+                                        link?.product.map(link =>
+                                            <li key={link?.path}>
+                                                <Link onClick={() =>setActive(link.route)} className={`ml-14 flex gap-3 px-3 rounded-xl items-center text-sm font-medium py-1 ${active === link.route ? "bg-hard text-white" : ""}`} href={link?.route}>{link?.icon && <link.icon/>}{link?.path}</Link>
+                                            </li>
+                                        )
+                                    }
+                                </ul>
+                            }
                         </li>
                     )
                     }
