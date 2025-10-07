@@ -1,18 +1,10 @@
-"use client";
-import { useRouter } from "next/navigation";
-import { IoIosArrowBack } from "react-icons/io";
 import { IoNotificationsOutline } from "react-icons/io5";
+import NavigateButton from "./NavigateButton";
 
 const Notification = () => {
-    const router = useRouter();
     return (
         <div>
-            <div className="flex items-center gap-3">
-                <button onClick={() => router.back()} className="cursor-pointer">
-                    <IoIosArrowBack size={20}/>
-                </button>
-                <h3 className="font-semibold md:text-2xl text-xl">Notification</h3>
-            </div>
+            <NavigateButton text={"Notification"}></NavigateButton>
             <div className="md:mt-5 mt-3 space-y-2">
                 <div className="flex items-center gap-2 p-2 border border-hard rounded-sm">
                 <p className="p-2 border border-hard rounded-full">

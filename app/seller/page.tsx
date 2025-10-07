@@ -3,6 +3,7 @@ import Withdraw from './seller-component/dashboard/Withdraw';
 import Stats from './seller-component/dashboard/Stats';
 import PieChart from '../shared/PieChart';
 import AreaChartGraph from '../shared/AreaChartGraph';
+import RecentSellingProduct from './seller-component/dashboard/RecentSellingProduct';
 
 const page = () => {
     return (
@@ -18,6 +19,7 @@ const page = () => {
                     <PieChart></PieChart>
                 </div>
             </div>
+            <RecentSellingProduct></RecentSellingProduct>
         </div>
     );
 };
