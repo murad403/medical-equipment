@@ -11,7 +11,7 @@ const SellerMenu = () => {
     const pathName = usePathname();
     const [active, setActive] = useState(pathName);
     return (
-        <div className="bg-gradient-to-t flex flex-col justify-between to-normal from-hard py-5 px-5 min-h-screen">
+        <div className="bg-gradient-to-t flex flex-col justify-between to-normal from-hard py-5 px-5 min-h-full">
             <ul className="space-y-4">
                 <li className="mb-10">
                     <Link className="flex justify-center" href={"/"}>
