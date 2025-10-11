@@ -19,7 +19,7 @@ const page = () => {
     }
     return (
         <div>
-            <NavigateButton text={"Upload product"}></NavigateButton>
+            <NavigateButton text={"edit product"}></NavigateButton>
             <div className="flex justify-center mt-3 md:mt-4 text-title">
                 <form className="space-y-3 w-full md:w-[80%] bg-normal rounded-xl md:p-5 p-2" onSubmit={handleSubmit(onSubmit)}>
                     <div className="flex flex-col md:flex-row md:gap-5 gap-3 items-center">
@@ -69,7 +69,7 @@ const page = () => {
                 </form>
             </div>
         </div>
-    );
-};
+    )
+}
 
 export default page;

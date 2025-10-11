@@ -12,7 +12,7 @@ const page = () => {
         console.log(data);
     }
     return (
-        <div className="w-full bg-normal rounded-xl p-5">
+        <div className="w-full bg-normal rounded-xl p-5 text-title">
                 <form className="space-y-3" onSubmit={handleSubmit(onSubmit)}>
                     <div className="w-full">
                         <input type="text" className="w-full appearance-none outline-none border border-hard rounded-lg py-2 px-3" placeholder="Subject" {...register("subject", {required: true})} />

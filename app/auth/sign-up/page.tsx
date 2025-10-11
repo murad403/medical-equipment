@@ -28,7 +28,7 @@ const page = () => {
         console.log(data, phone);
     }
     return (
-        <div className="mt-7">
+        <div className="mt-7 text-title">
             <div className="text-center">
                 <h2 className="font-bold text-2xl md:text-3xl lg:text-4xl"><span className="text-hard">Sign Up</span> Email</h2>
                 <p className="text-sm mt-2">Welcome Back! Please enter your details.</p>

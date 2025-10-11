@@ -3,7 +3,7 @@ import { SlEye } from "react-icons/sl";
 const RecentSellingProduct = () => {
   return (
     <div>
-      <h2 className="text-lg font-semibold">Recent Selling Product</h2>
+      <h2 className="text-lg font-semibold text-title">Recent Selling Product</h2>
       <div className="overflow-x-auto md:mt-4 mt-3 rounded-lg border border-hard">
         <table className="table">
           <thead className="">
@@ -18,7 +18,7 @@ const RecentSellingProduct = () => {
             </tr>
           </thead>
           <tbody className="space-y-3">
-            <tr className="border-b border-hard">
+            <tr className="border-b border-hard text-title">
               <th>1</th>
               <td>murad</td>
               <td>Control Specialist</td>

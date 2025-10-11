@@ -4,7 +4,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 
 const BidCard = () => {
     return (
-        <div className="flex flex-col md:flex-row gap-4 p-3 border border-hard rounded-xl">
+        <div className="flex flex-col md:flex-row gap-4 p-3 border border-hard rounded-xl text-title">
             <Image className="w-full" src={product} alt="product"></Image>
             <div className="space-y-4">
                 <div className="flex justify-between items-center">

@@ -1,4 +1,5 @@
 import NavigateButton from "@/app/shared/NavigateButton";
+import Link from "next/link";
 import React from "react";
 import { SlEye } from "react-icons/sl";
 
@@ -21,7 +22,7 @@ const page = () => {
             </tr>
           </thead>
           <tbody className="space-y-3">
-            <tr className="border-b border-hard">
+            <tr className="border-b border-hard text-title">
               <th>1</th>
               <td>murad</td>
               <td>Control Specialist</td>
@@ -30,9 +31,9 @@ const page = () => {
               <td>9/29/2020</td>
               <td>pending</td>
               <td className="pl-8">
-                <button className="cursor-pointer">
+                <Link href={"/seller/order/3434"} className="cursor-pointer">
                   <SlEye size={17} />
-                </button>
+                </Link>
               </td>
             </tr>
           </tbody>

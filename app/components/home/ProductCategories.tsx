@@ -5,10 +5,10 @@ import Image from "next/image";
 const ProductCategories = () => {
   return (
     <div>
-      <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold">
+      <h2 className="text-3xl md:text-4xl lg:text-[43px] font-bold text-title">
         Product <span className="text-hard">Categories</span>
       </h2>
-      <div className="flex justify-center items-center flex-wrap gap-20 md:mt-20 mt-14">
+      <div className="flex justify-center items-center flex-wrap gap-20 lg:gap-32 md:mt-20 mt-14">
         {productCategories.map((category) => (
             <div key={category?.id}
               className="bg-[#E8E9E975] flex justify-center items-center flex-col rounded-[32px] w-[230px] h-[230px] rotate-[45deg] relative"

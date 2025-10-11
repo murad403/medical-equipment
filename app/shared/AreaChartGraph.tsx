@@ -27,7 +27,7 @@ const AreaChartGraph = () => {
       </CardHeader>
 
       <CardContent className="pt-0 px-0">
-        <div className="md:h-[380px]">
+        <div className="md:h-[380px] lg:h-full">
           <ChartContainer config={chartConfig}>
           <AreaChart accessibilityLayer data={chartData}>
             <CartesianGrid vertical={false} horizontal={false} />
@@ -35,7 +35,7 @@ const AreaChartGraph = () => {
             <XAxis dataKey="time" tickLine={{stroke: "#48B1DB", strokeWidth: 1}} tickSize={10} axisLine={false} tickMargin={8} />
 
             <ChartTooltip cursor={false} content={
-              <ChartTooltipContent indicator="line" formatter={(value: any) => `${(value / 1000).toFixed(1)}k$`}/>}/>
+              <ChartTooltipContent className="text-title" indicator="line" formatter={(value: any) => `${(value / 1000).toFixed(1)}k$`}/>}/>
 
             <Area dataKey="income" fill="#48B1DB" type="natural" fillOpacity={0.4} stroke="#48B1DB" strokeWidth={3}/>
           </AreaChart>

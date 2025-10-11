@@ -14,7 +14,7 @@ const SearchProducts = () => {
     return (
         <div>
             <form className="w-full space-y-3 space-x-5" onSubmit={handleSubmit(onSubmit)}>
-                <input placeholder="Search your product here..." className="appearance-none w-[70%] outline-none border border-hard bg-normal rounded-lg py-2 px-4" type="text" {...register("searchText", {required: true})} />
+                <input placeholder="Search your product here..." className="appearance-none md:w-[70%] w-full outline-none border border-hard bg-normal rounded-lg py-2 px-4 text-title" type="text" {...register("searchText", {required: true})} />
                 {errors.searchText && <span className="text-sm text-red-500">Email is required</span>}
                 <button className="rounded-lg cursor-pointer border-hard border w-[27%] text-hard py-2">Search</button>
             </form>

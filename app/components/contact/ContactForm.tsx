@@ -14,8 +14,8 @@ const ContactForm = () => {
     console.log(data);
   }
     return (
-        <div className="flex flex-col md:flex-row items-center gap-5 md:gap-10">
-            <div className="w-full space-y-3 md:w-[25%] *:h-[130px] *:py-5">
+        <div className="flex flex-col lg:flex-row items-center gap-5 md:gap-10 text-title">
+            <div className="w-full flex flex-col md:flex-row lg:flex-col gap-3 *:w-full lg:w-[25%] *:h-[130px] *:py-5">
                 <div className="bg-normal flex flex-col justify-between rounded-xl text-center">
                     <h3 className="text-2xl font-semibold">Office Address</h3>
                     <p className="text-sm">Mst & Associate <br /> [Your Full Address Here] <br /> (City, State, Zip Code)</p>
@@ -29,7 +29,7 @@ const ContactForm = () => {
                     <p className="text-sm">info@mstassociate.com <br /> support@mstassociate.com</p>
                 </div>
             </div>
-            <div className="w-full md:w-[75%] bg-normal rounded-xl md:p-5 p-2">
+            <div className="w-full lg:w-[75%] bg-normal rounded-xl md:p-5 p-2">
                 <h3 className="text-2xl font-semibold text-center mb-4">Send Us a Message</h3>
                 <form className="space-y-3" onSubmit={handleSubmit(onSubmit)}>
                     <div className="flex flex-col md:flex-row md:gap-5 gap-3 items-center">

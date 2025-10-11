@@ -11,9 +11,9 @@ import "../../styles/slider.css";
 
 const UpcomingAuctions = () => {
     return (
-        <div className='px-5 lg:px-10 lg:py-16 sliderResponsive mb-56 md:mb-0'>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-hard">Upcoming <span className="text-black">Auctions</span></h2>
-            <div className='md:mt-7 mt-4 relative'>
+        <div className='px-5 lg:px-10 py-7 md:py-9 lg:py-14 bg-normal rounded-xl'>
+            <h2 className="text-3xl md:text-4xl lg:text-[43px] font-bold text-hard">Upcoming <span className="text-title">Auctions</span></h2>
+            <div className='md:mt-7 lg:mt-10 mt-3 relative '>
                 <Swiper centeredSlides={false} slidesPerGroup={3} navigation={{nextEl: '.swiper-button-next-custom', prevEl: '.swiper-button-prev-custom'}} modules={[Navigation]} className="mySwiper" breakpoints={{
                     320: {
                         slidesPerView: 1,
@@ -25,8 +25,12 @@ const UpcomingAuctions = () => {
                     },
                     1024:{
                         slidesPerView: 3,
-                        spaceBetween: 120
-                    }
+                        spaceBetween: 50
+                    },
+                    1280: {
+      slidesPerView: 4,
+      spaceBetween: 50,
+    },
                 }}>
                     {
                         auctions.map(product => 

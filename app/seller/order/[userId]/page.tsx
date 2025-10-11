@@ -7,7 +7,7 @@ const page = () => {
   return (
     <div>
       <NavigateButton text={"user order details"}></NavigateButton>
-      <div className="flex justify-center mt-3 md:mt-4">
+      <div className="flex justify-center mt-3 md:mt-4 text-title">
         <div className="w-full md:w-[80%]">
         <div className="flex items-center gap-4">
           <Image

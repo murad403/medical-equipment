@@ -20,7 +20,7 @@ const page = () => {
         console.log(data);
     }
     return (
-        <div className="mt-7">
+        <div className="mt-7 text-title">
             <div className="text-center">
                 <h2 className="font-bold text-2xl md:text-3xl lg:text-4xl"><span className="text-hard">Sign In</span> To Your Account</h2>
                 <p className="text-sm mt-2">Welcome! Sign in to your account to continue.</p>

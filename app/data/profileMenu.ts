@@ -8,8 +8,8 @@ const profileMenuLinks: TProfileMenuLinks[] = [
         route: "/profile"
     },
     {
-        path: "My History",
-        route: "/profile/history"
+        path: "My Bids",
+        route: "/profile/bids"
     },
     {
         path: "Order",

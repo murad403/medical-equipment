@@ -5,7 +5,7 @@ import { IoIosArrowBack } from "react-icons/io";
 const NavigateButton = ({text}: any) => {
     const router = useRouter();
     return (
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 text-title">
             <button onClick={() => router.back()} className="cursor-pointer">
                 <IoIosArrowBack size={20}/>
             </button>

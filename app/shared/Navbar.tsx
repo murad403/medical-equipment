@@ -16,7 +16,8 @@ const Navbar = () => {
 //   console.log(pathName);
 //   console.log(openMenu);
   return (
-    <div className="px-4 md:px-14 lg:px-16 flex justify-between items-center py-3 relative">
+    <div className="sticky top-0 z-10">
+      <div className="px-4 md:px-14 lg:px-16 flex justify-between items-center py-2 relative bg-white">
       {/* log */}
       <Link href={"/"}>
         <Image className="w-13" alt="Logo" src={Logo}></Image>
@@ -29,7 +30,7 @@ const Navbar = () => {
               className={`text-lg hover:border-b-2 border-hard ${pathName === link?.route ? "text-hard" : "text-gray-700"}`}
               key={link?.id}
             >
-              <Link href={link?.route}>{link?.path}</Link>
+              <Link onClick={() =>setOpenMenu(false)} href={link?.route}>{link?.path}</Link>
             </li>
           ))}
         </ul>
@@ -87,7 +88,7 @@ const Navbar = () => {
                     className={`text-lg hover:border-b-2 border-normal ${pathName === link?.route ? "text-white" : "text-gray-900"}`}
                     key={link?.id}
                   >
-                    <Link href={link?.route}>{link?.path}</Link>
+                    <Link onClick={() => setOpenMenu(false)} href={link?.route}>{link?.path}</Link>
                   </li>
                 ))}
                 <Link
@@ -112,6 +113,7 @@ const Navbar = () => {
           </div>
         )}
       </div>
+    </div>
     </div>
   );
 };

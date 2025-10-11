@@ -73,8 +73,8 @@ const PieChart = () => {
 
 
   return (
-    <div className="w-full bg-normal rounded-xl p-3 md:p-5 md:h-[480px] flex flex-col justify-between">
-        <div className="flex items-center gap-10">
+    <div className="w-full bg-normal rounded-xl p-3 md:p-5 md:h-[480px] lg:h-full flex flex-col justify-between">
+        <div className="flex items-center gap-10 text-title">
             <div className="flex gap-3 items-center">
                 <div className="w-2 h-2 bg-red-700 rounded-full"></div>
                 <div>

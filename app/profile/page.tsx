@@ -15,7 +15,7 @@ const page = () => {
       }
     return (
         <div>
-            <form className="space-y-3 bg-normal rounded-xl md:p-5 p-3" onSubmit={handleSubmit(onSubmit)}>
+            <form className="space-y-3 bg-normal rounded-xl md:p-5 p-3 text-title" onSubmit={handleSubmit(onSubmit)}>
                     <div className="flex flex-col md:flex-row md:gap-5 gap-3 items-center">
                         <div className="w-full">
                             <label className="text-sm font-medium block mb-1">Name</label>

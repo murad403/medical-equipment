@@ -7,7 +7,7 @@ const CompleteBidCard = () => {
         console.log("dlete");
     }
     return (
-        <div className="px-4 py-3 bg-normal rounded-xl">
+        <div className="px-4 py-3 bg-normal rounded-xl text-title">
             <div className="flex justify-end">
                 <button onClick={handleDeleteCard} className="cursor-pointer">
                     <RiDeleteBin6Line/>

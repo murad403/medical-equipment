@@ -2,13 +2,13 @@
 
 const Withdraw = () => {
     return (
-        <div className='flex justify-between items-center w-full'>
+        <div className='flex justify-between items-center w-full text-title'>
             <h2 className="font-semibold md:text-2xl text-xl">Dashboard</h2>
             <div>
               <button className='bg-hard cursor-pointer text-white py-2 md:px-7 px-4 rounded-xl' onClick={()=>(document.getElementById('my_modal_2') as HTMLDialogElement).showModal()}>$Withdraw</button>
             <div>
                 <dialog id="my_modal_2" className="modal">
-                    <div className="modal-box">
+                    <div className="modal-box bg-white">
                       <h3 className="font-bold text-lg">Withdraw Your Earnings</h3>
                       <div className="text-[16px] space-y-2 mt-5">
                         <p>Withdrawal Balance</p>

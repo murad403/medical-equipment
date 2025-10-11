@@ -14,7 +14,7 @@ const page = () => {
                     )
                 }
             </div>
-            <p className='font-light text-xl my-3'>Products (03)</p>
+            <p className='font-light text-xl my-3 text-title'>Products (03)</p>
             <div>
                 <BidCard></BidCard>
             </div>

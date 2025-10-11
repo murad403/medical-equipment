@@ -3,7 +3,7 @@ import React from 'react';
 const BreadCrums = () => {
     return (
         <div>
-            <div className="breadcrumbs text-sm">
+            <div className="breadcrumbs text-sm text-title">
                 <ul>
                   <li><a>Home</a></li>
                   <li><a>Documents</a></li>

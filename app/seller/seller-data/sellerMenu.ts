@@ -43,7 +43,7 @@ const sellerMenu: TSellerMenu[] = [
     },
     {
         path: "Setting",
-        route: "/seller/setting",
+        route: "/seller/settings",
         icon: IoSettingsOutline
     }
 ]

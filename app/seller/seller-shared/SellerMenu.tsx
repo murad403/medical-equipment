@@ -5,7 +5,7 @@ import Image from "next/image";
 import sellerMenu from "../seller-data/sellerMenu";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { TbLogout } from "react-icons/tb";
+import LogoutModal from "@/app/shared/LogoutModal";
 
 const SellerMenu = () => {
     const pathName = usePathname();
@@ -21,14 +21,14 @@ const SellerMenu = () => {
                 {
                     sellerMenu.map(link =>
                         <li key={link?.path}>
-                            <Link onClick={() =>setActive(link.route)} className={`flex gap-3 px-3 rounded-xl items-center text-[16px] font-medium py-1 ${active === link.route ? "bg-hard text-white" : ""}`} href={link?.route}>{link?.icon && <link.icon/>}{link?.path}</Link>
+                            <Link onClick={() =>setActive(link.route)} className={`flex gap-3 px-3 rounded-xl items-center text-[16px] font-medium py-1 ${active === link.route ? "bg-hard text-white" : "text-title"}`} href={link?.route}>{link?.icon && <link.icon/>}{link?.path}</Link>
                             {
                                 link?.product && 
                                 <ul className={`${active === "/seller/product" ? "block" : "hidden"} space-y-2 mt-2`}>
                                     {
                                         link?.product.map(link =>
                                             <li key={link?.path}>
-                                                <Link onClick={() =>setActive(link.route)} className={`ml-14 flex gap-3 px-3 rounded-xl items-center text-sm font-medium py-1 ${active === link.route ? "bg-hard text-white" : ""}`} href={link?.route}>{link?.icon && <link.icon/>}{link?.path}</Link>
+                                                <Link onClick={() =>setActive(link.route)} className={`ml-14 flex gap-3 px-3 rounded-xl items-center text-sm font-medium py-1 ${active === link.route ? "bg-hard text-white" : "text-title"}`} href={link?.route}>{link?.icon && <link.icon/>}{link?.path}</Link>
                                             </li>
                                         )
                                     }
@@ -38,10 +38,7 @@ const SellerMenu = () => {
                     )
                 }
             </ul>
-            <button className="flex items-center gap-5 w-full bg-normal cursor-pointer justify-center py-2 rounded-xl">
-                <TbLogout/>
-                <span>Logout</span>
-            </button>
+            <LogoutModal></LogoutModal>
         </div>
     );
 };
