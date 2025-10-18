@@ -8,6 +8,8 @@ import { useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/bootstrap.css";
 import Link from "next/link";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 type TInputs = {
     name: string;
@@ -25,10 +27,22 @@ const page = () => {
     const [showPassword, setShowPassword] = useState(false);
     const {register, handleSubmit, watch, formState: {errors}} = useForm<TInputs>();
     const onSubmit: SubmitHandler<TInputs> = (data) =>{
-        console.log(data, phone);
+        if(data.password !== data.confirmPassword){
+            return toast.error("Password and Confirm Password do not match");
+        }
+        axios.post('/api/auth/sign-up', {...data, phoneNumber: phone})
+        .then(result =>{
+            // console.log(result.data);
+            toast.success(result.data.message);
+        })
+        .catch(error =>{
+            console.log(error.response.data.message);
+            toast.error(error.response.data.message);
+        })
+        // console.log(data, typeof parseNumber);
     }
     return (
-        <div className="mt-7 text-title">
+        <div className="pt-5 text-title">
             <div className="text-center">
                 <h2 className="font-bold text-2xl md:text-3xl lg:text-4xl"><span className="text-hard">Sign Up</span> Email</h2>
                 <p className="text-sm mt-2">Welcome Back! Please enter your details.</p>
@@ -81,7 +95,7 @@ const page = () => {
                             <input placeholder="Enter Confirm Password" className="appearance-none w-full outline-none border border-hard rounded-lg py-2 px-4" type={showPassword ? "text" : "password"} {...register("confirmPassword", {required: true})} />
                             {errors.confirmPassword && <span className="text-sm text-red-500">Confirm Password is required</span>}
                         </div>
-                        <button className="w-full bg-hard rounded-lg text-white  py-2 mt-3">Sign In</button>
+                        <button className="w-full bg-hard rounded-lg text-white  py-2 mt-3 cursor-pointer">Sign Up</button>
                         <div className="mt-3">
                             <input type="checkbox" {...register("terms", {required: true})}/>
                             <label className="text-sm ml-2">By creating an account, I accept the Terms & Conditions & Privacy Policy.</label>
