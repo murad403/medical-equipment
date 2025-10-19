@@ -12,8 +12,8 @@ export async function POST(req: NextRequest, res: NextResponse){
         if(existingUser){
             return NextResponse.json({message: "User already exists"}, {status: 400});
         }
-        const hashPassword = bcrypt.hash(user.password, 15);
-        let result = await User.create({...user, password: hashPassword});
+        const hashPassword = await bcrypt.hash(user.password, 10);
+        const result = await User.create({...user, password: hashPassword});
         delete result.password;
         return NextResponse.json({data: result, message: "User created successfully"}, {status: 200});
 

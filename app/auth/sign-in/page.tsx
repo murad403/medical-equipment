@@ -6,6 +6,8 @@ import { PiEyeSlash, PiEyeLight } from "react-icons/pi";
 import { FaGoogle } from "react-icons/fa";
 import { useState } from "react";
 import Link from "next/link";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 type TInputs = {
     email: string;
@@ -17,7 +19,16 @@ const page = () => {
     const [showPassword, setShowPassword] = useState(false);
     const {register, handleSubmit, watch, formState: {errors}} = useForm<TInputs>();
     const onSubmit: SubmitHandler<TInputs> = (data) =>{
-        console.log(data);
+        // console.log(data);
+        axios.post('/api/auth/sign-in', data)
+        .then(result =>{
+            // console.log(result.data);
+            toast.success(result.data.message);
+        })
+        .catch(error =>{
+            console.log(error.response.data.message);
+            toast.error(error.response.data.message);
+        })
     }
     return (
         <div className="min-h-screen flex justify-center items-center flex-col text-title">
@@ -48,7 +59,7 @@ const page = () => {
                             <input type="checkbox" {...register("remember", {required: true})}/>
                             <label className="text-sm ml-2">Remember me</label>
                         </div>
-                        <button className="w-full bg-hard rounded-lg text-white  py-2">Sign In</button>
+                        <button className="w-full bg-hard rounded-lg text-white cursor-pointer py-2">Sign In</button>
                     </form>
                     <div className="flex justify-center items-center gap-5 md:gap-7 flex-col mt-5 md:mt-7 w-full">
                         <p>or</p>
