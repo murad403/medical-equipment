@@ -1,21 +1,26 @@
 "use client";
 import NavigateButton from "@/app/shared/NavigateButton";
-import Image from "next/image";
+import { CiCircleRemove } from "react-icons/ci";
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IoCloudUploadOutline } from "react-icons/io5";
+import { categories } from "@/app/components/auctions/CollectibleProducts";
 
 type TInputs = {
   title: string;
   bidDateTime: string;
   category: number;
   price: number;
-  image: string;
+  images: TImageFile[];
   description: string;
+};
+type TImageFile = {
+  id: string;
+  image: any;
 };
 
 const page = () => {
-  const [imageFile, setImageFile] = useState<string[]>([]);
+  const [imageFile, setImageFile] = useState<TImageFile[]>([]);
   const {
     register,
     handleSubmit,
@@ -23,30 +28,38 @@ const page = () => {
     formState: { errors },
   } = useForm<TInputs>();
 
-  const imageList = watch("image");
+  const imageList = watch("images");
+  const id = Math.random().toString(36).substring(2, 12);
   useEffect(() => {
-  if (imageList && imageList.length > 0) {
-    if (imageFile.length >= 3) return;
-    const file = imageList[0];
-    const reader = new FileReader();
-    reader.onload = () => {
-      if (reader.result) {
-        setImageFile((prev: string[]): string[] =>{
-            if(imageFile.length >= 3) return prev;
-           return [...prev, reader.result as string]
-        });
-      }
-    };
-    reader.readAsDataURL(file);
+    if (imageList && imageList.length > 0) {
+      if (imageFile.length >= 3) return;
+      const file = imageList[0] as unknown as File;
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (reader.result) {
+          setImageFile((prev: TImageFile[]): TImageFile[] => {
+            if (imageFile.length >= 3) return prev;
+            const image = reader.result;
+            return [...prev, { id, image }];
+          });
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  }, [imageList]);
+  const handleRemoveImage = (id: string) => {
+    const newImageFile = imageFile.filter((item) => item?.id !== id);
+    setImageFile(newImageFile);
+  };
 
-  }
-}, [imageList]);
-
-console.log(imageFile);
-
+  // console.log(imageFile);
 
   const onSubmit: SubmitHandler<TInputs> = (data) => {
-    console.log(data);
+    const product = {
+      ...data,
+      images: imageFile,
+    };
+    console.log(product);
   };
   return (
     <div>
@@ -89,13 +102,25 @@ console.log(imageFile);
               <label className="text-sm font-medium block mb-1">
                 Product Category
               </label>
-              <input
-                type="text"
+              <select
                 className="w-full appearance-none outline-none border border-hard rounded-lg py-2 px-3"
-                placeholder="Type product category"
                 {...register("category", { required: true })}
-              />
-              {errors.category && <span>Product category is required</span>}
+                defaultValue=""
+              >
+                <option value="" disabled>
+                  Select product category
+                </option>
+                {
+                  categories.map(category =>
+                    <option key={category} value={category}>{category}</option>
+                  )
+                }
+              </select>
+              {errors.category && (
+                <span className="text-red-500 text-sm">
+                  Product category is required
+                </span>
+              )}
             </div>
             <div className="w-full">
               <label className="text-sm font-medium block mb-1">
@@ -133,9 +158,9 @@ console.log(imageFile);
                 id="image"
                 type="file"
                 className="hidden"
-                {...register("image", { required: true })}
+                {...register("images", { required: true })}
               />
-              {errors.image && <span>Image is required</span>}
+              {errors.images && <span>Image is required</span>}
             </div>
           </div>
 
@@ -146,12 +171,23 @@ console.log(imageFile);
             >
               Upload
             </button>
-            <div className="flex items-center">
-                {
-                    imageFile.length > 0 && imageFile.map((image, index) =>
-                        <img className="w-20 h-20 ml-6 rounded-md" key={index} src={image} alt="product image"></img>
-                    )
-                }
+            <div className="flex items-center gap-3">
+              {imageFile.length > 0 &&
+                imageFile.map((item) => (
+                  <div key={item?.id} className="w-20 h-20 relative">
+                    <img
+                      className="rounded-md h-full w-full"
+                      src={item?.image}
+                      alt="product image"
+                    ></img>
+                    <button
+                      onClick={() => handleRemoveImage(item.id)}
+                      className="absolute top-1 right-1 rounded-full text-white cursor-pointer hover:bg-red-500"
+                    >
+                      <CiCircleRemove size={15} />
+                    </button>
+                  </div>
+                ))}
             </div>
           </div>
         </form>

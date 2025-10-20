@@ -33,3 +33,4 @@ const productCategories: TProductCategories = [
 ]
 
 export default productCategories;
+
