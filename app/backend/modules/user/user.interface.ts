@@ -5,7 +5,7 @@ type TUser = {
     email: string;
     address: string;
     password: string;
-    photo?: string; 
+    photo: string; 
 }
 
 export default TUser;

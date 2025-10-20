@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { MdAddPhotoAlternate } from "react-icons/md";
 
@@ -9,9 +10,25 @@ type TInputs = {
 }
 
 const page = () => {
-    const { register, handleSubmit, watch, formState: { errors }} = useForm<TInputs>()
+    const { register, handleSubmit, watch, formState: { errors }} = useForm<TInputs>();
+    const [image, setImage] = useState("");
+    
+    const imageFile = watch("image");
+    if(imageFile && imageFile.length > 0){
+        const file = imageFile[0] as unknown as File;
+        const reader = new FileReader();
+        reader.onload = () =>{
+            setImage(reader.result as string);
+        }
+        reader.readAsDataURL(file);
+    }
+    // console.log(image);
+
       const onSubmit: SubmitHandler<TInputs> = (data) =>{
-        console.log(data);
+        const profileData = {
+            ...data, image
+        }
+        console.log(profileData);
       }
     return (
         <div>

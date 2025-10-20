@@ -11,7 +11,7 @@ const profileHeaderData: TProfileHeaderData[] = [
         description: "Update your profile and personal details."
     },
     {
-        pathName: "/profile/history",
+        pathName: "/profile/bids",
         title: "My Product History",
         description: "Manage Products"
     },

@@ -15,7 +15,7 @@ const Navbar = () => {
   const pathName = usePathname();
   const router = useRouter();
   const { user } = useAppSelector((state) => state.user);
-  console.log(user);
+  // console.log(user);
   //   console.log(openMenu);
   return (
     <div className="sticky top-0 z-10">
@@ -58,11 +58,11 @@ const Navbar = () => {
             </button>
               {user ? (
                 <Link href={"/profile"}>
-                  <Image
+                  <img
                     className="w-12 h-12 border-2 p-[1px] border-hard rounded-full"
                     src={user?.photo}
                     alt={user?.name}
-                  ></Image>
+                  ></img>
                 </Link>
               ) : (
                 <Link
@@ -121,11 +121,11 @@ const Navbar = () => {
                   ))}
                     {user ? (
                       <Link href={"/profile"}>
-                        <Image
+                        <img
                           className="w-12 h-12 border-2 p-[1px] border-hard rounded-full"
                           src={user?.photo}
                           alt={user?.name}
-                        ></Image>
+                        ></img>
                       </Link>
                     ) : (
                       <Link
