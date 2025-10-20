@@ -14,8 +14,9 @@ export async function POST(req: NextRequest, res: NextResponse){
         }
         const hashPassword = await bcrypt.hash(user.password, 10);
         const result = await User.create({...user, password: hashPassword});
-        delete result.password;
-        return NextResponse.json({data: result, message: "User created successfully"}, {status: 200});
+        const userObj = result.toObject();
+        delete userObj.password;
+        return NextResponse.json({message: "User created successfully", data: userObj}, {status: 200});
 
     } catch (error) {
         console.log(`Error creating user ${error}`);

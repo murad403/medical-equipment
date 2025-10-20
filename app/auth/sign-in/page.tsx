@@ -8,6 +8,8 @@ import { useState } from "react";
 import Link from "next/link";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useAppDispatch } from "@/app/redux/hook";
+import { addUser } from "@/app/redux/features/userSlice";
 
 type TInputs = {
     email: string;
@@ -18,12 +20,14 @@ type TInputs = {
 const page = () => {
     const [showPassword, setShowPassword] = useState(false);
     const {register, handleSubmit, watch, formState: {errors}} = useForm<TInputs>();
+    const dispatch = useAppDispatch();
+
     const onSubmit: SubmitHandler<TInputs> = (data) =>{
-        // console.log(data);
         axios.post('/api/auth/sign-in', data)
         .then(result =>{
-            // console.log(result.data);
-            toast.success(result.data.message);
+            // console.log(result.data.data);
+            dispatch(addUser(result?.data?.data));
+            toast.success(result?.data?.message);
         })
         .catch(error =>{
             console.log(error.response.data.message);

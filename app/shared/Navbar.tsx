@@ -8,112 +8,137 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 import { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { usePathname, useRouter } from "next/navigation";
+import { useAppSelector } from "../redux/hook";
+import userPhoto from "../../public/user.jpg";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const pathName = usePathname();
   const router = useRouter();
-//   console.log(pathName);
-//   console.log(openMenu);
+  const { user } = useAppSelector((state) => state.user);
+  console.log(user);
+  //   console.log(openMenu);
   return (
     <div className="sticky top-0 z-10">
       <div className="px-4 md:px-14 lg:px-16 flex justify-between items-center py-2 relative bg-white">
-      {/* log */}
-      <Link href={"/"}>
-        <Image className="w-13" alt="Logo" src={Logo}></Image>
-      </Link>
-      {/* menu */}
-      <div className="hidden md:block">
-        <ul className="flex items-center md:gap-5 lg:gap-7">
-          {navbarLinks.map((link) => (
-            <li
-              className={`text-lg hover:border-b-2 border-hard ${pathName === link?.route ? "text-hard" : "text-gray-700"}`}
-              key={link?.id}
+        {/* log */}
+        <Link href={"/"}>
+          <Image className="w-13" alt="Logo" src={Logo}></Image>
+        </Link>
+        {/* menu */}
+        <div className="hidden md:block">
+          <ul className="flex items-center md:gap-5 lg:gap-7">
+            {navbarLinks.map((link) => (
+              <li
+                className={`text-lg hover:border-b-2 border-hard ${
+                  pathName === link?.route ? "text-hard" : "text-gray-700"
+                }`}
+                key={link?.id}
+              >
+                <Link onClick={() => setOpenMenu(false)} href={link?.route}>
+                  {link?.path}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        {/* authentication */}
+        <div className="hidden md:block">
+          <div className="flex items-center gap-4">
+            <Link
+              className="bg-normal p-2 rounded-full text-hard"
+              href={"/cart"}
             >
-              <Link onClick={() =>setOpenMenu(false)} href={link?.route}>{link?.path}</Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-      {/* authentication */}
-      <div className="hidden md:block">
-        <div className="flex items-center gap-4">
-          <Link
-            className="bg-normal p-2 rounded-full text-hard"
-            href={"/cart"}
+              <CiShoppingCart size={20} />
+            </Link>
+            <button
+              onClick={() => router.push("/notification")}
+              className="bg-normal p-2 rounded-full text-hard cursor-pointer"
+            >
+              <IoIosNotificationsOutline size={20} />
+            </button>
+            {user ? (
+              <Link href={'/profile'}>
+                <Image className="w-12 h-12 border-2 p-[1px] border-hard rounded-full" src={user?.photo ? user?.photo : userPhoto} alt={user?.name}></Image>
+              </Link>
+            ) : (
+              <Link
+                className="px-8 py-2 text-lg rounded-lg bg-hard text-white"
+                href={"/auth/sign-in"}
+              >
+                Login
+              </Link>
+            )}
+          </div>
+        </div>
+
+        {/* responsive */}
+        <div className="md:hidden block">
+          <button
+            onClick={() => setOpenMenu(true)}
+            className="cursor-pointer p-2 text-hard font-bold bg-normal rounded-md"
           >
-            <CiShoppingCart size={20} />
-          </Link>
-          <button onClick={() => router.push("/notification")} className="bg-normal p-2 rounded-full text-hard cursor-pointer">
-            <IoIosNotificationsOutline size={20} />
+            <CiMenuFries className="font-bold" size={24} />
           </button>
-          <Link
-            className="px-8 py-2 text-lg rounded-lg bg-hard text-white"
-            href={"/auth/sign-in"}
-          >
-            Login
-          </Link>
+        </div>
+
+        <div
+          className={`absolute top-0 z-10 right-0 bg-hard w-[200px] h-screen ${
+            openMenu ? "block" : "hidden"
+          } md:hidden`}
+        >
+          {openMenu && (
+            <div>
+              <div className="mt-1 m-1">
+                <button
+                  onClick={() => setOpenMenu(false)}
+                  className="text-hard bg-normal rounded-full p-1 cursor-pointer"
+                >
+                  <RxCross2 size={24} />
+                </button>
+              </div>
+              <div className="mt-10">
+                <ul className="flex flex-col gap-4 ml-3">
+                  {navbarLinks.map((link) => (
+                    <li
+                      className={`text-lg hover:border-b-2 border-normal ${
+                        pathName === link?.route
+                          ? "text-white"
+                          : "text-gray-900"
+                      }`}
+                      key={link?.id}
+                    >
+                      <Link
+                        onClick={() => setOpenMenu(false)}
+                        href={link?.route}
+                      >
+                        {link?.path}
+                      </Link>
+                    </li>
+                  ))}
+                  <Link
+                    className="px-2 py-1 text-[17px] mr-3 flex justify-center rounded-lg bg-normal text-black"
+                    href={"/login"}
+                  >
+                    Login
+                  </Link>
+                  <div className="flex justify-center items-center gap-2">
+                    <Link
+                      className="bg-normal p-2 rounded-full text-hard"
+                      href={"/cart"}
+                    >
+                      <CiShoppingCart size={20} />
+                    </Link>
+                    <button className="bg-normal p-2 rounded-full text-hard cursor-pointer">
+                      <IoIosNotificationsOutline size={20} />
+                    </button>
+                  </div>
+                </ul>
+              </div>
+            </div>
+          )}
         </div>
       </div>
-
-      {/* responsive */}
-      <div className="md:hidden block">
-        <button
-          onClick={() => setOpenMenu(true)}
-          className="cursor-pointer p-2 text-hard font-bold bg-normal rounded-md"
-        >
-          <CiMenuFries className="font-bold" size={24} />
-        </button>
-      </div>
-
-      <div
-        className={`absolute top-0 z-10 right-0 bg-hard w-[200px] h-screen ${
-          openMenu ? "block" : "hidden"
-        } md:hidden`}
-      >
-        {openMenu && (
-          <div>
-            <div className="mt-1 m-1">
-              <button
-                onClick={() => setOpenMenu(false)}
-                className="text-hard bg-normal rounded-full p-1 cursor-pointer"
-              >
-                <RxCross2 size={24} />
-              </button>
-            </div>
-            <div className="mt-10">
-              <ul className="flex flex-col gap-4 ml-3">
-                {navbarLinks.map((link) => (
-                  <li
-                    className={`text-lg hover:border-b-2 border-normal ${pathName === link?.route ? "text-white" : "text-gray-900"}`}
-                    key={link?.id}
-                  >
-                    <Link onClick={() => setOpenMenu(false)} href={link?.route}>{link?.path}</Link>
-                  </li>
-                ))}
-                <Link
-            className="px-2 py-1 text-[17px] mr-3 flex justify-center rounded-lg bg-normal text-black"
-            href={"/login"}
-          >
-            Login
-          </Link>
-          <div className="flex justify-center items-center gap-2">
-            <Link
-            className="bg-normal p-2 rounded-full text-hard"
-            href={"/cart"}
-          >
-            <CiShoppingCart size={20} />
-          </Link>
-          <button className="bg-normal p-2 rounded-full text-hard cursor-pointer">
-            <IoIosNotificationsOutline size={20} />
-          </button>
-          </div>
-              </ul>
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
     </div>
   );
 };
