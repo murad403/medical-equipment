@@ -10,6 +10,7 @@ import { RxCross2 } from "react-icons/rx";
 import { usePathname, useRouter } from "next/navigation";
 import { useAppSelector } from "../redux/hook";
 import userPhoto from "../../public/user.jpg";
+import ClientOnlyWrapper from "../wrapper/ClientOnlyWrapper";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -57,18 +58,24 @@ const Navbar = () => {
             >
               <IoIosNotificationsOutline size={20} />
             </button>
-            {user ? (
-              <Link href={'/profile'}>
-                <Image className="w-12 h-12 border-2 p-[1px] border-hard rounded-full" src={user?.photo ? user?.photo : userPhoto} alt={user?.name}></Image>
-              </Link>
-            ) : (
-              <Link
-                className="px-8 py-2 text-lg rounded-lg bg-hard text-white"
-                href={"/auth/sign-in"}
-              >
-                Login
-              </Link>
-            )}
+            <ClientOnlyWrapper>
+              {user ? (
+                <Link href={"/profile"}>
+                  <Image
+                    className="w-12 h-12 border-2 p-[1px] border-hard rounded-full"
+                    src={user?.photo ? user?.photo : userPhoto}
+                    alt={user?.name}
+                  ></Image>
+                </Link>
+              ) : (
+                <Link
+                  className="px-8 py-2 text-lg rounded-lg bg-hard text-white"
+                  href={"/auth/sign-in"}
+                >
+                  Login
+                </Link>
+              )}
+            </ClientOnlyWrapper>
           </div>
         </div>
 
@@ -116,12 +123,24 @@ const Navbar = () => {
                       </Link>
                     </li>
                   ))}
-                  <Link
-                    className="px-2 py-1 text-[17px] mr-3 flex justify-center rounded-lg bg-normal text-black"
-                    href={"/login"}
-                  >
-                    Login
-                  </Link>
+                  <ClientOnlyWrapper>
+                    {user ? (
+                      <Link href={"/profile"}>
+                        <Image
+                          className="w-12 h-12 border-2 p-[1px] border-hard rounded-full"
+                          src={user?.photo ? user?.photo : userPhoto}
+                          alt={user?.name}
+                        ></Image>
+                      </Link>
+                    ) : (
+                      <Link
+                        className="px-8 py-2 text-lg rounded-lg bg-hard text-white"
+                        href={"/auth/sign-in"}
+                      >
+                        Login
+                      </Link>
+                    )}
+                  </ClientOnlyWrapper>
                   <div className="flex justify-center items-center gap-2">
                     <Link
                       className="bg-normal p-2 rounded-full text-hard"
