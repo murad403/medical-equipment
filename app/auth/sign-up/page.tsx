@@ -12,6 +12,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { addUser } from "@/app/redux/features/userSlice";
 import { useAppDispatch } from "@/app/redux/hook";
+import { useRouter } from "next/navigation";
 
 type TInputs = {
     name: string;
@@ -28,7 +29,9 @@ const page = () => {
     const [phone, setPhone] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const dispatch = useAppDispatch();
+    const router = useRouter();
     const {register, handleSubmit, watch, formState: {errors}} = useForm<TInputs>();
+
     const onSubmit: SubmitHandler<TInputs> = (data) =>{
         if(data.password !== data.confirmPassword){
             return toast.error("Password and Confirm Password do not match");
@@ -36,6 +39,7 @@ const page = () => {
         axios.post('/api/auth/sign-up', {...data, phoneNumber: phone})
         .then(result =>{
             // console.log(result.data);
+            router.push("/");
             dispatch(addUser(result?.data?.data));
             toast.success(result.data.message);
         })

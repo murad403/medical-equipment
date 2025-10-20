@@ -8,7 +8,7 @@ const userSchema = new Schema<TUser>({
     email: {type: String, required: true, unique: true},
     address: {type: String, required: true},
     password: {type: String, required: true},
-    photo: {type: String, required: false},
+    photo: {type: String, required: true, default: "https://ibb.co.com/jPvsf68T"}
 }, {
     timestamps: true
 })

@@ -6,6 +6,7 @@ import Footer from "../shared/Footer";
 import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
 import store from "../redux/store";
+import ClientOnlyWrapper from "./ClientOnlyWrapper";
 
 const ClientWrapper = ({ children }: { children: React.ReactNode }) => {
   const pathName = usePathname();
@@ -14,10 +15,12 @@ const ClientWrapper = ({ children }: { children: React.ReactNode }) => {
   return (
     <div>
       <Provider store={store}>
-        {!hideLayout && <Navbar></Navbar>}
-      {children}
-      {!hideLayout && <Footer></Footer>}
-      <Toaster position="top-right" reverseOrder={false} />
+        <ClientOnlyWrapper>
+          {!hideLayout && <Navbar></Navbar>}
+          {children}
+          {!hideLayout && <Footer></Footer>}
+          <Toaster position="top-right" reverseOrder={false} />
+        </ClientOnlyWrapper>
       </Provider>
     </div>
   );

@@ -10,6 +10,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useAppDispatch } from "@/app/redux/hook";
 import { addUser } from "@/app/redux/features/userSlice";
+import { useRouter } from "next/navigation";
 
 type TInputs = {
     email: string;
@@ -21,11 +22,13 @@ const page = () => {
     const [showPassword, setShowPassword] = useState(false);
     const {register, handleSubmit, watch, formState: {errors}} = useForm<TInputs>();
     const dispatch = useAppDispatch();
+    const router = useRouter();
 
     const onSubmit: SubmitHandler<TInputs> = (data) =>{
         axios.post('/api/auth/sign-in', data)
         .then(result =>{
             // console.log(result.data.data);
+            router.push("/");
             dispatch(addUser(result?.data?.data));
             toast.success(result?.data?.message);
         })

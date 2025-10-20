@@ -9,8 +9,6 @@ import { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { usePathname, useRouter } from "next/navigation";
 import { useAppSelector } from "../redux/hook";
-import userPhoto from "../../public/user.jpg";
-import ClientOnlyWrapper from "../wrapper/ClientOnlyWrapper";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -58,12 +56,11 @@ const Navbar = () => {
             >
               <IoIosNotificationsOutline size={20} />
             </button>
-            <ClientOnlyWrapper>
               {user ? (
                 <Link href={"/profile"}>
                   <Image
                     className="w-12 h-12 border-2 p-[1px] border-hard rounded-full"
-                    src={user?.photo ? user?.photo : userPhoto}
+                    src={user?.photo}
                     alt={user?.name}
                   ></Image>
                 </Link>
@@ -75,7 +72,6 @@ const Navbar = () => {
                   Login
                 </Link>
               )}
-            </ClientOnlyWrapper>
           </div>
         </div>
 
@@ -123,12 +119,11 @@ const Navbar = () => {
                       </Link>
                     </li>
                   ))}
-                  <ClientOnlyWrapper>
                     {user ? (
                       <Link href={"/profile"}>
                         <Image
                           className="w-12 h-12 border-2 p-[1px] border-hard rounded-full"
-                          src={user?.photo ? user?.photo : userPhoto}
+                          src={user?.photo}
                           alt={user?.name}
                         ></Image>
                       </Link>
@@ -140,7 +135,6 @@ const Navbar = () => {
                         Login
                       </Link>
                     )}
-                  </ClientOnlyWrapper>
                   <div className="flex justify-center items-center gap-2">
                     <Link
                       className="bg-normal p-2 rounded-full text-hard"

@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type TUser = {
   _id: string
@@ -25,7 +25,7 @@ const userSlice = createSlice({
   reducers: {
     addUser: (state, action: PayloadAction<TUser>) => {
       state!.user = action?.payload
-      localStorage.setItem('user', JSON.stringify(action.payload))
+      localStorage.setItem('user', JSON.stringify(action.payload));
     }
   }
 })
