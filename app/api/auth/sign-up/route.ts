@@ -2,6 +2,7 @@ import dbConnect from "@/app/backend/config/db";
 import User from "@/app/backend/modules/user/user.model";
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcrypt";
+import genarateToken from "@/app/backend/utils/genarateToken";
 
 export async function POST(req: NextRequest){
     await dbConnect();
@@ -16,8 +17,16 @@ export async function POST(req: NextRequest){
         const result = await User.create({...user, password: hashPassword});
         const userObj = result.toObject();
         delete userObj.password;
-        return NextResponse.json({message: "User created successfully", data: userObj}, {status: 200});
-
+        const response = NextResponse.json({message: "User registered successfully", data: userObj}, {status: 200});
+        const token = genarateToken({_id: userObj?.id, email: userObj.email, role: userObj.role});
+        // console.log("token", token);
+        response.cookies.set("token", token, {
+            httpOnly: true,
+            secure: false,
+            sameSite: "lax",
+            path: "/"
+        });
+        return response;
     } catch (error) {
         console.log(`Error creating user ${error}`);
         return NextResponse.json({message: "Internal server error"}, {status: 500});

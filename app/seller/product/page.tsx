@@ -13,6 +13,7 @@ type TInputs = {
   price: number;
   images: TImageFile[];
   description: string;
+  location: string;
 };
 type TImageFile = {
   id: string;
@@ -135,9 +136,21 @@ const page = () => {
               {errors.price && <span>Product price is required</span>}
             </div>
           </div>
+          <div className="w-full">
+              <label className="text-sm font-medium block mb-1">Location</label>
+              <input
+                type="text"
+                className="w-full appearance-none outline-none border border-hard rounded-lg py-2 px-3"
+                placeholder="Type product location"
+                {...register("location", { required: true })}
+              />
+              {errors.location && (
+                <span>location is required</span>
+              )}
+            </div>
           <div className="flex flex-col md:flex-row md:gap-5 gap-3 items-center">
             <div className="md:w-1/2 w-full">
-              <label className="text-sm font-medium block mb-1">Message</label>
+              <label className="text-sm font-medium block mb-1">Description</label>
               <textarea
                 className="w-full appearance-none outline-none border border-hard rounded-lg py-2 px-3"
                 placeholder="Type product description"

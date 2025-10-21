@@ -7,7 +7,7 @@ import { PiUserList } from "react-icons/pi";
 
 type TSellerMenu = {
    path: string;
-   route: string;
+   route?: string;
    icon: any;
    product?: {
     path: string;
@@ -16,35 +16,17 @@ type TSellerMenu = {
    }[];
 }
 const sellerMenu: TSellerMenu[] = [
-    {
-        path: "Dashboard",
-        route: "/seller",
-        icon: MdDashboard
-    },
-    {
-        path: "Product",
-        route: "/seller/product",
-        icon: MdProductionQuantityLimits,
+    { path: "Dashboard", route: "/seller", icon: MdDashboard},
+
+    { path: "Add Product", route: "/seller/product", icon: MdProductionQuantityLimits, 
         product: [
             {path: "Product List",route: "/seller/product/product-list", icon: FaClipboardList },
             {path: "Bidder List",route: "/seller/product/bidder-list", icon: PiUserList },
             {path: "Edit Product",route: "/seller/product/edit-product", icon: FiEdit}
-        ]
-    },
-    {
-        path: "Order",
-        route: "/seller/order",
-        icon: MdOutlineShoppingCart
-    },
-    {
-        path: "Earnings",
-        route: "/seller/earnings",
-        icon: RiMoneyDollarCircleLine
-    },
-    {
-        path: "Setting",
-        route: "/seller/settings",
-        icon: IoSettingsOutline
-    }
+    ]},
+
+    { path: "Order", route: "/seller/order", icon: MdOutlineShoppingCart},
+    { path: "Earnings", route: "/seller/earnings", icon: RiMoneyDollarCircleLine},
+    { path: "Setting", route: "/seller/settings", icon: IoSettingsOutline}
 ]
 export default sellerMenu;
