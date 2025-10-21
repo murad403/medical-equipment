@@ -20,5 +20,5 @@ const productSchema = new Schema<TUploadProduct>({
     timestamps: true
 })
 
-const Product = mongoose.models.Products || model<TUploadProduct>("Product", productSchema);
+const Product = mongoose.models.Product || model<TUploadProduct>("Product", productSchema);
 export default Product;
