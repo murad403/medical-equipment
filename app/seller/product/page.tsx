@@ -8,6 +8,7 @@ import { categories } from "@/app/components/auctions/CollectibleProducts";
 import { useAppSelector } from "@/app/redux/hook";
 import axios from "axios";
 import toast from "react-hot-toast";
+import Link from "next/link";
 
 type TInputs = {
   title: string;
@@ -79,7 +80,13 @@ const page = () => {
   };
   return (
     <div>
-      <NavigateButton text={"Upload product"}></NavigateButton>
+      <div className="flex justify-between items-center w-full">
+        <NavigateButton text={"Upload product"}></NavigateButton>
+        <div className="*:font-semibold flex flex-col md:flex-row gap-3">
+          <Link className="bg-hard py-2 px-3 rounded-xl" href={"/seller/product/product-list"}>Product List</Link>
+          <Link className="bg-hard py-2 px-3 rounded-xl" href={"/seller/product/bidder-list"}>Bidder List</Link>
+        </div>
+      </div>
       <div className="flex justify-center mt-3 md:mt-4 text-title">
         <form
           className="space-y-3 w-full md:w-[80%] bg-normal rounded-xl md:p-5 p-2"

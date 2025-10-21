@@ -22,18 +22,6 @@ const SellerMenu = () => {
                     sellerMenu.map(link =>
                         <li key={link?.path}>
                             <Link onClick={() =>setActive(link?.route as string)} className={`flex gap-3 px-3 rounded-xl items-center text-[16px] font-medium py-1 ${active === link.route ? "bg-hard text-white" : "text-title"}`} href={link?.route as string}>{link?.icon && <link.icon/>}{link?.path}</Link>
-                            {
-                                link?.product && 
-                                <ul className={` space-y-2 mt-2`}>
-                                    {
-                                        link?.product.map(link =>
-                                            <li key={link?.path}>
-                                                <Link onClick={() =>setActive(link.route)} className={`ml-14 flex gap-3 px-3 rounded-xl items-center text-sm font-medium py-1 ${active === link.route ? "bg-hard text-white" : "text-title"}`} href={link?.route}>{link?.icon && <link.icon/>}{link?.path}</Link>
-                                            </li>
-                                        )
-                                    }
-                                </ul>
-                            }
                         </li>
                     )
                 }
