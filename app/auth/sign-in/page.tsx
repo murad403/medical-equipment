@@ -27,7 +27,6 @@ const page = () => {
     const onSubmit: SubmitHandler<TInputs> = (data) =>{
         axios.post('/api/auth/sign-in', data)
         .then(result =>{
-            // console.log(result.data.data);
             router.push("/");
             dispatch(addUser(result?.data?.data));
             toast.success(result?.data?.message);

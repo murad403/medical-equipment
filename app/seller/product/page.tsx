@@ -5,11 +5,14 @@ import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { categories } from "@/app/components/auctions/CollectibleProducts";
+import { useAppSelector } from "@/app/redux/hook";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 type TInputs = {
   title: string;
-  bidDateTime: string;
-  category: number;
+  bidDate: string;
+  category: string;
   price: number;
   images: TImageFile[];
   description: string;
@@ -21,6 +24,7 @@ type TImageFile = {
 };
 
 const page = () => {
+  const { user } = useAppSelector(state => state.user);
   const [imageFile, setImageFile] = useState<TImageFile[]>([]);
   const {
     register,
@@ -54,13 +58,24 @@ const page = () => {
   };
 
   // console.log(imageFile);
+  // console.log(new Date().toTimeString());
 
   const onSubmit: SubmitHandler<TInputs> = (data) => {
+    const price = Number(data.price);
     const product = {
       ...data,
+      price,
       images: imageFile,
+      sellerId: user?._id
     };
-    console.log(product);
+    axios.post("/api/seller/upload-product", product)
+      .then(result => {
+        toast.success(result?.data?.message);
+      })
+      .catch(error => {
+        console.log(error.response.data.message);
+        toast.error(error.response.data.message);
+      })
   };
   return (
     <div>
@@ -91,9 +106,9 @@ const page = () => {
                 type="date"
                 className="w-full appearance-none outline-none border border-hard rounded-lg py-2 px-3"
                 placeholder="Type product bid date & time"
-                {...register("bidDateTime", { required: true })}
+                {...register("bidDate", { required: true })}
               />
-              {errors.bidDateTime && (
+              {errors.bidDate && (
                 <span>Product bid date & time is required</span>
               )}
             </div>
@@ -137,17 +152,17 @@ const page = () => {
             </div>
           </div>
           <div className="w-full">
-              <label className="text-sm font-medium block mb-1">Location</label>
-              <input
-                type="text"
-                className="w-full appearance-none outline-none border border-hard rounded-lg py-2 px-3"
-                placeholder="Type product location"
-                {...register("location", { required: true })}
-              />
-              {errors.location && (
-                <span>location is required</span>
-              )}
-            </div>
+            <label className="text-sm font-medium block mb-1">Location</label>
+            <input
+              type="text"
+              className="w-full appearance-none outline-none border border-hard rounded-lg py-2 px-3"
+              placeholder="Type product location"
+              {...register("location", { required: true })}
+            />
+            {errors.location && (
+              <span>location is required</span>
+            )}
+          </div>
           <div className="flex flex-col md:flex-row md:gap-5 gap-3 items-center">
             <div className="md:w-1/2 w-full">
               <label className="text-sm font-medium block mb-1">Description</label>
