@@ -17,7 +17,6 @@ export async function POST(req: NextRequest){
         }
         const userObj = existingUser.toObject();
         delete userObj.password;
-        // console.log(existingUser);
         return NextResponse.json({message: "User login successfully", data: userObj}, {status: 200});
     } catch (error) {
         console.log(`Error sign-in user ${error}`);

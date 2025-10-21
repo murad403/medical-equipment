@@ -2,6 +2,10 @@
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { MdAddPhotoAlternate } from "react-icons/md";
+import { useAppDispatch, useAppSelector } from "../redux/hook";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { addUser } from "../redux/features/userSlice";
 
 type TInputs = {
     name: string;
@@ -12,6 +16,9 @@ type TInputs = {
 const page = () => {
     const { register, handleSubmit, watch, formState: { errors }} = useForm<TInputs>();
     const [image, setImage] = useState("");
+    const {user} = useAppSelector(state => state.user);
+    const dispatch = useAppDispatch();
+    // console.log(user);
     
     const imageFile = watch("image");
     if(imageFile && imageFile.length > 0){
@@ -26,9 +33,18 @@ const page = () => {
 
       const onSubmit: SubmitHandler<TInputs> = (data) =>{
         const profileData = {
-            ...data, image
+            ...data, photo: image
         }
-        console.log(profileData);
+        axios.post(`/api/profile/update-profile/${user?.email}`, profileData)
+        .then(result =>{
+            // console.log(result.data.data);
+            dispatch(addUser(result.data.data));
+            toast.success(result?.data?.message);
+        })
+        .catch(error =>{
+            console.log(error.response.data.message);
+            toast.error(error.response.data.message);
+        })
       }
     return (
         <div>
