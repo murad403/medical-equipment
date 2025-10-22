@@ -7,11 +7,11 @@ export type TImages = {
 export type TUploadProduct = {
     sellerId: Types.ObjectId;
     title: string;
-    // bidTime: string;
     bidDate: string;
     category: string;
     price: number,
     description: string;
     location: string;
     images: TImages[],
+    bids: number
 }

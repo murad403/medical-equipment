@@ -32,6 +32,7 @@ const page = () => {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm<TInputs>();
 
@@ -48,7 +49,6 @@ const page = () => {
       setImages(prev => [...prev, { id, image }]);
     }
   }, [image])
-  console.log(images);
 
   const handleRemoveImage = (id: string) => {
     const newImages = images.filter((item) => item?.id !== id);
@@ -63,10 +63,11 @@ const page = () => {
       images,
       sellerId: user?._id
     };
-    // console.log(product);
     axios.post("/api/seller/upload-product", product)
       .then(result => {
         toast.success(result?.data?.message);
+        setImages([]);
+        reset();
       })
       .catch(error => {
         console.log(error.response.data.message);

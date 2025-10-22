@@ -12,7 +12,7 @@ const useGetImage = (imageFile: File | string | null | undefined) => {
         formData.append("upload_preset", process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET as string);
         axios.post(`https://api.cloudinary.com/v1_1/dyk7onoeo/image/upload`, formData)
             .then(result => {
-                console.log(result?.data?.url);
+                // console.log(result?.data?.url);
                 setImage(result?.data?.url);
             })
             .catch(error => {
