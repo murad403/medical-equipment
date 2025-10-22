@@ -9,24 +9,25 @@ import { useAppSelector } from "@/app/redux/hook";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Link from "next/link";
+import useGetImage from "@/app/hooks/useGetImage";
 
 type TInputs = {
   title: string;
   bidDate: string;
   category: string;
   price: number;
-  images: TImageFile[];
+  images: File[];
   description: string;
   location: string;
 };
 type TImageFile = {
   id: string;
-  image: any;
+  image: string;
 };
 
 const page = () => {
   const { user } = useAppSelector(state => state.user);
-  const [imageFile, setImageFile] = useState<TImageFile[]>([]);
+  const [images, setImages] = useState<TImageFile[]>([]);
   const {
     register,
     handleSubmit,
@@ -34,41 +35,35 @@ const page = () => {
     formState: { errors },
   } = useForm<TInputs>();
 
-  const imageList = watch("images");
-  const id = Math.random().toString(36).substring(2, 12);
+  const imageFile = watch("images")?.[0];
+  const image = useGetImage(imageFile);
   useEffect(() => {
-    if (imageList && imageList.length > 0) {
-      if (imageFile.length >= 3) return;
-      const file = imageList[0] as unknown as File;
-      const reader = new FileReader();
-      reader.onload = () => {
-        if (reader.result) {
-          setImageFile((prev: TImageFile[]): TImageFile[] => {
-            if (imageFile.length >= 3) return prev;
-            const image = reader.result;
-            return [...prev, { id, image }];
-          });
-        }
-      };
-      reader.readAsDataURL(file);
+    if (!image) return;
+    if (images.length >= 3) {
+      toast.error("Upload maximum 3 images");
+      return;
     }
-  }, [imageList]);
-  const handleRemoveImage = (id: string) => {
-    const newImageFile = imageFile.filter((item) => item?.id !== id);
-    setImageFile(newImageFile);
-  };
+    const id = Math.random().toString(36).substring(2, 12);
+    if (image) {
+      setImages(prev => [...prev, { id, image }]);
+    }
+  }, [image])
+  console.log(images);
 
-  // console.log(imageFile);
-  // console.log(new Date().toTimeString());
+  const handleRemoveImage = (id: string) => {
+    const newImages = images.filter((item) => item?.id !== id);
+    setImages(newImages);
+  };
 
   const onSubmit: SubmitHandler<TInputs> = (data) => {
     const price = Number(data.price);
     const product = {
       ...data,
       price,
-      images: imageFile,
+      images,
       sellerId: user?._id
     };
+    // console.log(product);
     axios.post("/api/seller/upload-product", product)
       .then(result => {
         toast.success(result?.data?.message);
@@ -207,8 +202,8 @@ const page = () => {
               Upload
             </button>
             <div className="flex items-center gap-3">
-              {imageFile.length > 0 &&
-                imageFile.map((item) => (
+              {images.length > 0 &&
+                images.map((item) => (
                   <div key={item?.id} className="w-20 h-20 relative">
                     <img
                       className="rounded-md h-full w-full"
