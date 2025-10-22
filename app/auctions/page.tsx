@@ -18,11 +18,11 @@ const page = () => {
         <div className='px-4 md:px-14 lg:px-16 space-y-10 md:space-y-18 flex justify-between md:gap-10 gap-3 mt-5'>
             <div className='md:w-[25%] w-[40%]'>
                 <BreadCrums></BreadCrums>
-                <CollectibleProducts></CollectibleProducts>
+                <CollectibleProducts setSearch={setSearch}></CollectibleProducts>
             </div>
             <div className='md:w-full w-[60%] md:space-y-10 space-y-4'>
                 <SearchProducts setSearch={setSearch}></SearchProducts>
-                <ProductFilter></ProductFilter>
+                <ProductFilter auctions={auctions}></ProductFilter>
                 <div className="divider divider-info"></div>
                 <AuctionProducts auctions={auctions} isLoading={isLoading}></AuctionProducts>
                 <AuctionPagination></AuctionPagination>

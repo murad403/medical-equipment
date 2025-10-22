@@ -4,7 +4,7 @@ import { useGetAllAuctionsQuery } from '@/app/redux/api/api';
 import LoadingSpinner from '@/app/shared/LoadingSpinner';
 
 const TopPickedAuctions = () => {
-  const {data, isLoading, isError} = useGetAllAuctionsQuery(undefined);
+  const {data, isLoading, isError} = useGetAllAuctionsQuery(undefined, {pollingInterval: 3000});
   const auctions = data?.data;
 
   if (isLoading){
@@ -19,7 +19,7 @@ const TopPickedAuctions = () => {
       </h2>
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-center items-center md:gap-5 gap-3 md:mt-9 lg:mt-12 mt-3'>
         {
-          auctions?.map((product: any) => <AuctionCard key={product?._id} product={product} bgColor={"bg-normal"} isLoading={isLoading}></AuctionCard>)
+          auctions?.slice(0, 8)?.map((product: any) => <AuctionCard key={product?._id} product={product} bgColor={"bg-normal"} isLoading={isLoading}></AuctionCard>)
         }
       </div>
     </div>
