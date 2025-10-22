@@ -6,10 +6,15 @@ const baseApi = createApi({
     tagTypes: ["auctions"],
     endpoints: (builder) =>({
         getAllAuctions: builder.query({
-            query: () =>{
+            query: (query) =>{
+                const params = new URLSearchParams();
+                if(query){
+                    params.append("query", query);
+                }
                 return {
                     url: "/auctions/all-auctions",
-                    method: "GET"
+                    method: "GET",
+                    params: params
                 }
             },
             providesTags: ["auctions"]

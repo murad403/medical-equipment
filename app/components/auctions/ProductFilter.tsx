@@ -1,9 +1,11 @@
 "use client";
 import { TTabs } from '@/app/interface/tabs';
+import { useGetAllAuctionsQuery } from '@/app/redux/api/api';
 import React, { useState } from 'react';
 
 const ProductFilter = () => {
     const [tabActive, setTabActive] = useState("all listing");
+    const {data} = useGetAllAuctionsQuery(undefined);
 
     return (
         <div className='flex flex-col-reverse md:flex-row items-center justify-between gap-3 md:gap-0'>
@@ -15,7 +17,7 @@ const ProductFilter = () => {
                 }
             </div>
             <div className='text-hard text-[17px] flex items-center gap-5'>
-                <p>{20} results</p>
+                <p>{data?.data.length} results</p>
                 <button className='border border-hard rounded-lg cursor-pointer p-2'>Sort: Auction time</button>
             </div>
         </div>

@@ -10,6 +10,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import Link from "next/link";
 import useGetImage from "@/app/hooks/useGetImage";
+import LoadingSpinner from "@/app/shared/LoadingSpinner";
 
 type TInputs = {
   title: string;
@@ -37,7 +38,7 @@ const page = () => {
   } = useForm<TInputs>();
 
   const imageFile = watch("images")?.[0];
-  const image = useGetImage(imageFile);
+  const {image, isLoading} = useGetImage(imageFile);
   useEffect(() => {
     if (!image) return;
     if (images.length >= 3) {
@@ -180,10 +181,15 @@ const page = () => {
             </div>
             <div className="w-full md:w-1/2 border border-hard rounded-lg py-7 flex items-center justify-center gap-7">
               <div className="flex items-center gap-2 text-hard">
-                <label htmlFor="image" className="cursor-pointer ">
-                  <IoCloudUploadOutline size={30} />
-                </label>
-                <p>Upload a image</p>
+                {
+                  isLoading ? <LoadingSpinner></LoadingSpinner> :
+                    <div className="flex w-full items-center gap-2 text-hard">
+                      <label htmlFor="image" className="cursor-pointer ">
+                        <IoCloudUploadOutline size={30} />
+                      </label>
+                      <p>Upload a image</p>
+                    </div>
+                }
               </div>
               <input
                 id="image"
