@@ -18,28 +18,28 @@ const UpcomingAuctions = () => {
         <div className='px-5 lg:px-10 py-7 md:py-9 lg:py-14 bg-normal rounded-xl'>
             <h2 className="text-3xl md:text-4xl lg:text-[43px] font-bold text-hard">Upcoming <span className="text-title">Auctions</span></h2>
             <div className='md:mt-7 lg:mt-10 mt-3 relative '>
-                <Swiper centeredSlides={false} slidesPerGroup={3} navigation={{ nextEl: '.swiper-button-next-custom', prevEl: '.swiper-button-prev-custom' }} modules={[Navigation]} className="mySwiper" breakpoints={{
+                <Swiper centeredSlides={false} navigation={{ nextEl: '.swiper-button-next-custom', prevEl: '.swiper-button-prev-custom' }} modules={[Navigation]} className="mySwiper" breakpoints={{
                     320: {
                         slidesPerView: 1,
                         spaceBetween: 0
                     },
                     640: {
-                        slidesPerView: 2,
-                        spaceBetween: 40
+                        slidesPerView: 3,
+                        spaceBetween: 10
                     },
                     1024: {
                         slidesPerView: 3,
-                        spaceBetween: 50
+                        spaceBetween: 0
                     },
                     1280: {
                         slidesPerView: 4,
-                        spaceBetween: 50,
+                        spaceBetween: 30,
                     },
                 }}>
                     {
                         auctions?.map((product: any) =>
-                            <SwiperSlide key={product.id}>
-                                <AuctionCard product={product} bgColor={"lg:bg-white bg-normal"}></AuctionCard>
+                            <SwiperSlide style={{marginRight: "0px", display: "flex", justifyContent: "space-between"}} key={product.id}>
+                                <AuctionCard product={product} bgColor={"bg-white"}></AuctionCard>
                             </SwiperSlide>
                         )
                     }

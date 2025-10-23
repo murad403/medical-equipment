@@ -1,8 +1,8 @@
-import React from "react";
 import productCategories from "../../data/categories";
 import Image from "next/image";
 
 const ProductCategories = () => {
+  
   return (
     <div>
       <h2 className="text-3xl md:text-4xl lg:text-[43px] font-bold text-title">

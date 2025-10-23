@@ -11,8 +11,8 @@ const AuctionCard = ({product, bgColor}: any) => {
     const time = useGetTime(productCreateTime);
     // console.log("time", time);
     return (
-        <Link href={`/auctions/product-details/${product?._id}`} className={`${bgColor} p-2 rounded-lg space-y-2`}>
-            <Image className='w-full rounded-xl h-[200px]' src={image} width={100} height={100} alt={product?.title}></Image>
+        <Link href={`/auctions/product-details/${product?._id}`} className={`${bgColor} p-2 rounded-lg space-y-2 w-full`}>
+            <Image className='md:w-[300px] w-full rounded-xl h-[240px] md:h-[200px]' src={image} width={100} height={100} alt={product?.title}></Image>
             <h3 className='text-[20px] capitalize text-black'>{product?.title}</h3>
             <p className='text-sm text-title'>{product?.location}</p>
             <div className='flex justify-between items-center'>
