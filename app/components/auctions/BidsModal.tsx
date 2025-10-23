@@ -1,56 +1,59 @@
 "use client";
 import React, { useState } from "react";
 
-const BidsModal = () => {
-  const [bid, setBid] = useState<number>();
+const BidsModal = ({currentProduct, time}: {currentProduct: any, time: string}) => {
+  const [bid, setBid] = useState<number>(0);
   const [confirmBid, setConfirmBid] = useState<boolean>(false);
   const [edit, setEdit] = useState<boolean>(true);
   const handleReviewBid = (e: React.FormEvent<HTMLFormElement>) =>{
     e.preventDefault();
-    const bid = new FormData(e.currentTarget).get("bid") as string;
-    setBid(parseInt(bid));
     setEdit(false);
+  }
+
+  const handleConfirmBid = () =>{
+    setConfirmBid(true);
+    console.log(bid);
   }
   return (
     <div>
       <dialog id="my_modal_3" className="modal">
-        <div className="modal-box">
+        <div className="modal-box bg-white">
           <form method="dialog">
-            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+            <button className="text-title cursor-pointer border border-title rounded-full px-1 hover:bg-gray-300 absolute right-2 top-2">
               ✕
             </button>
           </form>
           {
             edit ? 
             <div>
-              <h3 className="font-bold text-lg">Place a bid</h3>
-              <p className="text-sm mt-1">Current bid  $200</p>
-              <p className="text-[13px] text-red-500 mt-1">2 days 4hour 5min</p>
+              <h3 className="font-bold text-lg text-title">Place a bid</h3>
+              <p className="text-sm mt-1 text-gray-700">Current bid  ${currentProduct?.price}</p>
+              <p className="text-[13px] text-red-500 mt-1">{time}</p>
               <form onSubmit={handleReviewBid} className="my-3 w-full">
                 <div>
-                  <label className="block capitalize text-sm">Your max bid</label>
-                  <div className="flex items-center gap-4">
-                    <input defaultValue={bid} required name="bid" type="text" placeholder="$" className="w-full text-hard px-3 outline-none border border-hard rounded-md py-2" />
-                    <button type="submit" className="bg-hard whitespace-nowrap text-white font-semibold rounded-md py-3 px-2 text-sm cursor-pointer">Review Bid</button>
+                  <label className="block capitalize text-sm text-title">Your max bid</label>
+                  <div className="flex items-center gap-2">
+                    <input onChange={(e) => setBid(Number(e.target.value))} defaultValue={bid} required name="bid" type="text" placeholder="$" className="w-full text-hard px-3 outline-none border border-hard rounded-md py-2" />
+                    <button type="submit" disabled={bid < currentProduct?.price} className={`bg-hard whitespace-nowrap text-white font-semibold rounded-md py-3 px-3 text-sm ${bid <= currentProduct?.price ? "cursor-not-allowed" : "cursor-pointer"}`}>Review Bid</button>
                   </div>
                 </div>
               </form>
-              <p className="text-sm">Enter &200.5 or more</p>
+              <p className="text-[13px] text-gray-700">Enter &{currentProduct?.price}.5 or more</p>
             </div> : 
             confirmBid ?
-            <div className="flex justify-center items-center flex-col gap-3 h-[150px]">
+            <div className="flex justify-center items-center flex-col gap-3 h-[150px] text-title">
               <h2 className="text-3xl font-semibold">Thank You</h2>
               <p className="text-sm">Your bid has been successfully submitted</p>
             </div>
             :
             <div className="flex flex-col items-center">
-              <h3 className="font-bold text-lg">Review bid</h3>
-              <p className="text-sm mt-1 flex items-center gap-7">Current bid <span>$200</span></p>
-              <p className="text-sm mt-1 flex items-center gap-7">Your max bid <span>$666</span></p>
-              <p className="text-[13px] text-red-500 mt-1">2 days 4hour 5min</p>
+              <h3 className="font-bold text-lg text-title">Review bid</h3>
+              <p className="text-sm mt-1 flex items-center gap-7 text-title">Current bid <span>${currentProduct?.price}</span></p>
+              <p className="text-sm mt-1 flex items-center gap-7 text-title">Your max bid <span>${bid}</span></p>
+              <p className="text-[13px] text-red-500 mt-1">{time}</p>
               <div className="mt-5 flex justify-between items-center gap-5 text-sm font-semibold *:cursor-pointer">
-                  <button onClick={() =>setConfirmBid(true)} className="text-white bg-hard rounded-md py-2 px-3">Confirm Bid</button>
-                    <button onClick={() => setEdit(true)} className="text-hard border border-hard rounded-md py-2 px-8">Edit</button>
+                  <button onClick={handleConfirmBid} className="text-white bg-hard rounded-md py-2 px-3">Confirm Bid</button>
+                  <button onClick={() => setEdit(true)} className="text-hard border border-hard rounded-md py-2 px-8">Edit</button>
               </div>
               <p className="text-[10px] text-red-500 mt-5">When you confirm your bid, it means you’re committing to buy this item if you’re the winning bidder.</p>
             </div>

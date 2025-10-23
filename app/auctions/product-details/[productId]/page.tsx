@@ -7,7 +7,7 @@ import React, { useState } from 'react';
 
 const page = () => {
     const [search, setSearch] = useState("");
-    const { data, isLoading } = useGetAllAuctionsQuery(search);
+    const { data } = useGetAllAuctionsQuery(search);
     const auctions = data?.data;
     // console.log(search);
     return (

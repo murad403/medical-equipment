@@ -36,7 +36,7 @@ const ProductDetails = ({ setSearch }: { setSearch: any }) => {
                     )
                 }
             </div>
-            <div className='flex sm:flex-row flex-col w-full md:w-[80%] gap-5 justify-between'>
+            <div className='flex sm:flex-row flex-col w-full md:w-[80%] gap-5 justify-between items-center'>
                 <div className='w-full sm:w-1/2'>
                     <Image width={500} height={500} className='w-full rounded-lg h-[400px]' src={selectedImage || currentProduct?.images?.[0]?.image} alt='product'></Image>
                 </div>
@@ -47,10 +47,10 @@ const ProductDetails = ({ setSearch }: { setSearch: any }) => {
                     <p className='text-sm text-hard'>{currentProduct?.bids} Bids</p>
                     <p className='text-sm text-red-500'>{time}</p>
                     <p className='text-sm font-light text-title'>{currentProduct?.location}</p>
-                    <button onClick={() => { (document.getElementById('my_modal_3') as HTMLDialogElement).showModal() }} className='text-sm text-title border border-hard rounded-lg w-full py-2 mt-4 cursor-pointer'>Place a Bid</button>
+                    <button onClick={() => { (document.getElementById('my_modal_3') as HTMLDialogElement).showModal() }} className='text-sm text-hard font-semibold border border-hard rounded-lg w-full py-2 mt-4 cursor-pointer'>Place a Bid</button>
                 </div>
             </div>
-            <BidsModal></BidsModal>
+            <BidsModal currentProduct={currentProduct} time={time}></BidsModal>
         </div>
     );
 };
