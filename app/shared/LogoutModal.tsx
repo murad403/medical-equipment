@@ -2,10 +2,14 @@
 import Swal from "sweetalert2";
 import "../styles/sweetAlertButton.css"
 import { TbLogout } from "react-icons/tb";
+import { useAppDispatch } from "../redux/hook";
+import { useRouter } from "next/navigation";
+import { removeUser } from "../redux/features/userSlice";
 
 const LogoutModal = () => {
+    const dispatch = useAppDispatch();
+    const router = useRouter();
     const handleLogOut = () => {
-        console.log("logout");
         Swal.fire({
             title: "Logout",
             text: "Are you sure you want to log out ?",
@@ -18,6 +22,8 @@ const LogoutModal = () => {
             }
         }).then((result) => {
             if (result.isConfirmed) {
+                dispatch(removeUser());
+                router.push("/");
                 Swal.fire("Logout successfully", "", "success");
             } else if (result.isDenied) {
                 Swal.fire("Changes are not saved", "", "info");

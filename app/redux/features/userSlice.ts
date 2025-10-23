@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import Cookies from "js-cookie";
 
 type TUser = {
   _id: string
@@ -24,11 +25,16 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     addUser: (state, action: PayloadAction<TUser>) => {
-      state!.user = action?.payload
+      state!.user = action?.payload;
       localStorage.setItem('user', JSON.stringify(action.payload));
+    },
+    removeUser: (state) =>{
+      state.user = null;
+      localStorage.removeItem("user");
+      Cookies.remove("token", {path: "/"});
     }
   }
 })
 
-export const { addUser } = userSlice.actions
-export default userSlice.reducer
+export const { addUser, removeUser } = userSlice.actions;
+export default userSlice.reducer;

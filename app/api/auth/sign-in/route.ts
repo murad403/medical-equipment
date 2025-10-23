@@ -22,7 +22,7 @@ export async function POST(req: NextRequest){
         const token = genarateToken({_id: userObj?._id, email: userObj.email, role: userObj.role});
         // console.log("token", token);
         response.cookies.set("token", token, {
-            httpOnly: true,
+            httpOnly: false,
             secure: false,
             sameSite: "lax",
             path: "/"

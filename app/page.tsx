@@ -7,7 +7,6 @@ import UpcomingAuctions from "./components/home/UpcomingAuctions";
 
 
 const page = () => {
-    
     return (
         <div className='space-y-10 md:space-y-16'>
             <Banner></Banner>
