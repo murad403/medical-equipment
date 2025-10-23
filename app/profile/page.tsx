@@ -43,12 +43,12 @@ const page = () => {
                 <div className="flex flex-col md:flex-row md:gap-5 gap-3 items-center">
                     <div className="w-full">
                         <label className="text-sm font-medium block mb-1">Name</label>
-                        <input type="text" className="w-full appearance-none outline-none border border-hard rounded-lg py-2 px-3" placeholder="Enter name" {...register("name", { required: true })} />
+                        <input type="text" className="w-full appearance-none outline-none border border-hard rounded-lg py-2 px-3" placeholder="Enter name" {...register("name")} />
                         {errors.name && <span>Name is required</span>}
                     </div>
                     <div className="w-full">
                         <label className="text-sm font-medium block mb-1">Email</label>
-                        <input type="email" className="w-full appearance-none outline-none border border-hard rounded-lg py-2 px-3" placeholder="Enter email" {...register("email", { required: true })} />
+                        <input type="email" className="w-full appearance-none outline-none border border-hard rounded-lg py-2 px-3" placeholder="Enter email" {...register("email")} />
                         {errors.email && <span>Email is required</span>}
                     </div>
                 </div>

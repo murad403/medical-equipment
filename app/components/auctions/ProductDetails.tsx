@@ -1,20 +1,36 @@
 "use client"
-import React from 'react';
+import React, { useState } from 'react';
 import productImage from "../../../public/product.jpg"
 import Image from 'next/image';
 import BidsModal from './BidsModal';
+import { useGetAllAuctionsQuery } from '@/app/redux/api/api';
+import { useParams } from 'next/navigation';
 
 const ProductDetails = () => {
+    const {data, isLoading} = useGetAllAuctionsQuery(undefined);
+    const {productId} = useParams();
+    const currentProduct = data?.data.find((product: any) => product._id === productId);
+    const [selectedImage, setSelectedImage] = useState<string>("");
+    const hanldeSelectedImage = (id: string) =>{
+        const currentImage = currentProduct?.images.find((image: any) => image?.id === id);
+        setSelectedImage(currentImage?.image);
+    }
+    // console.log(selectedImage);
+    // console.log(currentProduct);
     return (
         <div className='flex md:flex-row flex-col items-center gap-5'>
-            <div className='w-full md:w-[20%] flex flex-row md:flex-col gap-3'>
-                <Image className='md:w-full w-1/3' src={productImage} alt='product'></Image>
-                <Image className='md:w-full w-1/3' src={productImage} alt='product'></Image>
-                <Image className='md:w-full w-1/3' src={productImage} alt='product'></Image>
+            <div className='w-full md:w-[20%] flex flex-row md:flex-col gap-2'>
+                {
+                    currentProduct?.images.map((image: any) =>
+                        <Image onClick={() =>hanldeSelectedImage(image?.id)} width={500} height={500} key={image?.id} className='md:w-full w-1/3 rounded-lg' src={image.image} alt='product'></Image>
+                    )
+                }
             </div>
+
+
             <div className='flex sm:flex-row flex-col w-full md:w-[80%] gap-5 justify-between'>
                 <div className='w-full sm:w-1/2'>
-                <Image className='w-full' src={productImage} alt='product'></Image>
+                <Image width={500} height={500} className='w-full rounded-lg h-[400px]' src={selectedImage ? selectedImage : currentProduct?.images?.[0]?.image} alt='product'></Image>
             </div>
             <div className='w-full sm:w-1/2 space-y-3'>
                 <h2 className='md:text-3xl text-2xl lg:text-4xl font-bold text-title'>GE Vivid S70 Ultrasound Machine</h2>
