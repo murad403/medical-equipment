@@ -1,10 +1,17 @@
 "use client";
 import BidCard from '@/app/components/profile/BidCard';
 import historyTabs from '@/app/data/history';
-import React, { useState } from 'react';
+import { useGetCurrentUserBidsQuery } from '@/app/redux/api/api';
+import { useAppSelector } from '@/app/redux/hook';
+import React, { use, useEffect, useState } from 'react';
 
 const page = () => {
     const [activeTab, setActiveTab] = useState("bid");
+    const {user} = useAppSelector((state: any) => state?.user);
+    // console.log(user?._id);
+    const {data, isLoading} = useGetCurrentUserBidsQuery(user?._id);
+    const bidProducts = data?.data;
+    console.log(bidProducts);
     return (
         <div>
             <div className='space-x-3'>

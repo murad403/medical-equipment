@@ -1,4 +1,4 @@
-import { Types } from "mongoose"
+import { Types } from "mongoose";
 
 type TBid = {
     customerId: Types.ObjectId;
