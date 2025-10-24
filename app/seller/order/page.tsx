@@ -1,3 +1,4 @@
+import ProtectedRoute from "@/app/hooks/ProtectedRoute";
 import NavigateButton from "@/app/shared/NavigateButton";
 import Link from "next/link";
 import React from "react";
@@ -5,7 +6,7 @@ import { SlEye } from "react-icons/sl";
 
 const page = () => {
   return (
-    <div>
+    <ProtectedRoute>
       <NavigateButton text={"user order list"}></NavigateButton>
       <div className="overflow-x-auto md:mt-4 mt-3 rounded-lg border border-hard">
         <table className="table">
@@ -39,7 +40,7 @@ const page = () => {
           </tbody>
         </table>
       </div>
-    </div>
+    </ProtectedRoute>
   );
 };
 

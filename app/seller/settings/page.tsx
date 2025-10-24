@@ -1,10 +1,11 @@
+import ProtectedRoute from "@/app/hooks/ProtectedRoute";
 import NavigateButton from "@/app/shared/NavigateButton";
 import Link from "next/link";
 import { IoIosArrowForward } from "react-icons/io";
 
 const page = () =>{
     return (
-        <div>
+        <ProtectedRoute>
             <NavigateButton text={"settings"}></NavigateButton>
             <div className="md:mt-4 mt-3 text-title *:bg-normal *:p-3 *:rounded-lg *:hover:border *:border-hard space-y-2 *:hover:bg-hard md:space-y-3">
                 <Link className="flex justify-between items-center text-lg md:text-xl" href={"/seller/settings/personal-information"}>
@@ -16,7 +17,7 @@ const page = () =>{
                     <IoIosArrowForward/>
                 </Link>
             </div>
-        </div>
+        </ProtectedRoute>
     )
 }
 

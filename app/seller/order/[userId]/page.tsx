@@ -2,10 +2,11 @@ import NavigateButton from "@/app/shared/NavigateButton";
 import Image from "next/image";
 import React from "react";
 import user from "../../../../public/user.jpg";
+import ProtectedRoute from "@/app/hooks/ProtectedRoute";
 
 const page = () => {
   return (
-    <div>
+    <ProtectedRoute>
       <NavigateButton text={"user order details"}></NavigateButton>
       <div className="flex justify-center mt-3 md:mt-4 text-title">
         <div className="w-full md:w-[80%]">
@@ -53,7 +54,7 @@ const page = () => {
         </div>
       </div>
       </div>
-    </div>
+    </ProtectedRoute>
   );
 };
 

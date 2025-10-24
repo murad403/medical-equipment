@@ -1,4 +1,5 @@
 "use client";
+import ProtectedRoute from "@/app/hooks/ProtectedRoute";
 import NavigateButton from "@/app/shared/NavigateButton";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IoCloudUploadOutline } from "react-icons/io5";
@@ -18,7 +19,7 @@ const page = () => {
       console.log(data);
     }
     return (
-        <div>
+        <ProtectedRoute>
             <NavigateButton text={"edit product"}></NavigateButton>
             <div className="flex justify-center mt-3 md:mt-4 text-title">
                 <form className="space-y-3 w-full md:w-[80%] bg-normal rounded-xl md:p-5 p-2" onSubmit={handleSubmit(onSubmit)}>
@@ -68,7 +69,7 @@ const page = () => {
                     </div>
                 </form>
             </div>
-        </div>
+        </ProtectedRoute>
     )
 }
 

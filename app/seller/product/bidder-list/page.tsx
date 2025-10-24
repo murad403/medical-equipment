@@ -1,9 +1,10 @@
+import ProtectedRoute from "@/app/hooks/ProtectedRoute";
 import NavigateButton from "@/app/shared/NavigateButton";
 import { SlEye } from "react-icons/sl";
 
 const page = () =>{
     return (
-        <div>
+        <ProtectedRoute>
             <div className="flex items-center gap-3">
                 <NavigateButton text={"bidder list"}></NavigateButton>
                 <h3 className="text-2xl font-bold">(30)</h3>
@@ -38,7 +39,7 @@ const page = () =>{
                       </tbody>
                     </table>
                   </div>
-        </div>
+        </ProtectedRoute>
     )
 }
 

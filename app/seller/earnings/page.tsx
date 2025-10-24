@@ -2,10 +2,11 @@
 import NavigateButton from "@/app/shared/NavigateButton";
 import { SlEye } from "react-icons/sl";
 import TransactionModal from "../seller-component/earnings/TransactionModal";
+import ProtectedRoute from "@/app/hooks/ProtectedRoute";
 
 const page = () => {
     return (
-        <div>
+        <ProtectedRoute>
             <NavigateButton text={"earnings"}></NavigateButton>
             <div className="overflow-x-auto md:mt-4 mt-3 rounded-lg border border-hard">
                 <table className="table">
@@ -29,7 +30,7 @@ const page = () => {
                             <td>Czech </td>
                             <td>9/29/2020</td>
                             <td className="pl-8">
-                                <button onClick={()=>(document.getElementById('my_modal_3') as HTMLDialogElement).showModal()} className="cursor-pointer">
+                                <button onClick={() => (document.getElementById('my_modal_3') as HTMLDialogElement).showModal()} className="cursor-pointer">
                                     <SlEye size={17} />
                                 </button>
                             </td>
@@ -40,7 +41,7 @@ const page = () => {
             <div>
                 <TransactionModal></TransactionModal>
             </div>
-        </div>
+        </ProtectedRoute>
     )
 }
 

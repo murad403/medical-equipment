@@ -1,4 +1,5 @@
 "use client";
+import ProtectedRoute from "@/app/hooks/ProtectedRoute";
 import NavigateButton from "@/app/shared/NavigateButton";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -20,7 +21,7 @@ const page = () =>{
             console.log(data);
         }
     return (
-        <div>
+        <ProtectedRoute>
             <NavigateButton text={"Change password"}></NavigateButton>
             <div className="flex justify-center items-center w-full mt-5">
                 <div className="bg-white shadow-xl py-7 md:py-32 mx-4 md:mx-0 px-4 w-full md:w-[90%] flex flex-col items-center justify-center text-title rounded-lg">
@@ -60,7 +61,7 @@ const page = () =>{
                     </form>
                 </div>
             </div>
-        </div>
+        </ProtectedRoute>
     )
 }
 

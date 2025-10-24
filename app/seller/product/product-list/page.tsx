@@ -3,10 +3,11 @@ import product from "../../../../public/product.jpg";
 import Image from "next/image";
 import { MdDeleteOutline } from "react-icons/md";
 import Link from "next/link";
+import ProtectedRoute from "@/app/hooks/ProtectedRoute";
 
 const page = () =>{
     return (
-        <div>
+        <ProtectedRoute>
             <div className="flex items-center gap-3">
                 <NavigateButton text={"List of all products"}></NavigateButton>
                 <h3 className="text-2xl font-bold text-hard">(30)</h3>
@@ -49,7 +50,7 @@ const page = () =>{
                     </div>
                 </div>
             </div>
-        </div>
+        </ProtectedRoute>
     )
 }
 

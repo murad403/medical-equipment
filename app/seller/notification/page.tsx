@@ -1,10 +1,11 @@
+import ProtectedRoute from "@/app/hooks/ProtectedRoute";
 import Notification from "@/app/shared/Notification";
 
 const page = () => {
     return (
-        <div>
+        <ProtectedRoute>
             <Notification></Notification>
-        </div>
+        </ProtectedRoute>
     );
 };
 
