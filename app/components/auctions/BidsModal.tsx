@@ -1,11 +1,12 @@
 "use client";
+import { useAddBidMutation } from "@/app/redux/api/api";
 import { useAppSelector } from "@/app/redux/hook";
-import axios from "axios";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 
 const BidsModal = ({ currentProduct, time }: { currentProduct: any, time: string }) => {
-  const { user } = useAppSelector(state => state.user);
+  const { user } = useAppSelector((state: any) => state.user);
+  const [addBid, {isLoading}] = useAddBidMutation();
   const [bid, setBid] = useState<number>(0);
   const [confirmBid, setConfirmBid] = useState<boolean>(false);
   const [edit, setEdit] = useState<boolean>(true);
@@ -14,23 +15,21 @@ const BidsModal = ({ currentProduct, time }: { currentProduct: any, time: string
     setEdit(false);
   }
 
-  const handleConfirmBid = () => {
-    setConfirmBid(true);
+  const handleConfirmBid = async() => {
     const newBid = {
       customerId: user?._id,
       productId: currentProduct?._id,
       bidPrice: bid,
       status: "pending"
     }
-    console.log(newBid);
-    axios.post('/api/bids/add-bid', newBid)
-      .then(result => {
-        toast.success(result?.data?.message);
-      })
-      .catch(error => {
-        console.log(error?.response?.data?.message);
-        toast.error(error?.response?.data?.message);
-      })
+      try {
+        const result = await addBid(newBid).unwrap();
+        toast.success(result?.message);
+        setConfirmBid(true);
+      } catch (error: any) {
+        console.log(error);
+        toast.error(error?.data?.message);
+      }
   }
   return (
     <div>

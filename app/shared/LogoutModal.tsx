@@ -31,7 +31,7 @@ const LogoutModal = () => {
         })
     }
     return (
-        <button onClick={handleLogOut} className="flex items-center gap-5 w-full bg-normal text-title cursor-pointer justify-center py-2 rounded-xl">
+        <button onClick={handleLogOut} className="flex items-center gap-1 w-full bg-normal text-title cursor-pointer justify-center py-2 rounded-xl">
             <TbLogout/>
             <span>Logout</span>
         </button>

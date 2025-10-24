@@ -2,11 +2,11 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { MdAddPhotoAlternate } from "react-icons/md";
 import { useAppDispatch, useAppSelector } from "../redux/hook";
-import axios from "axios";
 import toast from "react-hot-toast";
 import { addUser } from "../redux/features/userSlice";
 import useGetImage from "../hooks/useGetImage";
 import LoadingSpinner from "../shared/LoadingSpinner";
+import { useUpdateProdileMutation } from "../redux/api/api";
 
 type TInputs = {
     name: string;
@@ -15,27 +15,28 @@ type TInputs = {
 }
 
 const page = () => {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm<TInputs>();
+    const { register, handleSubmit, watch, reset, formState: { errors } } = useForm<TInputs>();
     const { user } = useAppSelector(state => state.user);
     const dispatch = useAppDispatch();
+    const [updateProdile] = useUpdateProdileMutation();
 
     const imageFile = watch("image")?.[0];
     const { image, isLoading } = useGetImage(imageFile);
     // console.log(image);
 
-    const onSubmit: SubmitHandler<TInputs> = (data) => {
+    const onSubmit: SubmitHandler<TInputs> = async (data) => {
         const profileData = {
             ...data, photo: image
         }
-        axios.post(`/api/profile/update-profile/${user?.email}`, profileData)
-            .then(result => {
-                dispatch(addUser(result.data.data));
-                toast.success(result?.data?.message);
-            })
-            .catch(error => {
-                console.log(error.response.data.message);
-                toast.error(error.response.data.message);
-            })
+        try {
+            const result = await updateProdile({email: user?.email as string, payload: profileData}).unwrap();
+            toast.success(result?.message);
+            dispatch(addUser(result?.data));
+            reset();
+        } catch (error: any) {
+            console.log(error);
+            toast.error(error?.data?.message);
+        }
     }
     return (
         <div>
@@ -44,12 +45,10 @@ const page = () => {
                     <div className="w-full">
                         <label className="text-sm font-medium block mb-1">Name</label>
                         <input type="text" className="w-full appearance-none outline-none border border-hard rounded-lg py-2 px-3" placeholder="Enter name" {...register("name")} />
-                        {errors.name && <span>Name is required</span>}
                     </div>
                     <div className="w-full">
                         <label className="text-sm font-medium block mb-1">Email</label>
                         <input type="email" className="w-full appearance-none outline-none border border-hard rounded-lg py-2 px-3" placeholder="Enter email" {...register("email")} />
-                        {errors.email && <span>Email is required</span>}
                     </div>
                 </div>
                 <div className="w-full border border-hard rounded-lg py-7 flex items-center justify-center gap-7">

@@ -3,11 +3,12 @@ import User from "@/app/backend/modules/user/user.model";
 import { NextRequest, NextResponse } from "next/server";
 
 
-export async function POST(req: NextRequest, context: { params: Promise<{ email: string }> }){
+export async function PATCH(req: NextRequest, context: { params: Promise<{ email: string }> }){
     await dbConnect();
     try {
         const updatedData = await req.json();
         const {email} = await context.params;
+        console.log(updatedData, email);
         const existingUser = await User.findOne({email: updatedData.email});
         if(existingUser){
             return NextResponse.json({message: "Already have an account this email"}, {status: 400});
