@@ -14,13 +14,13 @@ const BidsModal = ({ currentProduct, time }: { currentProduct: any, time: string
     e.preventDefault();
     setEdit(false);
   }
-
   const handleConfirmBid = async() => {
     const newBid = {
       customerId: user?._id,
       productId: currentProduct?._id,
       bidPrice: bid,
-      status: "pending"
+      status: "pending",
+      isDeleted: false,
     }
       try {
         const result = await addBid(newBid).unwrap();

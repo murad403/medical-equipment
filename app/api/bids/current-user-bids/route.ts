@@ -17,7 +17,7 @@ export async function GET (req: NextRequest) {
       )
     }
     const result = await Bid.find({
-      customerId: new Types.ObjectId(queryId)
+      customerId: new Types.ObjectId(queryId), isDeleted: false
     }).populate({path: "productId", populate: {path: "sellerId"}}).populate("customerId")
     return NextResponse.json(
       { message: 'Retrived all bids', data: result },

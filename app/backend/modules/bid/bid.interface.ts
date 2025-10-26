@@ -5,6 +5,8 @@ type TBid = {
     productId: Types.ObjectId;
     status: "pending" | "progress" | "complete" | "rejected" | "win";
     bidPrice: number;
+    isDeleted: boolean;
+    orderNumber: number;
 }
 
 export default TBid;

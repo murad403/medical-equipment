@@ -74,7 +74,7 @@ const baseApi = createApi({
                 // console.log(id);
                 return {
                     url: `/bids/remove-bid/${id}`,
-                    method: "DELETE"
+                    method: "PATCH"
                 }
             },
             invalidatesTags: ["bids"]
