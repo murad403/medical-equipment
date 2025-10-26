@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import { addUser } from "../redux/features/userSlice";
 import useGetImage from "../hooks/useGetImage";
 import LoadingSpinner from "../shared/LoadingSpinner";
-import { useUpdateProdileMutation } from "../redux/api/api";
+import { useUpdateProfileMutation } from "../redux/api/api";
 
 type TInputs = {
     name: string;
@@ -18,7 +18,7 @@ const page = () => {
     const { register, handleSubmit, watch, reset, formState: { errors } } = useForm<TInputs>();
     const { user } = useAppSelector(state => state.user);
     const dispatch = useAppDispatch();
-    const [updateProdile] = useUpdateProdileMutation();
+    const [updateProfile] = useUpdateProfileMutation();
 
     const imageFile = watch("image")?.[0];
     const { image, isLoading } = useGetImage(imageFile);
@@ -29,7 +29,7 @@ const page = () => {
             ...data, photo: image
         }
         try {
-            const result = await updateProdile({email: user?.email as string, payload: profileData}).unwrap();
+            const result = await updateProfile({userId: user?._id as string, payload: profileData}).unwrap();
             toast.success(result?.message);
             dispatch(addUser(result?.data));
             reset();
@@ -61,8 +61,7 @@ const page = () => {
                                 <p>Upload Photo</p>
                             </div>
                     }
-                    <input id="image" type="file" className="hidden" {...register("image", { required: true })} />
-                    {errors.email && <span>Email is required</span>}
+                    <input id="image" type="file" className="hidden" {...register("image")} />
                 </div>
                 <div className="flex justify-center items-center mt-5">
                     <button className="bg-hard py-2 px-5 rounded-lg text-white cursor-pointer" type="submit">Save</button>

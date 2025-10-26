@@ -9,7 +9,7 @@ const imageSchema = new Schema<TImages>({
 })
 
 const productSchema = new Schema<TUploadProduct>({
-    sellerId: {type: Schema.Types.ObjectId, required: true, ref: "User"},
+    sellerId: {type: mongoose.Schema.Types.ObjectId, required: true, ref: "User"},
     title : {type: String, required: true},
     bidDate : {type: String, required: true},
     category : {type: String, required: true},

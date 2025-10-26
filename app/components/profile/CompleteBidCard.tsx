@@ -3,10 +3,11 @@ import user from "../../../public/product.jpg";
 import { RiDeleteBin6Line } from "react-icons/ri";
 
 const CompleteBidCard = ({bid}: {bid: any}) => {
-    
+
     const handleDeleteCard = () =>{
         console.log("dlete");
     }
+    
     return (
         <div className="px-4 py-3 bg-normal rounded-xl text-title">
             <div className="flex justify-end">

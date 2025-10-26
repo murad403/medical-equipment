@@ -4,6 +4,7 @@ import CompleteBidCard from '@/app/components/profile/CompleteBidCard';
 import orderTabs from '@/app/data/order';
 import { useGetCurrentUserBidsQuery } from '@/app/redux/api/api';
 import { useAppSelector } from '@/app/redux/hook';
+import LoadingSpinner from '@/app/shared/LoadingSpinner';
 import React, { useState } from 'react';
 
 const page = () => {
@@ -11,6 +12,9 @@ const page = () => {
     const {user} = useAppSelector((state: any) => state.user)
     const {data, isLoading} = useGetCurrentUserBidsQuery(user?._id); 
     const bids = data?.data?.filter((bid: any) => bid.status === activeTab);
+    if(isLoading){
+        return <LoadingSpinner></LoadingSpinner>
+    }
     console.log(bids);
     return (
         <div>
