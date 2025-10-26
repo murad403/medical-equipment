@@ -19,6 +19,16 @@ const baseApi = createApi({
 
         // product relatd endpoints--------------------------
         // ! get all auction-----
+        addAuction: builder.mutation({
+            query: (payload) =>{
+                return {
+                    url: "/seller/upload-product",
+                    method: "POST",
+                    body: payload
+                }
+            },
+            invalidatesTags: ["auctions"]
+        }),
         getAllAuctions: builder.query({
             query: (query) =>{
                 const params = new URLSearchParams();
@@ -73,5 +83,5 @@ const baseApi = createApi({
     })
 })
 
-export const {useGetAllAuctionsQuery, useAddBidMutation, useUpdateProfileMutation, useGetCurrentUserBidsQuery, useRemoveBidMutation} = baseApi;
+export const {useGetAllAuctionsQuery, useAddBidMutation, useUpdateProfileMutation, useGetCurrentUserBidsQuery, useRemoveBidMutation, useAddAuctionMutation} = baseApi;
 export default baseApi;

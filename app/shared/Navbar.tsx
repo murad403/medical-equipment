@@ -46,7 +46,7 @@ const Navbar = () => {
           <div className="flex items-center gap-4">
             <Link
               className="bg-normal p-2 rounded-full text-hard"
-              href={"/cart"}
+              href={"/profile/bids"}
             >
               <CiShoppingCart size={20} />
             </Link>
@@ -138,7 +138,7 @@ const Navbar = () => {
                   <div className="flex justify-center items-center gap-2">
                     <Link
                       className="bg-normal p-2 rounded-full text-hard"
-                      href={"/cart"}
+                      href={"/profile/bids"}
                     >
                       <CiShoppingCart size={20} />
                     </Link>

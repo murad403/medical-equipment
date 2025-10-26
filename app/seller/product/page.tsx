@@ -12,6 +12,7 @@ import Link from "next/link";
 import useGetImage from "@/app/hooks/useGetImage";
 import LoadingSpinner from "@/app/shared/LoadingSpinner";
 import ProtectedRoute from "@/app/hooks/ProtectedRoute";
+import { useAddAuctionMutation } from "@/app/redux/api/api";
 
 type TInputs = {
   title: string;
@@ -29,6 +30,7 @@ type TImageFile = {
 
 const page = () => {
   const { user } = useAppSelector(state => state.user);
+  const [addAuction] = useAddAuctionMutation();
   const [images, setImages] = useState<TImageFile[]>([]);
   const {
     register,
@@ -57,7 +59,7 @@ const page = () => {
     setImages(newImages);
   };
 
-  const onSubmit: SubmitHandler<TInputs> = (data) => {
+  const onSubmit: SubmitHandler<TInputs> = async(data) => {
     const price = Number(data.price);
     const product = {
       ...data,
@@ -65,16 +67,15 @@ const page = () => {
       images,
       sellerId: user?._id
     };
-    axios.post("/api/seller/upload-product", product)
-      .then(result => {
-        toast.success(result?.data?.message);
-        setImages([]);
-        reset();
-      })
-      .catch(error => {
-        console.log(error.response.data.message);
-        toast.error(error.response.data.message);
-      })
+    try {
+      const result = await addAuction(product).unwrap();
+      toast.success(result?.message);
+      setImages([]);
+      reset();
+    } catch (error: any) {
+      console.log(error);
+      toast.error(error?.data?.message);
+    }
   };
   return (
       <ProtectedRoute>

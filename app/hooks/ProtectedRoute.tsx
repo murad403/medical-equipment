@@ -14,7 +14,7 @@ const ProtectedRoute = ({ children }: TProtectedRouteProps) => {
     useEffect(() => {
         const token = Cookies.get("token");
         if (!token) {
-            router.push("/sign-in");
+            router.push("/auth/sign-in");
             return;
         }
         const decoded: any = jwt.decode(token!);
