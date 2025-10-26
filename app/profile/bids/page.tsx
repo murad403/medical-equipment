@@ -24,7 +24,7 @@ const page = () => {
             <p className='font-light text-xl my-3 text-title'>Products ({bids?.length})</p>
             <div className='space-y-2'>
                 {
-                    bids?.map((bid: any) => <BidCard key={bid?._id} bid={bid} activeTab={activeTab}></BidCard>)
+                    bids?.map((bid: any) => <BidCard key={bid?._id} bid={bid} activeTab={activeTab} isLoading={isLoading}></BidCard>)
                 }
             </div>
         </div>

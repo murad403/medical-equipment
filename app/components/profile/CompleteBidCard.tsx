@@ -2,7 +2,8 @@ import Image from "next/image";
 import user from "../../../public/product.jpg";
 import { RiDeleteBin6Line } from "react-icons/ri";
 
-const CompleteBidCard = () => {
+const CompleteBidCard = ({bid}: {bid: any}) => {
+    
     const handleDeleteCard = () =>{
         console.log("dlete");
     }
