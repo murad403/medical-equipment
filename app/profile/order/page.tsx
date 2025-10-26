@@ -15,7 +15,7 @@ const page = () => {
     if(isLoading){
         return <LoadingSpinner></LoadingSpinner>
     }
-    console.log(bids);
+    // console.log(bids);
     return (
         <div>
             <div className='space-x-2 space-y-2'>

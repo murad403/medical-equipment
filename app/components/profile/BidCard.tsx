@@ -1,3 +1,4 @@
+import useGetDateAndTime from "@/app/hooks/useGetDateAndTime";
 import { useRemoveBidMutation } from "@/app/redux/api/api";
 import LoadingSpinner from "@/app/shared/LoadingSpinner";
 import Image from "next/image";
@@ -10,8 +11,7 @@ const BidCard = ({ bid, activeTab, isLoading }: { bid: any, activeTab: string, i
     const image = bid?.productId?.images?.[0]?.image;
     const { title, description, price, location } = bid.productId;
     const { createdAt, bidPrice, _id } = bid;
-    const date = new Date(createdAt).toDateString();
-    const time = new Date(createdAt).toLocaleTimeString();
+    const {date, time} = useGetDateAndTime(createdAt);
     const pathName = usePathname();
     const isOrderPage = pathName.endsWith("/order");
     // console.log(isOrderPage);
