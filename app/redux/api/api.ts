@@ -58,9 +58,19 @@ const baseApi = createApi({
                 }
             },
             providesTags: ["bids"] as const
+        }),
+        removeBid: builder.mutation({
+            query: (id) =>{
+                // console.log(id);
+                return {
+                    url: `/bids/remove-bid/${id}`,
+                    method: "DELETE"
+                }
+            },
+            invalidatesTags: ["bids"]
         })
     })
 })
 
-export const {useGetAllAuctionsQuery, useAddBidMutation, useUpdateProdileMutation, useGetCurrentUserBidsQuery} = baseApi;
+export const {useGetAllAuctionsQuery, useAddBidMutation, useUpdateProdileMutation, useGetCurrentUserBidsQuery, useRemoveBidMutation} = baseApi;
 export default baseApi;
