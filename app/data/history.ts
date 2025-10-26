@@ -2,7 +2,7 @@ import { TTabs } from "../interface/tabs";
 
 const historyTabs: TTabs[] = [
     {
-        id: "bid",
+        id: "pending",
         label: "Bid"
     },
     {
