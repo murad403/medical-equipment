@@ -2,10 +2,10 @@ import dbConnect from "@/app/backend/config/db";
 import Bid from "@/app/backend/modules/bid/bid.model";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function PATCH (req: NextRequest, {params}: {params: {id: string}}){
+export async function PATCH (req: NextRequest, context: {params: Promise<{id: string}>}){
     await dbConnect(); 
     try {
-        const id = params?.id;
+        const {id} = await context.params;
         if(!id){
             return NextResponse.json({ message: "Bid ID missing" }, { status: 400 });
         }

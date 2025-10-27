@@ -12,7 +12,7 @@ type TInputs = {
 
 const ContactForm = () => {
     const { register, handleSubmit, reset, formState: { errors }} = useForm<TInputs>();
-    const [sendMessage] = useSendMessageMutation();
+    const [sendMessage, {isLoading}] = useSendMessageMutation();
 
   const onSubmit: SubmitHandler<TInputs> = async(data) =>{
     try {
@@ -66,7 +66,11 @@ const ContactForm = () => {
                         {errors.message && <span>Message is required</span>}
                     </div>
                     <div className="flex justify-center items-center mt-5">
-                        <button className="bg-hard py-2 w-1/2 rounded-lg text-white cursor-pointer" type="submit">Submit Us</button>
+                        <button className="bg-hard py-2 w-1/2 rounded-lg text-white cursor-pointer" type="submit">
+                            {
+                                isLoading ? <span className="loading loading-spinner text-white"></span> : "Submit Us"
+                            }
+                        </button>
                     </div>
                 </form>
             </div>
