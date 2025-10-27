@@ -1,17 +1,28 @@
 "use client";
+import { useSendMessageMutation } from "@/app/redux/api/api";
 import { SubmitHandler, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 type TInputs = {
     name: string;
     email: string;
-    phone: number;
+    phone: string;
     message: string;
 }
 
 const ContactForm = () => {
-    const { register, handleSubmit, watch, formState: { errors }} = useForm<TInputs>()
-  const onSubmit: SubmitHandler<TInputs> = (data) =>{
-    console.log(data);
+    const { register, handleSubmit, reset, formState: { errors }} = useForm<TInputs>();
+    const [sendMessage] = useSendMessageMutation();
+
+  const onSubmit: SubmitHandler<TInputs> = async(data) =>{
+    try {
+        const result = await sendMessage(data).unwrap();
+        toast.success(result?.message);
+        reset();
+    } catch (error: any) {
+        console.log(error);
+        toast.error(error?.data?.message)
+    }
   }
     return (
         <div className="flex flex-col lg:flex-row items-center gap-5 md:gap-10 text-title">
@@ -55,7 +66,7 @@ const ContactForm = () => {
                         {errors.message && <span>Message is required</span>}
                     </div>
                     <div className="flex justify-center items-center mt-5">
-                        <button className="bg-hard py-2 w-1/2 rounded-lg text-white" type="submit">Submit Us</button>
+                        <button className="bg-hard py-2 w-1/2 rounded-lg text-white cursor-pointer" type="submit">Submit Us</button>
                     </div>
                 </form>
             </div>

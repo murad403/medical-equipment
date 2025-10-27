@@ -25,6 +25,15 @@ const baseApi = createApi({
                 }
             }
         }),
+        sendMessage: builder.mutation({
+            query: (payload) =>{
+                return {
+                    url: "/contact",
+                    method: "POST",
+                    body: payload
+                }
+            }
+        }),
 
         // product relatd endpoints--------------------------
         // ! get all auction-----
@@ -93,5 +102,5 @@ const baseApi = createApi({
     })
 })
 
-export const {useGetAllAuctionsQuery, useAddBidMutation, useUpdateProfileMutation, useGetCurrentUserBidsQuery, useRemoveBidMutation, useAddAuctionMutation, useAddReportMutation} = baseApi;
+export const {useGetAllAuctionsQuery, useAddBidMutation, useUpdateProfileMutation, useGetCurrentUserBidsQuery, useRemoveBidMutation, useAddAuctionMutation, useAddReportMutation, useSendMessageMutation} = baseApi;
 export default baseApi;
