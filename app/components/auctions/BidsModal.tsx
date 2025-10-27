@@ -1,6 +1,7 @@
 "use client";
 import { useAddBidMutation } from "@/app/redux/api/api";
 import { useAppSelector } from "@/app/redux/hook";
+import Link from "next/link";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -41,7 +42,9 @@ const BidsModal = ({ currentProduct, time }: { currentProduct: any, time: string
             </button>
           </form>
           {
-            edit ?
+            user ? <div>
+              {
+                edit ?
               <div>
                 <h3 className="font-bold text-lg text-title">Place a bid</h3>
                 <p className="text-sm mt-1 text-gray-700">Current bid  ${currentProduct?.price}</p>
@@ -74,7 +77,11 @@ const BidsModal = ({ currentProduct, time }: { currentProduct: any, time: string
                   </div>
                   <p className="text-[10px] text-red-500 mt-5">When you confirm your bid, it means you’re committing to buy this item if you’re the winning bidder.</p>
                 </div>
-
+              }
+            </div> : <div className="flex flex-col justify-center items-center gap-3">
+              <h3 className="text-title text-lg font-semibold">Please Login First</h3>
+              <Link className="text-red-400 underline underline-offset-3" href={"/auth/sign-in"}>Login...</Link>
+            </div>
           }
         </div>
       </dialog>

@@ -26,19 +26,18 @@ const ProductDetails = ({ setSearch }: { setSearch: any }) => {
     if (isLoading) {
         return <LoadingSpinner></LoadingSpinner>
     }
-    // console.log(currentProduct);
     return (
         <div className='flex md:flex-row flex-col items-center gap-5'>
             <div className='w-full md:w-[20%] flex flex-row md:flex-col gap-2'>
                 {
                     currentProduct?.images.map((image: any) =>
-                        <Image onClick={() => hanldeSelectedImage(image?.id)} width={500} height={500} key={image?.id} className='md:w-full w-1/3 h-[150px] rounded-lg' src={image.image} alt='product'></Image>
+                        <Image onClick={() => hanldeSelectedImage(image?.id)} width={500} height={500} key={image?.id} className='md:w-full w-1/3 h-[150px] md:h-[160px] rounded-lg' src={image.image} alt='product'></Image>
                     )
                 }
             </div>
             <div className='flex sm:flex-row flex-col w-full md:w-[80%] gap-5 justify-between items-center'>
                 <div className='w-full sm:w-1/2'>
-                    <Image width={500} height={500} className='w-full rounded-lg h-[400px]' src={selectedImage || currentProduct?.images?.[0]?.image} alt='product'></Image>
+                    <Image width={500} height={500} className='w-full rounded-lg h-[400px] md:h-[430px]' src={selectedImage || currentProduct?.images?.[0]?.image} alt='product'></Image>
                 </div>
                 <div className='w-full sm:w-1/2 space-y-3'>
                     <h2 className='md:text-3xl text-2xl lg:text-4xl font-bold text-title'>{currentProduct?.title}</h2>
