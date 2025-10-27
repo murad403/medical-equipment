@@ -5,3 +5,5 @@ type TReport = {
     subject: string;
     message: string;
 }
+
+export default TReport;
