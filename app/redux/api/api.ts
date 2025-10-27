@@ -46,7 +46,7 @@ const baseApi = createApi({
                     params.append("query", query?.search);
                 }
                 return {
-                    url: `/auctions/all-auctions?page=${query?.page}&limit=${query?.limit}`,
+                    url: `/auctions/all-auctions?page=${query?.page}&limit=${query?.limit}&filter=${query?.filter}`,
                     method: "GET",
                     params: params
                 }

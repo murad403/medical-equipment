@@ -13,10 +13,11 @@ const page = () => {
     const limit = 12;
 
     const [search, setSearch] = useState("");
-    const {data, isLoading} = useGetAllAuctionsQuery({search, page, limit});
+    const [filter, setFilter] = useState("");
+    const {data, isLoading} = useGetAllAuctionsQuery({search, filter, page, limit});
     const auctions = data?.data?.result;
     const totalAuctions = data?.data?.totalAuctions;
-    // console.log(totalAuctions);
+    // console.log(filter);
 
     return (
         <div className='px-4 md:px-14 lg:px-16 space-y-10 md:space-y-18 flex justify-between md:gap-10 gap-3 mt-5'>
@@ -26,7 +27,7 @@ const page = () => {
             </div>
             <div className='md:w-full w-[60%] md:space-y-10 space-y-4'>
                 <SearchProducts setSearch={setSearch}></SearchProducts>
-                <ProductFilter auctions={auctions}></ProductFilter>
+                <ProductFilter setFilter={setFilter} auctions={auctions} setSearch={setSearch}></ProductFilter>
                 <div className="divider divider-info"></div>
                 <AuctionProducts auctions={auctions} isLoading={isLoading}></AuctionProducts>
                 <AuctionPagination limit={limit} page={page} setPage={setPage} totalAuctions={totalAuctions}></AuctionPagination>
