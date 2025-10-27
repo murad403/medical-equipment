@@ -10,7 +10,7 @@ import LoadingSpinner from '@/app/shared/LoadingSpinner';
 const ProductDetails = ({ setSearch }: { setSearch: any }) => {
     const { data, isLoading } = useGetAllAuctionsQuery(undefined);
     const { productId } = useParams();
-    const currentProduct = data?.data.find((product: any) => product._id === productId);
+    const currentProduct = data?.data?.result?.find((product: any) => product._id === productId);
     useEffect(() => {
         if (currentProduct) {
             setSearch(currentProduct?.category);

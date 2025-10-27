@@ -8,8 +8,8 @@ import React, { useState } from 'react';
 const page = () => {
     const [search, setSearch] = useState("");
     const { data } = useGetAllAuctionsQuery(search);
-    const auctions = data?.data;
-    // console.log(search);
+    const auctions = data?.data?.result;
+    console.log(auctions);
     return (
         <div className='px-4 md:px-14 lg:px-16 mt-4 space-y-2'>
             <BreadCrums></BreadCrums>
