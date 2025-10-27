@@ -40,12 +40,13 @@ const baseApi = createApi({
         }),
         getAllAuctions: builder.query({
             query: (query) =>{
+                // console.log(query);
                 const params = new URLSearchParams();
-                if(query){
-                    params.append("query", query);
+                if(query?.search){
+                    params.append("query", query?.search);
                 }
                 return {
-                    url: "/auctions/all-auctions",
+                    url: `/auctions/all-auctions?page=${query?.page}&limit=${query?.limit}`,
                     method: "GET",
                     params: params
                 }

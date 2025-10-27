@@ -12,7 +12,7 @@ import LoadingSpinner from '@/app/shared/LoadingSpinner';
 
 const UpcomingAuctions = () => {
     const { data, isLoading, isError } = useGetAllAuctionsQuery(undefined);
-    const auctions = data?.data;
+    const auctions = data?.data?.result;
     if(isLoading) return <LoadingSpinner></LoadingSpinner>;
     return (
         <div className='px-5 lg:px-10 py-7 md:py-9 lg:py-14 bg-normal rounded-xl'>

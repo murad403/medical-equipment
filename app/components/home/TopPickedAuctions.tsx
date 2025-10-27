@@ -4,8 +4,8 @@ import { useGetAllAuctionsQuery } from '@/app/redux/api/api';
 import LoadingSpinner from '@/app/shared/LoadingSpinner';
 
 const TopPickedAuctions = () => {
-  const {data, isLoading, isError} = useGetAllAuctionsQuery(undefined, {pollingInterval: 3000});
-  const auctions = data?.data;
+  const {data, isLoading, isError} = useGetAllAuctionsQuery(undefined);
+  const auctions = data?.data?.result;
 
   if (isLoading){
     return (

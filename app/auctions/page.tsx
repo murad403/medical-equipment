@@ -9,10 +9,14 @@ import AuctionPagination from '../components/auctions/AuctionPagination';
 import { useGetAllAuctionsQuery } from '../redux/api/api';
 
 const page = () => {
+    const [page, setPage] = React.useState(1);
+    const limit = 12;
+
     const [search, setSearch] = useState("");
-    const {data, isLoading} = useGetAllAuctionsQuery(search);
-    const auctions = data?.data;
-    // console.log(auctions);
+    const {data, isLoading} = useGetAllAuctionsQuery({search, page, limit});
+    const auctions = data?.data?.result;
+    const totalAuctions = data?.data?.totalAuctions;
+    // console.log(totalAuctions);
 
     return (
         <div className='px-4 md:px-14 lg:px-16 space-y-10 md:space-y-18 flex justify-between md:gap-10 gap-3 mt-5'>
@@ -25,7 +29,7 @@ const page = () => {
                 <ProductFilter auctions={auctions}></ProductFilter>
                 <div className="divider divider-info"></div>
                 <AuctionProducts auctions={auctions} isLoading={isLoading}></AuctionProducts>
-                <AuctionPagination></AuctionPagination>
+                <AuctionPagination limit={limit} page={page} setPage={setPage} totalAuctions={totalAuctions}></AuctionPagination>
             </div>
         </div>
     );

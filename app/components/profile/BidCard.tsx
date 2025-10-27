@@ -75,7 +75,7 @@ const BidCard = ({ bid, activeTab, isLoading }: { bid: any, activeTab: string, i
                                     {
                                         activeTab === "progress" ?
                                         <button className="cursor-pointer text-white bg-green-500 px-2 py-1 rounded-lg">Accept Order</button> :
-                                        <p className="text-hard bg-normal rounded-lg px-3 py-1 capitalize">{activeTab}</p>
+                                        isOrderPage ? <p className="text-hard bg-normal rounded-lg px-3 py-1 capitalize">{activeTab}</p> : null
                                     }
                                 </div>
                         }
