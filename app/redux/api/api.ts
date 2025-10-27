@@ -7,6 +7,15 @@ const baseApi = createApi({
     endpoints: (builder) =>({
         // user related endpoints----------------
         // ! update profile--------
+        addReport: builder.mutation({
+            query: (payload) =>{
+                return {
+                    url: '/report/add-report',
+                    method: "POST",
+                    body: payload
+                }
+            }
+        }),
         updateProfile: builder.mutation({
             query: ({userId, payload}: {userId: string, payload: any}) =>{
                 return {
@@ -83,5 +92,5 @@ const baseApi = createApi({
     })
 })
 
-export const {useGetAllAuctionsQuery, useAddBidMutation, useUpdateProfileMutation, useGetCurrentUserBidsQuery, useRemoveBidMutation, useAddAuctionMutation} = baseApi;
+export const {useGetAllAuctionsQuery, useAddBidMutation, useUpdateProfileMutation, useGetCurrentUserBidsQuery, useRemoveBidMutation, useAddAuctionMutation, useAddReportMutation} = baseApi;
 export default baseApi;
