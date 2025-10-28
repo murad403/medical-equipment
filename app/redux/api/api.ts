@@ -125,6 +125,11 @@ const baseApi = createApi({
                 }
             },
             invalidatesTags: ["auctions", "bids"]
+        }),
+        getAllBidder: builder.query({
+            query: () =>{
+                
+            }
         })
         
     })

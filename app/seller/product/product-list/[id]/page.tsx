@@ -34,6 +34,7 @@ const page = () => {
     const [updateProduct] = useUpdateProductMutation();
     const { id } = useParams();
     const currentProduct = data?.data.find((product: any) => product?._id === id);
+    // console.log(currentProduct);
 
     const currentProductImages = currentProduct?.images;
     const [images, setImages] = useState<TImageFile[]>([]);
@@ -164,7 +165,7 @@ const page = () => {
                                         ></img>
                                         <button
                                             onClick={() => handleRemoveImage(item.id)}
-                                            className="absolute top-1 right-1 rounded-full text-hard cursor-pointer hover:bg-red-500"
+                                            className="absolute top-1 right-1 rounded-full text-title cursor-pointer hover:bg-red-500 font-semibold"
                                         >
                                             <CiCircleRemove size={15} />
                                         </button>

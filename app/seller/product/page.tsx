@@ -221,7 +221,7 @@ const page = () => {
                         ></img>
                         <button
                           onClick={() => handleRemoveImage(item.id)}
-                          className="absolute top-1 right-1 rounded-full text-white cursor-pointer hover:bg-red-500"
+                          className="absolute top-1 right-1 rounded-full text-title font-semibold cursor-pointer hover:bg-red-500"
                         >
                           <CiCircleRemove size={15} />
                         </button>

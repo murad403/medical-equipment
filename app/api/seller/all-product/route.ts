@@ -10,7 +10,7 @@ export async function GET (req: NextRequest){
         if(verified instanceof NextResponse) return verified;
         const {_id} = verified?.user?.payload;
         // console.log("user", _id);
-        const result = await Product.find({sellerId: _id});
+        const result = await Product.find({sellerId: _id}).sort({createdAt: -1});
         return NextResponse.json({message: "Retrieved all seller product", data: result}, {status: 200});
     } catch (error) {
         console.log("Error get seller product", error);

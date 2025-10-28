@@ -7,7 +7,7 @@ const page = () =>{
         <ProtectedRoute>
             <div className="flex items-center gap-3">
                 <NavigateButton text={"bidder list"}></NavigateButton>
-                <h3 className="text-2xl font-bold">(30)</h3>
+                <h3 className="text-2xl font-bold text-hard">(30)</h3>
             </div>
             <div className="overflow-x-auto md:mt-4 mt-3 rounded-lg border border-hard">
                     <table className="table">
