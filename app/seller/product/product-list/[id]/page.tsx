@@ -2,7 +2,8 @@
 import { categories } from "@/app/components/auctions/CollectibleProducts";
 import ProtectedRoute from "@/app/hooks/ProtectedRoute";
 import useGetImage from "@/app/hooks/useGetImage";
-import { useGetSellerProductQuery } from "@/app/redux/api/api";
+import { useGetSellerProductQuery, useUpdateProductMutation } from "@/app/redux/api/api";
+import { useAppSelector } from "@/app/redux/hook";
 import LoadingSpinner from "@/app/shared/LoadingSpinner";
 import NavigateButton from "@/app/shared/NavigateButton";
 import { useParams } from "next/navigation";
@@ -29,6 +30,8 @@ type TInputs = {
 const page = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm<TInputs>();
     const { data } = useGetSellerProductQuery(undefined);
+    const {user} = useAppSelector((state: any) => state.user);
+    const [updateProduct] = useUpdateProductMutation();
     const { id } = useParams();
     const currentProduct = data?.data.find((product: any) => product?._id === id);
 
@@ -58,12 +61,27 @@ const page = () => {
     }, [image])
 
 
-    const onSubmit: SubmitHandler<TInputs> = (data) => {
-        console.log("data", DataTransfer);
+    const onSubmit: SubmitHandler<TInputs> = async(data) => {
         const updatedProduct = {
+            sellerId: user?._id,
             title: data.title ? data?.title : currentProduct?.title,
+            bidDate: data.bidDate ? data?.bidDate : currentProduct?.bidDate,
+            category: data.category ? data?.category : currentProduct?.category,
+            price: data.price ? Number(data?.price) : currentProduct?.price,
+            description: data.description ? data?.description : currentProduct?.description,
+            location: data.location ? data?.location : currentProduct?.location,
+            images,
+            bids: currentProduct?.bids,
         }
-        console.log("updated product", updatedProduct);
+
+        console.log("updated product", updatedProduct, typeof updatedProduct.price);
+        try {
+            const result = await updateProduct({id: currentProduct?._id, payload: updatedProduct}).unwrap();
+            toast.success(result?.message);
+        } catch (error: any) {
+            console.log(error);
+            toast.error(error?.data?.message);
+        }
     }
     return (
         <ProtectedRoute>
