@@ -98,7 +98,6 @@ const baseApi = createApi({
             },
             invalidatesTags: ["bids"]
         }),
-
         getSellerProduct: builder.query({
             query: () =>{
                 return {
@@ -107,10 +106,19 @@ const baseApi = createApi({
                 }
             },
             providesTags: ["auctions"]
+        }),
+        deleteProduct: builder.mutation({
+            query: (id: string) =>{
+                return {
+                    url: `/seller/delete-product/${id}`,
+                    method: "DELETE"
+                }
+            },
+            invalidatesTags: ["auctions", "bids"]
         })
         
     })
 })
 
-export const {useGetAllAuctionsQuery, useAddBidMutation, useUpdateProfileMutation, useGetCurrentUserBidsQuery, useRemoveBidMutation, useAddAuctionMutation, useAddReportMutation, useSendMessageMutation, useGetSellerProductQuery} = baseApi;
+export const {useGetAllAuctionsQuery, useAddBidMutation, useUpdateProfileMutation, useGetCurrentUserBidsQuery, useRemoveBidMutation, useAddAuctionMutation, useAddReportMutation, useSendMessageMutation, useGetSellerProductQuery, useDeleteProductMutation} = baseApi;
 export default baseApi;
