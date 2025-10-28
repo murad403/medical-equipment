@@ -128,12 +128,15 @@ const baseApi = createApi({
         }),
         getAllBidder: builder.query({
             query: () =>{
-                
+                return {
+                    url: "/seller/bidder-list",
+                    method: "GET"
+                }
             }
         })
         
     })
 })
 
-export const {useGetAllAuctionsQuery, useAddBidMutation, useUpdateProfileMutation, useGetCurrentUserBidsQuery, useRemoveBidMutation, useAddAuctionMutation, useAddReportMutation, useSendMessageMutation, useGetSellerProductQuery, useDeleteProductMutation, useUpdateProductMutation} = baseApi;
+export const {useGetAllAuctionsQuery, useAddBidMutation, useUpdateProfileMutation, useGetCurrentUserBidsQuery, useRemoveBidMutation, useAddAuctionMutation, useAddReportMutation, useSendMessageMutation, useGetSellerProductQuery, useDeleteProductMutation, useUpdateProductMutation, useGetAllBidderQuery} = baseApi;
 export default baseApi;

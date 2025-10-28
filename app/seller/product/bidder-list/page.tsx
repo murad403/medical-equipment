@@ -1,8 +1,12 @@
+"use client";
 import ProtectedRoute from "@/app/hooks/ProtectedRoute";
+import { useGetAllBidderQuery } from "@/app/redux/api/api";
 import NavigateButton from "@/app/shared/NavigateButton";
 import { SlEye } from "react-icons/sl";
 
 const page = () =>{
+  const {data, isLoading} = useGetAllBidderQuery(undefined);
+  console.log(data?.data);
     return (
         <ProtectedRoute>
             <div className="flex items-center gap-3">

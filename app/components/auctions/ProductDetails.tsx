@@ -26,6 +26,7 @@ const ProductDetails = ({ setSearch }: { setSearch: any }) => {
     if (isLoading) {
         return <LoadingSpinner></LoadingSpinner>
     }
+    // console.log(currentProduct.sellerId);
     return (
         <div className='flex md:flex-row flex-col items-center gap-5'>
             <div className='w-full md:w-[20%] flex flex-row md:flex-col gap-2'>

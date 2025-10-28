@@ -13,7 +13,6 @@ export async function GET(req: NextRequest){
 
         let searchText = searchParams.get("query") as string || "";
         let filterText = searchParams.get("filter") as string || "";
-        // console.log(filterText);
 
         let mongoQuery: any = {};
         if(filterText === "auction"){
@@ -26,7 +25,7 @@ export async function GET(req: NextRequest){
             ]
         }
         const totalAuctions = await Product.countDocuments({category: searchText}) || await Product.find().estimatedDocumentCount();
-        const result = await Product.find(mongoQuery).skip(skip).limit(limit);
+        const result = await Product.find(mongoQuery).populate("sellerId", "_id").skip(skip).limit(limit);
         return NextResponse.json({message: "Retrieved all auctions", data: {result, totalAuctions}}, {status: 200});
     } catch (error) {
         console.log("Get all auctions error", error);

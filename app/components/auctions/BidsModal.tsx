@@ -15,10 +15,12 @@ const BidsModal = ({ currentProduct, time }: { currentProduct: any, time: string
     e.preventDefault();
     setEdit(false);
   }
+  // console.log(currentProduct?.sellerId?._id);
   const handleConfirmBid = async() => {
     const newBid = {
       customerId: user?._id,
       productId: currentProduct?._id,
+      sellerId: currentProduct?.sellerId?._id,
       bidPrice: bid,
       status: "pending",
       isDeleted: false,
