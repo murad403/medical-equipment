@@ -6,6 +6,7 @@ import ProtectedRoute from "@/app/hooks/ProtectedRoute";
 import { useDeleteProductMutation, useGetSellerProductQuery } from "@/app/redux/api/api";
 import LoadingSpinner from "@/app/shared/LoadingSpinner";
 import Swal from "sweetalert2";
+import Link from "next/link";
 
 const page = () => {
     const { data, isLoading } = useGetSellerProductQuery(undefined);
@@ -60,7 +61,7 @@ const page = () => {
                                 <button onClick={() => handleDeleteProduct(product?._id)} className="cursor-pointer">
                                     <MdDeleteOutline size={20} />
                                 </button>
-                                <button className="bg-hard px-3 text-white rounded-2xl">Edit</button>
+                                <Link href={`/seller/product/product-list/${product?._id}`} className="bg-hard px-3 text-white rounded-2xl">Edit</Link>
                             </div>
                         </div>
                     )

@@ -6,13 +6,12 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { categories } from "@/app/components/auctions/CollectibleProducts";
 import { useAppSelector } from "@/app/redux/hook";
-import axios from "axios";
 import toast from "react-hot-toast";
 import Link from "next/link";
-import useGetImage from "@/app/hooks/useGetImage";
 import LoadingSpinner from "@/app/shared/LoadingSpinner";
 import ProtectedRoute from "@/app/hooks/ProtectedRoute";
 import { useAddAuctionMutation } from "@/app/redux/api/api";
+import useGetImage from "@/app/hooks/useGetImage";
 
 type TInputs = {
   title: string;
@@ -29,7 +28,7 @@ type TImageFile = {
 };
 
 const page = () => {
-  const { user } = useAppSelector(state => state.user);
+  const { user } = useAppSelector((state: any) => state.user);
   const [addAuction] = useAddAuctionMutation();
   const [images, setImages] = useState<TImageFile[]>([]);
   const {
