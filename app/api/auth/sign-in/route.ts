@@ -19,9 +19,9 @@ export async function POST(req: NextRequest){
         const userObj = existingUser.toObject();
         delete userObj.password;
         const response = NextResponse.json({message: "User login successfully", data: userObj}, {status: 200});
-        const token = genarateToken({_id: userObj?._id, email: userObj.email, role: userObj.role});
+        const accessToken = genarateToken({_id: userObj?._id, email: userObj.email, role: userObj.role});
         // console.log("token", token);
-        response.cookies.set("token", token, {
+        response.cookies.set("accessToken", accessToken, {
             httpOnly: false,
             secure: false,
             sameSite: "lax",

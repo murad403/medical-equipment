@@ -98,9 +98,19 @@ const baseApi = createApi({
             },
             invalidatesTags: ["bids"]
         }),
+
+        getSellerProduct: builder.query({
+            query: () =>{
+                return {
+                    url: `/seller/all-product`,
+                    method: "GET"
+                }
+            },
+            providesTags: ["auctions"]
+        })
         
     })
 })
 
-export const {useGetAllAuctionsQuery, useAddBidMutation, useUpdateProfileMutation, useGetCurrentUserBidsQuery, useRemoveBidMutation, useAddAuctionMutation, useAddReportMutation, useSendMessageMutation} = baseApi;
+export const {useGetAllAuctionsQuery, useAddBidMutation, useUpdateProfileMutation, useGetCurrentUserBidsQuery, useRemoveBidMutation, useAddAuctionMutation, useAddReportMutation, useSendMessageMutation, useGetSellerProductQuery} = baseApi;
 export default baseApi;

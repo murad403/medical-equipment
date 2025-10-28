@@ -1,11 +1,15 @@
+"use client";
 import NavigateButton from "@/app/shared/NavigateButton";
 import product from "../../../../public/product.jpg";
 import Image from "next/image";
 import { MdDeleteOutline } from "react-icons/md";
 import Link from "next/link";
 import ProtectedRoute from "@/app/hooks/ProtectedRoute";
+import { useGetSellerProductQuery } from "@/app/redux/api/api";
 
 const page = () =>{
+    const {data, isLoading} = useGetSellerProductQuery(undefined);
+    console.log(data?.data);
     return (
         <ProtectedRoute>
             <div className="flex items-center gap-3">
@@ -20,7 +24,7 @@ const page = () =>{
                         <h2 className="text-xl md:text-2xl font-semibold">Ge admladfk dfkdflasd</h2>
                         <div className="flex justify-between items-center">
                             <h3 className="text-xl font-bold">$300</h3>
-                            <p className="bg-normal px-2 text-gray-500 rounded-xl text-[13px] inline-block">pending</p>
+                            {/* <p className="bg-normal px-2 text-gray-500 rounded-xl text-[13px] inline-block">pending</p> */}
                         </div>
                     </div>
                     </div>

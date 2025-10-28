@@ -12,7 +12,7 @@ type TProtectedRouteProps = {
 const ProtectedRoute = ({ children }: TProtectedRouteProps) => {
     const router = useRouter();
     useEffect(() => {
-        const token = Cookies.get("token");
+        const token = Cookies.get("accessToken");
         if (!token) {
             router.push("/auth/sign-in");
             return;
