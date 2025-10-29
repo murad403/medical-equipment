@@ -9,28 +9,29 @@ import React, { useState } from 'react';
 
 const page = () => {
     const [activeTab, setActiveTab] = useState("pending");
-    const {user} = useAppSelector((state: any) => state.user)
-    const {data, isLoading} = useGetCurrentUserBidsQuery(user?._id); 
+    const { user } = useAppSelector((state: any) => state.user)
+    const { data, isLoading } = useGetCurrentUserBidsQuery(user?._id);
     const bids = data?.data?.filter((bid: any) => bid.status === activeTab);
-    if(isLoading){
-        return <LoadingSpinner></LoadingSpinner>
-    }
-    // console.log(bids);
     return (
         <div>
             <div className='space-x-2 space-y-2'>
                 {
                     orderTabs.map(tab =>
-                        <button onClick={() =>setActiveTab(tab?.id)} key={tab?.id} className={`font-light px-7 py-2 rounded-xl text-lg cursor-pointer ${tab?.id === activeTab ? "bg-hard text-white" : "bg-normal text-hard border border-hard" }`}>{tab?.label}</button>
+                        <button onClick={() => setActiveTab(tab?.id)} key={tab?.id} className={`font-light px-7 py-2 rounded-xl text-lg cursor-pointer ${tab?.id === activeTab ? "bg-hard text-white" : "bg-normal text-hard border border-hard"}`}>{tab?.label}</button>
                     )
                 }
             </div>
             <p className='font-light text-xl my-3 text-title'>Products ({bids?.length})</p>
             <div>
                 {
-                    (activeTab === "pending" || activeTab === "progress") ? 
-                    bids?.map((bid: any) => <BidCard activeTab={activeTab} isLoading={isLoading} key={bid?._id} bid={bid}></BidCard>) :
-                    bids?.map((bid: any) => <CompleteBidCard key={bid?._id} bid={bid}></CompleteBidCard>)
+                    isLoading ? <LoadingSpinner></LoadingSpinner> :
+                        <div>
+                            {
+                                (activeTab === "pending" || activeTab === "progress") ?
+                                    bids?.map((bid: any) => <BidCard activeTab={activeTab} key={bid?._id} bid={bid}></BidCard>) :
+                                    bids?.map((bid: any) => <CompleteBidCard key={bid?._id} bid={bid}></CompleteBidCard>)
+                            }
+                        </div>
                 }
             </div>
         </div>

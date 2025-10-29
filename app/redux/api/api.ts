@@ -133,10 +133,21 @@ const baseApi = createApi({
                     method: "GET"
                 }
             }
+        }),
+        addPayment: builder.mutation({
+            query: ({id, payload}) =>{
+                // console.log(id);
+                return {
+                    url: `/bids/add-payment/${id}`,
+                    method: "PATCH",
+                    body: payload
+                }
+            },
+            invalidatesTags: ["bids"]
         })
         
     })
 })
 
-export const {useGetAllAuctionsQuery, useAddBidMutation, useUpdateProfileMutation, useGetCurrentUserBidsQuery, useRemoveBidMutation, useAddAuctionMutation, useAddReportMutation, useSendMessageMutation, useGetSellerProductQuery, useDeleteProductMutation, useUpdateProductMutation, useGetAllBidderQuery} = baseApi;
+export const {useGetAllAuctionsQuery, useAddBidMutation, useUpdateProfileMutation, useGetCurrentUserBidsQuery, useRemoveBidMutation, useAddAuctionMutation, useAddReportMutation, useSendMessageMutation, useGetSellerProductQuery, useDeleteProductMutation, useUpdateProductMutation, useGetAllBidderQuery, useAddPaymentMutation} = baseApi;
 export default baseApi;
