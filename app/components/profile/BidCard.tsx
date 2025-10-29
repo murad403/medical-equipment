@@ -1,5 +1,5 @@
 import useGetDateAndTime from "@/app/hooks/useGetDateAndTime";
-import { useAddPaymentMutation, useRemoveBidMutation } from "@/app/redux/api/api";
+import { useAddBidStatusMutation, useRemoveBidMutation } from "@/app/redux/api/api";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { RiDeleteBin6Line } from "react-icons/ri";
@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 
 const BidCard = ({ bid, activeTab }: { bid: any, activeTab: string }) => {
     const [removeBid] = useRemoveBidMutation();
-    const [addPayment, {isLoading: paymentLoading}] = useAddPaymentMutation();
+    const [addBidStatus, {isLoading: paymentLoading}] = useAddBidStatusMutation();
     const image = bid?.productId?.images?.[0]?.image;
     const { title, description, price, location } = bid.productId;
     const { createdAt, bidPrice, _id } = bid;
@@ -46,24 +46,24 @@ const BidCard = ({ bid, activeTab }: { bid: any, activeTab: string }) => {
             status: "pending"
         }
         Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to payment this!",
+            title: "Confirm Your Payment?",
+            text: "Once confirmed, your bid will be marked as paid and cannot be undone.",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, payment it!"
+            confirmButtonText: "Yes, make the payment!"
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const result = await addPayment({id: _id, payload: payment}).unwrap();
+                    const result = await addBidStatus({id: _id, payload: payment}).unwrap();
                     Swal.fire({
-                        title: "Payment!",
-                        text: `${result?.message}`,
+                        title: "Payment Successful!",
+                        text: `Your payment has been processed successfully.`,
                         icon: "success"
                     });
-                } catch (error) {
-                    Swal.fire("Error!", "Something went wrong!", "error");
+                } catch (error: any) {
+                    Swal.fire("Oops!, Something went wrong while processing your payment.", error);
                 }
             }
         });
@@ -100,7 +100,7 @@ const BidCard = ({ bid, activeTab }: { bid: any, activeTab: string }) => {
                                 }</button> :
                                 <div>
                                     {
-                                        activeTab === "win" ?
+                                        activeTab === "progress" ?
                                         <button className="cursor-pointer text-white bg-green-500 px-2 py-1 rounded-lg">Accept Order</button> :
                                         isOrderPage ? <p className="text-hard bg-normal rounded-lg px-3 py-1 capitalize">{activeTab}</p> : null
                                     }
