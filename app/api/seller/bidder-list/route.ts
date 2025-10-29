@@ -9,7 +9,7 @@ export async function GET(req: NextRequest){
         const verified = verifySeller(req);
         if(verified instanceof NextResponse) return verified;
         const {_id} = verified?.user?.payload;
-        const result = await Bid.find({sellerId: _id}).populate("customerId", "name").populate("productId", "title category ");
+        const result = await Bid.find({sellerId: _id}).populate("customerId", "name email phoneNumber photo address").populate("productId", "title category").sort({createdAt: -1});
         return NextResponse.json({message: "Get all bids", data: result}, {status: 200});
     } catch (error) {
         console.log(error);

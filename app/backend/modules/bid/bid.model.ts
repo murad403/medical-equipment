@@ -5,10 +5,11 @@ const bidSchema = new Schema<TBid>({
     customerId: {type: mongoose.Schema.Types.ObjectId, required: true, ref: "User"},
     sellerId: {type: mongoose.Schema.Types.ObjectId, required: true, ref: "User"},
     productId: {type: mongoose.Schema.Types.ObjectId, required: true, ref: "Product"},
-    status: {type: String, enum: ["pending", "progress","complete", "rejected", "win"], required: true, default: "pending"},
+    status: {type: String, enum: ["pending", "progress","complete", "cancel", "win", "placed"], required: true, default: "placed"},
     bidPrice: {type: Number, required: true},
     isDeleted: {type: Boolean, required: true},
-    orderNumber: {type: Number, unique: true, required: true}
+    orderNumber: {type: Number, unique: true, required: true},
+    payment: {type: String, enum: ["pending", "success", "failed", "reject"], required: true, default: "pending"},
 }, {
     timestamps: true
 })

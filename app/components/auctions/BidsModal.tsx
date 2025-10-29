@@ -22,8 +22,9 @@ const BidsModal = ({ currentProduct, time }: { currentProduct: any, time: string
       productId: currentProduct?._id,
       sellerId: currentProduct?.sellerId?._id,
       bidPrice: bid,
-      status: "pending",
+      status: "placed",
       isDeleted: false,
+      payment: "pending"
     }
       try {
         const result = await addBid(newBid).unwrap();

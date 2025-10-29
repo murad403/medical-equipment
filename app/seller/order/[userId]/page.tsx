@@ -1,10 +1,23 @@
+"use client";
 import NavigateButton from "@/app/shared/NavigateButton";
 import Image from "next/image";
 import React from "react";
-import user from "../../../../public/user.jpg";
 import ProtectedRoute from "@/app/hooks/ProtectedRoute";
+import LoadingSpinner from "@/app/shared/LoadingSpinner";
+import { useGetAllBidderQuery } from "@/app/redux/api/api";
+import { useParams } from "next/navigation";
+import useGetDateAndTime from "@/app/hooks/useGetDateAndTime";
 
 const page = () => {
+  const {userId} = useParams();
+  const {data, isLoading} = useGetAllBidderQuery(undefined);
+  if(isLoading){
+    return <LoadingSpinner></LoadingSpinner>
+  }
+  const currentOrder = data?.data?.find((bid: any) => bid?._id === userId);
+  const createdAt = currentOrder?.createdAt;
+  const {date, time} = useGetDateAndTime(createdAt);
+  // console.log(userId, currentOrder);
   return (
     <ProtectedRoute>
       <NavigateButton text={"user order details"}></NavigateButton>
@@ -12,45 +25,51 @@ const page = () => {
         <div className="w-full md:w-[80%]">
         <div className="flex items-center gap-4">
           <Image
+          width={500}
+          height={500}
             className="w-[90px] h-[90px] rounded-full"
-            src={user}
-            alt="user"
+            src={currentOrder?.customerId?.photo}
+            alt={currentOrder?.customerId?.name}
           ></Image>
-          <h3 className="font-medium text-xl">Mr. Bashar islam</h3>
+          <h3 className="font-medium text-xl capitalize">{currentOrder?.customerId?.name}</h3>
         </div>
         <div className="*:flex *:justify-between *:items-center *:md:py-3 *:py-2 *:border-b-2 *:border-blue-200">
           <div>
             <h3 className="font-medium md:text-lg text-[16px]">Name</h3>
-            <p className="md:text-[15px] text-[13px]">Bashar islam</p>
+            <p className="md:text-[15px] text-[13px]">{currentOrder?.customerId?.name}</p>
           </div>
           <div>
             <h3 className="font-medium md:text-lg text-[16px]">Email</h3>
-            <p className="md:text-[15px] text-[13px]">info@gmail.com</p>
+            <p className="md:text-[15px] text-[13px]">{currentOrder?.customerId?.email}</p>
           </div>
           <div>
             <h3 className="font-medium md:text-lg text-[16px]">Phone Number</h3>
-            <p className="md:text-[15px] text-[13px]">343434343</p>
+            <p className="md:text-[15px] text-[13px]">{currentOrder?.customerId?.phoneNumber}</p>
           </div>
           <div>
             <h3 className="font-medium md:text-lg text-[16px]">Product Name</h3>
-            <p className="md:text-[15px] text-[13px]">GE Vivid S70 Ultrasound Machine</p>
+            <p className="md:text-[15px] text-[13px]">{currentOrder?.productId?.title}</p>
           </div>
           <div>
             <h3 className="font-medium md:text-lg text-[16px]">Bid Price</h3>
-            <p className="md:text-[15px] text-[13px]">$203</p>
+            <p className="md:text-[15px] text-[13px]">${currentOrder?.bidPrice}</p>
           </div>
           <div>
             <h3 className="font-medium md:text-lg text-[16px]">Bid Time & Date</h3>
-            <p className="md:text-[15px] text-[13px]">11 oct 24, 11.10PM</p>
+            <p className="md:text-[15px] text-[13px]">{date}, {time}</p>
           </div>
           <div>
             <h3 className="font-medium md:text-lg text-[16px]">Location</h3>
-            <p className="md:text-[15px] text-[13px]">Dhaka</p>
+            <p className="md:text-[15px] text-[13px]">{currentOrder?.customerId?.address}</p>
           </div>
 
         </div>
         <div className="flex justify-end items-center md:mt-5 mt-3">
-            <button className="bg-hard text-white font-semibold py-2 px-5 rounded-xl">Sending Product</button>
+            {
+              currentOrder?.status === "pending" ?
+              <button className="bg-hard text-white font-semibold py-2 px-5 rounded-xl cursor-pointer">Sending Product</button> :
+              <button className="bg-hard text-white font-semibold py-2 px-5 rounded-xl cursor-pointer">Delivery Now</button>
+            }
         </div>
       </div>
       </div>

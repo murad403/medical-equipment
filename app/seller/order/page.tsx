@@ -1,10 +1,16 @@
+"use client";
 import ProtectedRoute from "@/app/hooks/ProtectedRoute";
+import { useGetAllBidderQuery } from "@/app/redux/api/api";
+import LoadingSpinner from "@/app/shared/LoadingSpinner";
 import NavigateButton from "@/app/shared/NavigateButton";
-import Link from "next/link";
-import React from "react";
-import { SlEye } from "react-icons/sl";
+import OrderList from "../seller-component/order/OrderList";
 
 const page = () => {
+  const {data, isLoading} = useGetAllBidderQuery(undefined);
+  if(isLoading){
+    return <LoadingSpinner></LoadingSpinner>
+  }
+  // console.log(data?.data);
   return (
     <ProtectedRoute>
       <NavigateButton text={"user order list"}></NavigateButton>
@@ -23,20 +29,9 @@ const page = () => {
             </tr>
           </thead>
           <tbody className="space-y-3">
-            <tr className="border-b border-hard text-title">
-              <th>1</th>
-              <td>murad</td>
-              <td>Control Specialist</td>
-              <td>10</td>
-              <td>Czech </td>
-              <td>9/29/2020</td>
-              <td>pending</td>
-              <td className="pl-8">
-                <Link href={"/seller/order/3434"} className="cursor-pointer">
-                  <SlEye size={17} />
-                </Link>
-              </td>
-            </tr>
+            {
+              data?.data?.map((bid: any, index: number) => <OrderList key={bid?._id} bid={bid} index={index}></OrderList>)
+            }
           </tbody>
         </table>
       </div>

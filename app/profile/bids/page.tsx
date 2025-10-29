@@ -6,12 +6,10 @@ import { useAppSelector } from '@/app/redux/hook';
 import React, { useState } from 'react';
 
 const page = () => {
-    const [activeTab, setActiveTab] = useState("pending");
+    const [activeTab, setActiveTab] = useState("placed");
     const {user} = useAppSelector((state: any) => state?.user);
-    // console.log(user?._id);
     const {data, isLoading} = useGetCurrentUserBidsQuery(user?._id);
     const bids = data?.data?.filter((bid: any) => bid?.status === activeTab);
-    // console.log(bids, activeTab);
     return (
         <div>
             <div className='space-x-3'>

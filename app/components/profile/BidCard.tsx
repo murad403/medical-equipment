@@ -52,7 +52,7 @@ const BidCard = ({ bid, activeTab, isLoading }: { bid: any, activeTab: string, i
                     <h3 className="text-xl">{title}</h3>
                     <div>
                         {
-                            !isOrderPage ?
+                            (!isOrderPage && activeTab === "placed")?
                                 <button onClick={handleDeleteBid} className="cursor-pointer">
                                     <RiDeleteBin6Line />
                                 </button> :
@@ -73,7 +73,7 @@ const BidCard = ({ bid, activeTab, isLoading }: { bid: any, activeTab: string, i
                                 <button className="cursor-pointer bg-hard text-white font-semibold px-2 rounded-lg py-1">Pay Now</button> :
                                 <div>
                                     {
-                                        activeTab === "progress" ?
+                                        activeTab === "win" ?
                                         <button className="cursor-pointer text-white bg-green-500 px-2 py-1 rounded-lg">Accept Order</button> :
                                         isOrderPage ? <p className="text-hard bg-normal rounded-lg px-3 py-1 capitalize">{activeTab}</p> : null
                                     }
