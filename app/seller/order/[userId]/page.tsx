@@ -4,12 +4,14 @@ import Image from "next/image";
 import React from "react";
 import ProtectedRoute from "@/app/hooks/ProtectedRoute";
 import LoadingSpinner from "@/app/shared/LoadingSpinner";
-import { useGetAllBidderQuery } from "@/app/redux/api/api";
+import { useAddSellerBidStatusMutation, useGetAllBidderQuery } from "@/app/redux/api/api";
 import { useParams } from "next/navigation";
 import useGetDateAndTime from "@/app/hooks/useGetDateAndTime";
+import toast from "react-hot-toast";
 
 const page = () => {
   const {userId} = useParams();
+  const [addSellerBidStatus, {isLoading: sendingProductLoading}] = useAddSellerBidStatusMutation();
   const {data, isLoading} = useGetAllBidderQuery(undefined);
   if(isLoading){
     return <LoadingSpinner></LoadingSpinner>
@@ -18,6 +20,24 @@ const page = () => {
   const createdAt = currentOrder?.createdAt;
   const {date, time} = useGetDateAndTime(createdAt);
   // console.log(userId, currentOrder);
+  const handleSendingProduct = async() =>{
+    try {
+      await addSellerBidStatus({id: userId, payload: {status: "progress"}}).unwrap();
+      toast.success("Sending product successfully!");
+    } catch (error: any) {
+      console.log(error);
+      toast.success("Sending product error");
+    }
+  }
+  const handleDeliveryProduct = async() =>{
+    try {
+      await addSellerBidStatus({id: userId, payload: {status: "complete"}}).unwrap();
+      toast.success("Delivery product successfully!");
+    } catch (error: any) {
+      console.log(error);
+      toast.success("Delivery product error");
+    }
+  }
   return (
     <ProtectedRoute>
       <NavigateButton text={"user order details"}></NavigateButton>
@@ -67,8 +87,20 @@ const page = () => {
         <div className="flex justify-end items-center md:mt-5 mt-3">
             {
               currentOrder?.status === "pending" ?
-              <button className="bg-hard text-white font-semibold py-2 px-5 rounded-xl cursor-pointer">Sending Product</button> :
-              <button className="bg-hard text-white font-semibold py-2 px-5 rounded-xl cursor-pointer">Delivery Now</button>
+              <button onClick={handleSendingProduct} className="bg-hard font-semibold text-white py-2 px-5 rounded-xl cursor-pointer">
+                {
+                  sendingProductLoading ? <span className="loading loading-spinner text-white"></span>:
+                  <p>Sending Product</p>
+                }
+                </button> :
+              currentOrder?.status === "progress" ? <button onClick={handleDeliveryProduct} className="bg-hard text-white font-semibold py-2 px-5 rounded-xl cursor-pointer">
+                {
+                  
+                  sendingProductLoading ? <span className="loading loading-spinner text-white"></span>:
+                  <p>Delivery Now</p>
+                
+                }
+              </button> : <p className="font-semibold text-hard bg-normal py-2 px-5 rounded-xl">Delivery complete</p>
             }
         </div>
       </div>

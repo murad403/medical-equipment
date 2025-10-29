@@ -1,11 +1,11 @@
 "use client";
 import useGetDateAndTime from "@/app/hooks/useGetDateAndTime";
-import { useAddBidStatusMutation } from "@/app/redux/api/api";
+import { useAddSellerBidStatusMutation } from "@/app/redux/api/api";
 import { MdOutlineCheck } from "react-icons/md";
 import Swal from "sweetalert2";
 
 const BidderList = ({ bid, index }: { bid: any, index: number }) => {
-    const [addBidStatus, { isLoading }] = useAddBidStatusMutation();
+    const [addSellerBidStatus, { isLoading }] = useAddSellerBidStatusMutation();
     const { createdAt } = bid;
     const { date, time } = useGetDateAndTime(createdAt);
     // console.log(createdAt);
@@ -21,7 +21,7 @@ const BidderList = ({ bid, index }: { bid: any, index: number }) => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const result = await addBidStatus({ id: bid?._id, payload: { status: "win" } }).unwrap();
+                    await addSellerBidStatus({ id: bid?._id, payload: { status: "win" } }).unwrap();
                     Swal.fire({
                         title: "Bid Marked as Winner!",
                         text: `The bid has been successfully updated to 'win' status.`,

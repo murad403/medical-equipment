@@ -1,5 +1,5 @@
 import useGetDateAndTime from "@/app/hooks/useGetDateAndTime";
-import { useAddBidStatusMutation, useRemoveBidMutation } from "@/app/redux/api/api";
+import { useAddCustomerBidStatusMutation, useRemoveBidMutation } from "@/app/redux/api/api";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { RiDeleteBin6Line } from "react-icons/ri";
@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 
 const BidCard = ({ bid, activeTab }: { bid: any, activeTab: string }) => {
     const [removeBid] = useRemoveBidMutation();
-    const [addBidStatus, {isLoading: paymentLoading}] = useAddBidStatusMutation();
+    const [addCustomerBidStatus, {isLoading: paymentLoading}] = useAddCustomerBidStatusMutation();
     const image = bid?.productId?.images?.[0]?.image;
     const { title, description, price, location } = bid.productId;
     const { createdAt, bidPrice, _id } = bid;
@@ -56,7 +56,7 @@ const BidCard = ({ bid, activeTab }: { bid: any, activeTab: string }) => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const result = await addBidStatus({id: _id, payload: payment}).unwrap();
+                    const result = await addCustomerBidStatus({id: _id, payload: payment}).unwrap();
                     Swal.fire({
                         title: "Payment Successful!",
                         text: `Your payment has been processed successfully.`,

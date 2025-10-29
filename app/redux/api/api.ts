@@ -136,10 +136,20 @@ const baseApi = createApi({
             providesTags: ["bids"]
         }),
 
-        addBidStatus: builder.mutation({
+        addSellerBidStatus: builder.mutation({
             query: ({id, payload}) =>{
                 return {
-                    url: `/bids/bid-status/${id}`,
+                    url: `/bids/seller-bid-status/${id}`,
+                    method: "PATCH",
+                    body: payload
+                }
+            },
+            invalidatesTags: ["bids"]
+        }),
+        addCustomerBidStatus: builder.mutation({
+            query: ({id, payload}) =>{
+                return {
+                    url: `/bids/customer-bid-status/${id}`,
                     method: "PATCH",
                     body: payload
                 }
@@ -150,5 +160,5 @@ const baseApi = createApi({
     })
 })
 
-export const {useGetAllAuctionsQuery, useAddBidMutation, useUpdateProfileMutation, useGetCurrentUserBidsQuery, useRemoveBidMutation, useAddAuctionMutation, useAddReportMutation, useSendMessageMutation, useGetSellerProductQuery, useDeleteProductMutation, useUpdateProductMutation, useGetAllBidderQuery, useAddBidStatusMutation} = baseApi;
+export const {useGetAllAuctionsQuery, useAddBidMutation, useUpdateProfileMutation, useGetCurrentUserBidsQuery, useRemoveBidMutation, useAddAuctionMutation, useAddReportMutation, useSendMessageMutation, useGetSellerProductQuery, useDeleteProductMutation, useUpdateProductMutation, useGetAllBidderQuery, useAddSellerBidStatusMutation, useAddCustomerBidStatusMutation} = baseApi;
 export default baseApi;
