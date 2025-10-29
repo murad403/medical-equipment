@@ -6,6 +6,8 @@ type TUser = {
     address: string;
     password: string;
     photo: string; 
+    bankAccountName: string;
+    bankAccountNumber: string;
 }
 
 export default TUser;

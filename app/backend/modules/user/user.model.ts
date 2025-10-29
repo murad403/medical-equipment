@@ -8,7 +8,9 @@ const userSchema = new Schema<TUser>({
     email: {type: String, required: true, unique: true},
     address: {type: String, required: true},
     password: {type: String, required: true},
-    photo: {type: String, required: true, default: "https://ibb.co.com/jPvsf68T"}
+    photo: {type: String, required: true, default: "https://ibb.co.com/jPvsf68T"},
+    bankAccountName: {type: String, default: "not provided"},
+    bankAccountNumber: {type: String, default: "not provided"},
 }, {
     timestamps: true
 })

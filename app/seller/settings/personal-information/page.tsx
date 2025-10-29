@@ -7,6 +7,7 @@ import { MdOutlineModeEdit } from "react-icons/md";
 import { useState } from "react";
 import { CiEdit } from "react-icons/ci";
 import ProtectedRoute from "@/app/hooks/ProtectedRoute";
+import { useAppSelector } from "@/app/redux/hook";
 
 type TInputs = {
     name: string;
@@ -16,8 +17,8 @@ type TInputs = {
     bankAccountName: string;
     bankAccountNumber: number;
 }
-
 const page = () => {
+    const {user} = useAppSelector((state: any) => state?.user);
     const [editProfile, setEditProfile] = useState(false);
     const { register, handleSubmit, watch, formState: { errors } } = useForm<TInputs>();
     const onSubmit: SubmitHandler<TInputs> = (data) => {
@@ -31,12 +32,12 @@ const page = () => {
                 <div className="bg-white py-3 md:py-5 lg:py-10 px-3 md:px-32 lg:px-52 shadow-xl mt-3 md:mt-7 rounded-lg">
                     <div className="flex items-center gap-3 md:gap-5">
                         <div className="md:w-32 w-24 md:h-32 h-24 relative">
-                            <Image className="w-full h-full rounded-full" src={user} alt="user image"></Image>
+                            <Image className="w-full h-full rounded-full" src={user?.photo} alt={`${user?.name}`} width={500} height={500}></Image>
                             <button className="absolute right-0 bottom-5 bg-hard text-white p-[2px] rounded-full"><CiEdit size={24} /></button>
                         </div>
-                        <div>
-                            <h3 className="text-xl md:text-3xl lg:text-4xl">Md Murad</h3>
-                            <p className="capitalize text-[15px] md:text-xl">Admin</p>
+                        <div className="capitalize">
+                            <h3 className="text-xl md:text-3xl lg:text-4xl">{user?.name}</h3>
+                            <p className="capitalize text-[15px] md:text-xl">{user?.role}</p>
                         </div>
                     </div>
                     <div className="mt-3">

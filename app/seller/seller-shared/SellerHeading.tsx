@@ -1,6 +1,5 @@
 "use client";
 import { IoMdNotificationsOutline } from "react-icons/io";
-import user from "../../../public/user.jpg";
 import Image from "next/image";
 import { RiMenu2Line } from "react-icons/ri";
 import sellerMenu from "../seller-data/sellerMenu";
@@ -8,11 +7,13 @@ import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { TbLogout } from "react-icons/tb";
+import { useAppSelector } from "@/app/redux/hook";
 
 const SellerHeading = () => {
     const pathName = usePathname();
     const [active, setActive] = useState<string>(pathName);
     const router = useRouter();
+    const {user} = useAppSelector((state) => state?.user);
     const handleNotification = () => {
         router.push("/seller/notification")
     }
@@ -48,10 +49,10 @@ const SellerHeading = () => {
                 <button onClick={handleNotification} className="bg-normal text-hard cursor-pointer p-3 rounded-full">
                     <IoMdNotificationsOutline size={20} />
                 </button>
-                <Image className="w-10 h-10 rounded-full" src={user} alt="seller"></Image>
-                <div className="text-white">
-                    <h3 className="text-[17px] font-medium">Md Murad</h3>
-                    <p className="text-sm">Admin</p>
+                <Image className="w-10 h-10 rounded-full" width={500} height={500} src={user?.photo} alt={`${user?.name}`}></Image>
+                <div className="text-white capitalize">
+                    <h3 className="text-[17px] font-medium">{user?.name}</h3>
+                    <p className="text-sm">{user?.role}</p>
                 </div>
             </div>
         </div>
