@@ -10,6 +10,8 @@ const paymentSchema = new Schema<TPayment>({
     bidId: {type: mongoose.Schema.Types.ObjectId, required: true, ref: "Bid"},
     transaction_id: {type: String},
     status: {type: String, enum: ["success" , "failed" , "reject"]}
+}, {
+    timestamps: true
 })
 
 const Payment = mongoose.models.Payment || model<TPayment>("Payment", paymentSchema);

@@ -6,14 +6,16 @@ import { useGetEarningsQuery } from "@/app/redux/api/api";
 import LoadingSpinner from "@/app/shared/LoadingSpinner";
 import { SlEye } from "react-icons/sl";
 import Image from "next/image";
+import { useState } from "react";
 
 const page = () => {
+    const [id, setId] = useState<string>("")
     const { data, isLoading } = useGetEarningsQuery(undefined);
     const payments = data?.data;
     if (isLoading) {
         return <LoadingSpinner></LoadingSpinner>
     }
-    console.log(payments);
+    // console.log(payments);
     return (
         <ProtectedRoute>
             <NavigateButton text={"earnings"}></NavigateButton>
@@ -44,7 +46,7 @@ const page = () => {
                                     <td>${payment?.productId?.price}</td>
                                     <td>${payment?.amount}</td>
                                     <td className="pl-8">
-                                        <button onClick={() => (document.getElementById('my_modal_3') as HTMLDialogElement).showModal()} className="cursor-pointer">
+                                        <button onClick={() => {(document.getElementById('my_modal_3') as HTMLDialogElement).showModal(), setId(payment?._id)}} className="cursor-pointer">
                                             <SlEye size={17} />
                                         </button>
                                     </td>
@@ -55,7 +57,7 @@ const page = () => {
                 </table>
             </div>
             <div>
-                <TransactionModal></TransactionModal>
+                <TransactionModal id={id}></TransactionModal>
             </div>
         </ProtectedRoute>
     )
