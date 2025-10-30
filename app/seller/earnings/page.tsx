@@ -1,10 +1,19 @@
 "use client";
 import NavigateButton from "@/app/shared/NavigateButton";
-import { SlEye } from "react-icons/sl";
 import TransactionModal from "../seller-component/earnings/TransactionModal";
 import ProtectedRoute from "@/app/hooks/ProtectedRoute";
+import { useGetEarningsQuery } from "@/app/redux/api/api";
+import LoadingSpinner from "@/app/shared/LoadingSpinner";
+import { SlEye } from "react-icons/sl";
+import Image from "next/image";
 
 const page = () => {
+    const { data, isLoading } = useGetEarningsQuery(undefined);
+    const payments = data?.data;
+    if (isLoading) {
+        return <LoadingSpinner></LoadingSpinner>
+    }
+    console.log(payments);
     return (
         <ProtectedRoute>
             <NavigateButton text={"earnings"}></NavigateButton>
@@ -16,25 +25,32 @@ const page = () => {
                             <td>User Name</td>
                             <td>Transaction Id</td>
                             <td>Product Name</td>
+                            <td>Product Price</td>
                             <td>Bid Price</td>
-                            <td>Price</td>
                             <td>Action</td>
                         </tr>
                     </thead>
                     <tbody className="space-y-3">
-                        <tr className="border-b border-hard text-title">
-                            <th>1</th>
-                            <td>murad</td>
-                            <td>Control Specialist</td>
-                            <td>10</td>
-                            <td>Czech </td>
-                            <td>9/29/2020</td>
-                            <td className="pl-8">
-                                <button onClick={() => (document.getElementById('my_modal_3') as HTMLDialogElement).showModal()} className="cursor-pointer">
-                                    <SlEye size={17} />
-                                </button>
-                            </td>
-                        </tr>
+                        {
+                            payments?.map((payment: any, index: number) =>
+                                <tr key={payment?._id} className="border-b border-hard text-title">
+                                    <th>{index + 1}</th>
+                                    <td className="flex items-center gap-1">
+                                        <Image className="w-10 h-10 rounded-full" src={payment?.customerId?.photo || "image"} width={500} height={500} alt="user photo"></Image>
+                                        <p>{payment?.customerId?.name}</p>
+                                    </td>
+                                    <td>{payment?.transaction_id}</td>
+                                    <td>{payment?.productId?.title}</td>
+                                    <td>${payment?.productId?.price}</td>
+                                    <td>${payment?.amount}</td>
+                                    <td className="pl-8">
+                                        <button onClick={() => (document.getElementById('my_modal_3') as HTMLDialogElement).showModal()} className="cursor-pointer">
+                                            <SlEye size={17} />
+                                        </button>
+                                    </td>
+                                </tr>
+                            )
+                        }
                     </tbody>
                 </table>
             </div>

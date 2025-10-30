@@ -3,10 +3,8 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 const baseApi = createApi({
     reducerPath: "baseApi",
     baseQuery: fetchBaseQuery({baseUrl: "/api"}),
-    tagTypes: ["auctions", "bids"],
-    endpoints: (builder) =>({
-        // user related endpoints----------------
-        // ! update profile--------
+    tagTypes: ["auctions", "bids", "payments"],
+    endpoints: (builder) =>({ 
         addReport: builder.mutation({
             query: (payload) =>{
                 return {
@@ -34,8 +32,6 @@ const baseApi = createApi({
                 }
             }
         }),
-        // product relatd endpoints--------------------------
-        // ! get all auction-----
         addAuction: builder.mutation({
             query: (payload) =>{
                 return {
@@ -61,7 +57,6 @@ const baseApi = createApi({
             },
             providesTags: ["auctions"] as const
         }),
-        // ! add new bid------
         addBid: builder.mutation({
             query: (payload) =>{
                 return {
@@ -72,7 +67,6 @@ const baseApi = createApi({
             },
             invalidatesTags: ["auctions", "bids"]
         }),
-
         getCurrentUserBids: builder.query({
             query: (query) =>{
                 const params = new URLSearchParams();
@@ -171,11 +165,20 @@ const baseApi = createApi({
                     body: payload
                 }
             },
-            invalidatesTags: ["bids"]
+            invalidatesTags: ["bids", "payments"]
+        }),
+        getEarnings: builder.query({
+            query: () =>{
+                return {
+                    url: `/payment/earning`,
+                    method: "GET"
+                }
+            },
+            providesTags: ["payments"]
         })
         
     })
 })
 
-export const {useGetAllAuctionsQuery, useAddBidMutation, useUpdateProfileMutation, useGetCurrentUserBidsQuery, useRemoveBidMutation, useAddAuctionMutation, useAddReportMutation, useSendMessageMutation, useGetSellerProductQuery, useDeleteProductMutation, useUpdateProductMutation, useGetAllBidderQuery, useAddSellerBidStatusMutation, useChangePasswordMutation, useAddPaymentMutation, useSavePaymentMutation} = baseApi;
+export const {useGetAllAuctionsQuery, useAddBidMutation, useUpdateProfileMutation, useGetCurrentUserBidsQuery, useRemoveBidMutation, useAddAuctionMutation, useAddReportMutation, useSendMessageMutation, useGetSellerProductQuery, useDeleteProductMutation, useUpdateProductMutation, useGetAllBidderQuery, useAddSellerBidStatusMutation, useChangePasswordMutation, useAddPaymentMutation, useSavePaymentMutation, useGetEarningsQuery} = baseApi;
 export default baseApi;

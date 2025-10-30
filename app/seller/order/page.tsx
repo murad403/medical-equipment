@@ -35,7 +35,7 @@ const page = () => {
               </thead>
               <tbody className="space-y-3">
                 {
-                  orderList.map((bid: any, index: number) => <OrderList key={bid?._id} bid={bid} index={index}></OrderList>)
+                  orderList?.map((bid: any, index: number) => <OrderList key={bid?._id} bid={bid} index={index}></OrderList>)
                 }
               </tbody>
             </table>
