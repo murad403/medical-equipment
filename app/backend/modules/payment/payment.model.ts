@@ -8,7 +8,7 @@ const paymentSchema = new Schema<TPayment>({
     customerId: {type: mongoose.Schema.Types.ObjectId, required: true, ref: "User"},
     productId: {type: mongoose.Schema.Types.ObjectId, required: true, ref: "Product"},
     bidId: {type: mongoose.Schema.Types.ObjectId, required: true, ref: "Bid"},
-    transaction_id: {type: String, required: true},
+    transaction_id: {type: String},
     status: {type: String, enum: ["success" , "failed" , "reject"]}
 })
 

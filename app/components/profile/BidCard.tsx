@@ -14,7 +14,6 @@ const BidCard = ({ bid, activeTab }: { bid: any, activeTab: string }) => {
     const {date, time} = getDateAndTime(createdAt);
     const pathName = usePathname();
     const isOrderPage = pathName.endsWith("/order");
-    // console.log(bid);
 
     const handleDeleteBid = () => {
         Swal.fire({
@@ -45,9 +44,6 @@ const BidCard = ({ bid, activeTab }: { bid: any, activeTab: string }) => {
             name: title,
             image,
             price: bidPrice,
-            sellerId: bid?.sellerId,
-            customerId: bid?.customerId,
-            productId: bid?.productId,
             bidId: _id
         }
         Swal.fire({

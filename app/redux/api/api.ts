@@ -162,11 +162,20 @@ const baseApi = createApi({
                     body: payload
                 }
             }
+        }),
+        savePayment: builder.mutation({
+            query: (payload: any) =>{
+                return {
+                    url: "/payment/save-payment",
+                    method: "POST",
+                    body: payload
+                }
+            },
+            invalidatesTags: ["bids"]
         })
-
         
     })
 })
 
-export const {useGetAllAuctionsQuery, useAddBidMutation, useUpdateProfileMutation, useGetCurrentUserBidsQuery, useRemoveBidMutation, useAddAuctionMutation, useAddReportMutation, useSendMessageMutation, useGetSellerProductQuery, useDeleteProductMutation, useUpdateProductMutation, useGetAllBidderQuery, useAddSellerBidStatusMutation, useChangePasswordMutation, useAddPaymentMutation} = baseApi;
+export const {useGetAllAuctionsQuery, useAddBidMutation, useUpdateProfileMutation, useGetCurrentUserBidsQuery, useRemoveBidMutation, useAddAuctionMutation, useAddReportMutation, useSendMessageMutation, useGetSellerProductQuery, useDeleteProductMutation, useUpdateProductMutation, useGetAllBidderQuery, useAddSellerBidStatusMutation, useChangePasswordMutation, useAddPaymentMutation, useSavePaymentMutation} = baseApi;
 export default baseApi;
