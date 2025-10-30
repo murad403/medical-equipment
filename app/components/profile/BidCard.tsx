@@ -1,4 +1,4 @@
-import { useAddCustomerBidStatusMutation, useRemoveBidMutation } from "@/app/redux/api/api";
+import { useAddPaymentMutation, useRemoveBidMutation } from "@/app/redux/api/api";
 import getDateAndTime from "@/app/utils/getDateAndTime";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -7,14 +7,13 @@ import Swal from "sweetalert2";
 
 const BidCard = ({ bid, activeTab }: { bid: any, activeTab: string }) => {
     const [removeBid] = useRemoveBidMutation();
-    const [addCustomerBidStatus, {isLoading: paymentLoading}] = useAddCustomerBidStatusMutation();
+    const [addPayment, {isLoading: paymentLoading}] = useAddPaymentMutation();
     const image = bid?.productId?.images?.[0]?.image;
     const { title, description, price, location } = bid.productId;
     const { createdAt, bidPrice, _id } = bid;
     const {date, time} = getDateAndTime(createdAt);
     const pathName = usePathname();
     const isOrderPage = pathName.endsWith("/order");
-    // console.log(date, time);
 
     const handleDeleteBid = () => {
         Swal.fire({
@@ -41,9 +40,14 @@ const BidCard = ({ bid, activeTab }: { bid: any, activeTab: string }) => {
         });
     }
     const handlePayment = () =>{
-        const payment = {
-            payment: "success",
-            status: "pending"
+        // const payment = {
+        //     payment: "success",
+        //     status: "pending"
+        // }
+        const product = {
+            name: title,
+            image,
+            price: bidPrice,
         }
         Swal.fire({
             title: "Confirm Your Payment?",
@@ -56,12 +60,9 @@ const BidCard = ({ bid, activeTab }: { bid: any, activeTab: string }) => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const result = await addCustomerBidStatus({id: _id, payload: payment}).unwrap();
-                    Swal.fire({
-                        title: "Payment Successful!",
-                        text: `Your payment has been processed successfully.`,
-                        icon: "success"
-                    });
+                    const result: any = await addPayment(product).unwrap();
+                    // console.log(result);
+                    window.location.href = result?.url;
                 } catch (error: any) {
                     Swal.fire("Oops!, Something went wrong while processing your payment.", error);
                 }

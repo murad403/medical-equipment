@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { url } from 'inspector'
 
 const baseApi = createApi({
     reducerPath: "baseApi",
@@ -145,16 +144,6 @@ const baseApi = createApi({
             },
             invalidatesTags: ["bids"]
         }),
-        addCustomerBidStatus: builder.mutation({
-            query: ({id, payload}) =>{
-                return {
-                    url: `/bids/customer-bid-status/${id}`,
-                    method: "PATCH",
-                    body: payload
-                }
-            },
-            invalidatesTags: ["bids"]
-        }),
         changePassword: builder.mutation({
             query: (payload) =>{
                 // console.log(payload);
@@ -164,10 +153,20 @@ const baseApi = createApi({
                     body: payload
                 }
             }
+        }),
+        addPayment: builder.mutation({
+            query: (payload: any) =>{
+                return {
+                    url: "/payment/create-checkout-session",
+                    method: "POST",
+                    body: payload
+                }
+            }
         })
+
         
     })
 })
 
-export const {useGetAllAuctionsQuery, useAddBidMutation, useUpdateProfileMutation, useGetCurrentUserBidsQuery, useRemoveBidMutation, useAddAuctionMutation, useAddReportMutation, useSendMessageMutation, useGetSellerProductQuery, useDeleteProductMutation, useUpdateProductMutation, useGetAllBidderQuery, useAddSellerBidStatusMutation, useAddCustomerBidStatusMutation, useChangePasswordMutation} = baseApi;
+export const {useGetAllAuctionsQuery, useAddBidMutation, useUpdateProfileMutation, useGetCurrentUserBidsQuery, useRemoveBidMutation, useAddAuctionMutation, useAddReportMutation, useSendMessageMutation, useGetSellerProductQuery, useDeleteProductMutation, useUpdateProductMutation, useGetAllBidderQuery, useAddSellerBidStatusMutation, useChangePasswordMutation, useAddPaymentMutation} = baseApi;
 export default baseApi;
