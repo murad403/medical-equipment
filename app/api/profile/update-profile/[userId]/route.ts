@@ -8,7 +8,7 @@ export async function PATCH(req: NextRequest, context: { params: Promise<{ userI
         const updatedData = await req.json();
         const {userId} = await context.params;
         const filterData: Record<string, any> = {};
-        console.log(updatedData, filterData);
+        // console.log(updatedData, filterData);
         Object.keys(updatedData).forEach((key: any) =>{
             if(updatedData[key] !== ""){
                 filterData[key] = updatedData[key];

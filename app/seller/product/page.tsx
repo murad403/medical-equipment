@@ -11,7 +11,7 @@ import Link from "next/link";
 import LoadingSpinner from "@/app/shared/LoadingSpinner";
 import ProtectedRoute from "@/app/hooks/ProtectedRoute";
 import { useAddAuctionMutation } from "@/app/redux/api/api";
-import useGetImage from "@/app/hooks/useGetImage";
+import getImage from "@/app/utils/getImage";
 
 type TInputs = {
   title: string;
@@ -40,7 +40,7 @@ const page = () => {
   } = useForm<TInputs>();
 
   const imageFile = watch("images")?.[0];
-  const { image, isLoading } = useGetImage(imageFile);
+  const { image, isLoading } = getImage(imageFile);
   useEffect(() => {
     if (!image) return;
     if (images.length >= 3) {

@@ -1,5 +1,5 @@
-import useGetDateAndTime from "@/app/hooks/useGetDateAndTime";
 import { useAddCustomerBidStatusMutation, useRemoveBidMutation } from "@/app/redux/api/api";
+import getDateAndTime from "@/app/utils/getDateAndTime";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { RiDeleteBin6Line } from "react-icons/ri";
@@ -11,10 +11,10 @@ const BidCard = ({ bid, activeTab }: { bid: any, activeTab: string }) => {
     const image = bid?.productId?.images?.[0]?.image;
     const { title, description, price, location } = bid.productId;
     const { createdAt, bidPrice, _id } = bid;
-    const {date, time} = useGetDateAndTime(createdAt);
+    const {date, time} = getDateAndTime(createdAt);
     const pathName = usePathname();
     const isOrderPage = pathName.endsWith("/order");
-    // console.log(isOrderPage);
+    // console.log(date, time);
 
     const handleDeleteBid = () => {
         Swal.fire({

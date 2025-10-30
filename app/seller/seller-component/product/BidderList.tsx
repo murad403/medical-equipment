@@ -1,14 +1,14 @@
 "use client";
-import useGetDateAndTime from "@/app/hooks/useGetDateAndTime";
 import { useAddSellerBidStatusMutation } from "@/app/redux/api/api";
+import getDateAndTime from "@/app/utils/getDateAndTime";
 import { MdOutlineCheck } from "react-icons/md";
 import Swal from "sweetalert2";
 
 const BidderList = ({ bid, index }: { bid: any, index: number }) => {
     const [addSellerBidStatus, { isLoading }] = useAddSellerBidStatusMutation();
     const { createdAt } = bid;
-    const { date, time } = useGetDateAndTime(createdAt);
-    // console.log(createdAt);
+    const { date, time } = getDateAndTime(createdAt);
+    // console.log(date, time);
     const handleWinBid = () => {
         Swal.fire({
             title: "Confirm Bid Winner?",

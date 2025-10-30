@@ -49,7 +49,7 @@ const SellerHeading = () => {
                 <button onClick={handleNotification} className="bg-normal text-hard cursor-pointer p-3 rounded-full">
                     <IoMdNotificationsOutline size={20} />
                 </button>
-                <Image className="w-10 h-10 rounded-full" width={500} height={500} src={user?.photo} alt={`${user?.name}`}></Image>
+                <Image className="w-10 h-10 rounded-full" width={500} height={500} src={user?.photo} alt={`user photo`}></Image>
                 <div className="text-white capitalize">
                     <h3 className="text-[17px] font-medium">{user?.name}</h3>
                     <p className="text-sm">{user?.role}</p>

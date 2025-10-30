@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import useGetDateAndTime from "@/app/hooks/useGetDateAndTime";
 import Swal from "sweetalert2";
 import { useRemoveBidMutation } from "@/app/redux/api/api";
+import getDateAndTime from "@/app/utils/getDateAndTime";
 
 const CompleteBidCard = ({ bid }: { bid: any }) => {
     const [removeBid] = useRemoveBidMutation();
@@ -12,9 +12,9 @@ const CompleteBidCard = ({ bid }: { bid: any }) => {
     const { title, price: productPrice, createdAt: productUploadedDateAndTime } = bid?.productId;
     const { name: sellerName, email: sellerEmail, phoneNumber: sellerPhoneNumber, address: sellerLocation, photo: sellerPhoto } = bid?.productId?.sellerId;
 
-    const { date: bidDate, time: bidTime } = useGetDateAndTime(bidDateAndTime);
-    const { date: productUploadedDate, time: productUploadedTime } = useGetDateAndTime(productUploadedDateAndTime);
-    const { date: bidDeliveryDate, time: bidDeliveryTime } = useGetDateAndTime(bidDeliveryDateAndTime);
+    const { date: bidDate, time: bidTime } = getDateAndTime(bidDateAndTime);
+    const { date: productUploadedDate, time: productUploadedTime } = getDateAndTime(productUploadedDateAndTime);
+    const { date: bidDeliveryDate, time: bidDeliveryTime } = getDateAndTime(bidDeliveryDateAndTime);
     const orderNumberFormatter = String(orderNumber).padStart(2, "0");
 
     const handleDeleteCard = () => {

@@ -1,5 +1,6 @@
 
-const useGetDateAndTime = (dataAndTime: Date) => {
+
+const getDateAndTime = (dataAndTime: Date) => {
     const date = new Date(dataAndTime).toDateString();
     const time = new Date(dataAndTime).toLocaleTimeString([], {
         hour: "2-digit",
@@ -9,4 +10,4 @@ const useGetDateAndTime = (dataAndTime: Date) => {
     return {date, time};
 };
 
-export default useGetDateAndTime;
+export default getDateAndTime;

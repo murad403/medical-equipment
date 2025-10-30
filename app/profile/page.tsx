@@ -4,9 +4,9 @@ import { MdAddPhotoAlternate } from "react-icons/md";
 import { useAppDispatch, useAppSelector } from "../redux/hook";
 import toast from "react-hot-toast";
 import { addUser } from "../redux/features/userSlice";
-import useGetImage from "../hooks/useGetImage";
 import LoadingSpinner from "../shared/LoadingSpinner";
 import { useUpdateProfileMutation } from "../redux/api/api";
+import getImage from "../utils/getImage";
 
 type TInputs = {
     name: string;
@@ -21,7 +21,7 @@ const page = () => {
     const [updateProfile] = useUpdateProfileMutation();
 
     const imageFile = watch("image")?.[0];
-    const { image, isLoading } = useGetImage(imageFile);
+    const { image, isLoading } = getImage(imageFile);
     // console.log(image);
 
     const onSubmit: SubmitHandler<TInputs> = async (data) => {

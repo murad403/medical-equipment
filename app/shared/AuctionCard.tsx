@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import useGetTime from '../hooks/useGetTime';
 import Link from 'next/link';
+import getTime from '../utils/getTime';
 
 const AuctionCard = ({product, bgColor}: any) => {
     const image = product?.images?.[0]?.image;
@@ -8,7 +8,7 @@ const AuctionCard = ({product, bgColor}: any) => {
         return <p>Loading</p>
     }
     const productCreateTime = new Date(product?.createdAt);
-    const time = useGetTime(productCreateTime);
+    const time = getTime(productCreateTime);
     // console.log("time", time);
     return (
         <Link href={`/auctions/product-details/${product?._id}`} className={`${bgColor} p-2 rounded-lg space-y-2 w-full`}>

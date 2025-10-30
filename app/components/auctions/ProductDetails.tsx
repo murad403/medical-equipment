@@ -4,8 +4,8 @@ import Image from 'next/image';
 import BidsModal from './BidsModal';
 import { useGetAllAuctionsQuery } from '@/app/redux/api/api';
 import { useParams } from 'next/navigation';
-import useGetTime from '@/app/hooks/useGetTime';
 import LoadingSpinner from '@/app/shared/LoadingSpinner';
+import getTime from '@/app/utils/getTime';
 
 const ProductDetails = ({ setSearch }: { setSearch: any }) => {
     const { data, isLoading } = useGetAllAuctionsQuery(undefined);
@@ -22,7 +22,7 @@ const ProductDetails = ({ setSearch }: { setSearch: any }) => {
         setSelectedImage(currentImage?.image);
     }
     const productCreateTime = new Date(currentProduct?.createdAt);
-    const time = useGetTime(productCreateTime);
+    const time = getTime(productCreateTime);
     if (isLoading) {
         return <LoadingSpinner></LoadingSpinner>
     }

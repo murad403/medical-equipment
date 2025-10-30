@@ -1,11 +1,11 @@
 "use client";
 import { categories } from "@/app/components/auctions/CollectibleProducts";
 import ProtectedRoute from "@/app/hooks/ProtectedRoute";
-import useGetImage from "@/app/hooks/useGetImage";
 import { useGetSellerProductQuery, useUpdateProductMutation } from "@/app/redux/api/api";
 import { useAppSelector } from "@/app/redux/hook";
 import LoadingSpinner from "@/app/shared/LoadingSpinner";
 import NavigateButton from "@/app/shared/NavigateButton";
+import getImage from "@/app/utils/getImage";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -48,7 +48,7 @@ const page = () => {
         setImages(newImages);
     }
     const imageFile = watch("images")?.[0];
-    const { image, isLoading } = useGetImage(imageFile);
+    const { image, isLoading } = getImage(imageFile);
     useEffect(() => {
         if (!image) return;
         if (images.length >= 3) {

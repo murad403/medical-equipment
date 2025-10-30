@@ -1,11 +1,11 @@
-import useGetDateAndTime from '@/app/hooks/useGetDateAndTime';
+import getDateAndTime from '@/app/utils/getDateAndTime';
 import Link from 'next/link';
 import React from 'react';
 import { SlEye } from 'react-icons/sl';
 
 const OrderList = ({bid, index}: {bid: any, index: number}) => {
     const createdAt = bid?.createdAt;
-    const {time, date} = useGetDateAndTime(createdAt);
+    const {time, date} = getDateAndTime(createdAt);
     // console.log(bid);
     return (
         <tr className="border-b border-hard text-title">

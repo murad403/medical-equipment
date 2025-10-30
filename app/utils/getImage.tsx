@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-const useGetImage = (imageFile: File | string | null | undefined) => {
+const getImage = (imageFile: File | string | null | undefined) => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [image, setImage] = useState<string>("");
     useEffect( () =>{
@@ -25,4 +25,4 @@ const useGetImage = (imageFile: File | string | null | undefined) => {
     return {image, isLoading};
 };
 
-export default useGetImage;
+export default getImage;

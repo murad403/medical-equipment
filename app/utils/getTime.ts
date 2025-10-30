@@ -1,5 +1,5 @@
 
-const useGetTime = (productCreateTime: any) => {
+const getTime = (productCreateTime: any) => {
     const currentTime = new Date();
     let timeDifferent = currentTime.getTime() - productCreateTime.getTime();
     const days = Math.floor(timeDifferent / (1000 * 60 * 60 * 24));
@@ -11,4 +11,4 @@ const useGetTime = (productCreateTime: any) => {
     return time;
 };
 
-export default useGetTime;
+export default getTime;

@@ -6,8 +6,8 @@ import ProtectedRoute from "@/app/hooks/ProtectedRoute";
 import LoadingSpinner from "@/app/shared/LoadingSpinner";
 import { useAddSellerBidStatusMutation, useGetAllBidderQuery } from "@/app/redux/api/api";
 import { useParams } from "next/navigation";
-import useGetDateAndTime from "@/app/hooks/useGetDateAndTime";
 import toast from "react-hot-toast";
+import getDateAndTime from "@/app/utils/getDateAndTime";
 
 const page = () => {
   const {userId} = useParams();
@@ -18,7 +18,7 @@ const page = () => {
   }
   const currentOrder = data?.data?.find((bid: any) => bid?._id === userId);
   const createdAt = currentOrder?.createdAt;
-  const {date, time} = useGetDateAndTime(createdAt);
+  const {date, time} = getDateAndTime(createdAt);
   // console.log(userId, currentOrder);
   const handleSendingProduct = async() =>{
     try {
