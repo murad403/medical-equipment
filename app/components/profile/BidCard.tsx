@@ -14,6 +14,7 @@ const BidCard = ({ bid, activeTab }: { bid: any, activeTab: string }) => {
     const {date, time} = getDateAndTime(createdAt);
     const pathName = usePathname();
     const isOrderPage = pathName.endsWith("/order");
+    // console.log(bid);
 
     const handleDeleteBid = () => {
         Swal.fire({
@@ -40,14 +41,14 @@ const BidCard = ({ bid, activeTab }: { bid: any, activeTab: string }) => {
         });
     }
     const handlePayment = () =>{
-        // const payment = {
-        //     payment: "success",
-        //     status: "pending"
-        // }
         const product = {
             name: title,
             image,
             price: bidPrice,
+            sellerId: bid?.sellerId,
+            customerId: bid?.customerId,
+            productId: bid?.productId,
+            bidId: _id
         }
         Swal.fire({
             title: "Confirm Your Payment?",
@@ -61,7 +62,6 @@ const BidCard = ({ bid, activeTab }: { bid: any, activeTab: string }) => {
             if (result.isConfirmed) {
                 try {
                     const result: any = await addPayment(product).unwrap();
-                    // console.log(result);
                     window.location.href = result?.url;
                 } catch (error: any) {
                     Swal.fire("Oops!, Something went wrong while processing your payment.", error);

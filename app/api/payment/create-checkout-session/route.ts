@@ -22,8 +22,8 @@ export async function POST (req: NextRequest){
                 }
             ],
             mode: "payment",
-            success_url: "http://localhost:3000/profile/bids",
-            cancel_url: "http://localhost:3000/profile/bids"
+            success_url: `http://localhost:3000/payment/success?session_id={CHECKOUT_SESSION_ID}`,
+            cancel_url: "http://localhost:3000/payment/cancel"
         })
         return NextResponse.json({url: session.url}, {status: 200})
     } catch (error) {
