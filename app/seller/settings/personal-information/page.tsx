@@ -7,9 +7,10 @@ import { MdOutlineModeEdit } from "react-icons/md";
 import { useState } from "react";
 import { CiEdit } from "react-icons/ci";
 import ProtectedRoute from "@/app/hooks/ProtectedRoute";
-import { useAppSelector } from "@/app/redux/hook";
+import { useAppDispatch, useAppSelector } from "@/app/redux/hook";
 import { useSellerProfileUpdateMutation } from "@/app/redux/api/api";
 import toast from "react-hot-toast";
+import { addUser } from "@/app/redux/features/userSlice";
 
 type TInputs = {
     name: string;
@@ -24,6 +25,7 @@ const page = () => {
     const [editProfile, setEditProfile] = useState(false);
     const [sellerProfileUpdate, {isLoading}] = useSellerProfileUpdateMutation();
     const { register, handleSubmit, reset } = useForm<TInputs>();
+    const dispatch = useAppDispatch();
 
     const onSubmit: SubmitHandler<TInputs> = async(data) => {
         const updatedDoc = {
@@ -36,8 +38,10 @@ const page = () => {
         }
         try {
             const result = await sellerProfileUpdate(updatedDoc).unwrap();
-            toast.error(result?.message);
+            toast.success(result?.message);
+            dispatch(addUser(result?.data));
             reset();
+            // console.log(result?.data);
         } catch (error: any) {
             console.log(error);
             toast.error(error?.data?.message);
@@ -90,10 +94,12 @@ const page = () => {
                                     </div>
                                     <div className="text-[15px] md:text-xl w-full">
                                         <label className="block mb-1 font-semibold">Bank account number</label>
-                                        <input defaultValue={user?.bankAccountNumber} className="appearance-none w-full outline-none border border-gray-400 rounded-md py-2 px-4" type="number" {...register("bankAccountNumber")} />
+                                        <input defaultValue={user?.bankAccountNumber} className="appearance-none w-full outline-none border border-gray-400 rounded-md py-2 px-4" type="text" {...register("bankAccountNumber")} />
                                     </div>
                                     <button className={`w-full flex justify-center items-center bg-hard rounded-md text-white py-2 cursor-pointer font-semibold`}>
-                                        save & change
+                                        {
+                                            isLoading ? <span className="loading loading-spinner text-white"></span> : <p>save & change</p>
+                                        }
                                     </button>
                                 </div>
                             }
