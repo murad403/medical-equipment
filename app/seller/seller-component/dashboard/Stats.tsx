@@ -1,8 +1,11 @@
-import React from 'react';
+"use client";
 import stats from '../../seller-data/stats';
 import { HiOutlineClipboardDocumentCheck } from "react-icons/hi2";
+import { useSellerDashboardQuery } from '@/app/redux/api/api';
 
 const Stats = () => {
+    const {data, isLoading} = useSellerDashboardQuery(undefined);
+    console.log(data);
     return (
         <div className='grid grid-cols-2 md:grid-cols-4 justify-between items-center gap-5'>
             {

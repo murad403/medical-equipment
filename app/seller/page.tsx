@@ -12,6 +12,7 @@ const page = () => {
             <div className='space-y-3 md:space-y-5'>
                 <Withdraw></Withdraw>
                 <Stats></Stats>
+                
                 {/* income ratio */}
                 <div className='flex flex-col md:flex-row items-center md:gap-7 gap-4'>
                     <div className='md:w-2/3 w-full'>

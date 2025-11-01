@@ -184,10 +184,18 @@ const baseApi = createApi({
                     body: payload
                 }
             }
+        }),
+        sellerDashboard: builder.query({
+            query: () =>{
+                return {
+                    url: '/seller/dashboard',
+                    method: "GET"
+                }
+            }
         })
         
     })
 })
 
-export const {useGetAllAuctionsQuery, useAddBidMutation, useUpdateProfileMutation, useGetCurrentUserBidsQuery, useRemoveBidMutation, useAddAuctionMutation, useAddReportMutation, useSendMessageMutation, useGetSellerProductQuery, useDeleteProductMutation, useUpdateProductMutation, useGetAllBidderQuery, useAddSellerBidStatusMutation, useChangePasswordMutation, useAddPaymentMutation, useSavePaymentMutation, useGetEarningsQuery, useSellerProfileUpdateMutation} = baseApi;
+export const {useGetAllAuctionsQuery, useAddBidMutation, useUpdateProfileMutation, useGetCurrentUserBidsQuery, useRemoveBidMutation, useAddAuctionMutation, useAddReportMutation, useSendMessageMutation, useGetSellerProductQuery, useDeleteProductMutation, useUpdateProductMutation, useGetAllBidderQuery, useAddSellerBidStatusMutation, useChangePasswordMutation, useAddPaymentMutation, useSavePaymentMutation, useGetEarningsQuery, useSellerProfileUpdateMutation, useSellerDashboardQuery} = baseApi;
 export default baseApi;
