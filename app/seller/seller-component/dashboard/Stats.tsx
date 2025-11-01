@@ -1,24 +1,37 @@
-"use client";
-import stats from '../../seller-data/stats';
 import { HiOutlineClipboardDocumentCheck } from "react-icons/hi2";
-import { useSellerDashboardQuery } from '@/app/redux/api/api';
 
-const Stats = () => {
-    const {data, isLoading} = useSellerDashboardQuery(undefined);
-    console.log(data);
+const Stats = ({ dashboardData }: { dashboardData: any }) => {
+    // console.log(dashboardData);
     return (
         <div className='grid grid-cols-2 md:grid-cols-4 justify-between items-center gap-5'>
-            {
-                stats.map((stat, index) =>
-                    <div className='flex items-center md:gap-10 gap-3 bg-normal border border-hard md:p-4 p-2 rounded-lg text-title' key={index}>
-                        <HiOutlineClipboardDocumentCheck className='text-hard' size={50}/>
-                        <div>
-                            <p className='text-sm'>{stat.title}</p>
-                            <h3 className='text-4xl font-semibold'>{stat.summary}</h3>
-                        </div>
-                    </div>
-                )
-            }
+            <div className='flex items-center md:gap-10 gap-3 bg-normal border border-hard md:p-4 p-2 rounded-lg text-title'>
+                <HiOutlineClipboardDocumentCheck className='text-hard' size={50} />
+                <div>
+                    <p className='text-sm'>Total Product</p>
+                    <h3 className='text-4xl font-semibold'>{dashboardData?.totalProduct}</h3>
+                </div>
+            </div>
+            <div className='flex items-center md:gap-10 gap-3 bg-normal border border-hard md:p-4 p-2 rounded-lg text-title'>
+                <HiOutlineClipboardDocumentCheck className='text-hard' size={50} />
+                <div>
+                    <p className='text-sm'>Total Sold</p>
+                    <h3 className='text-4xl font-semibold'>{dashboardData?.totalSold}</h3>
+                </div>
+            </div>
+            <div className='flex items-center md:gap-10 gap-3 bg-normal border border-hard md:p-4 p-2 rounded-lg text-title'>
+                <HiOutlineClipboardDocumentCheck className='text-hard' size={50} />
+                <div>
+                    <p className='text-sm'>Total Revenue</p>
+                    <h3 className='text-4xl font-semibold'>${dashboardData?.totalRevenue}</h3>
+                </div>
+            </div>
+            <div className='flex items-center md:gap-10 gap-3 bg-normal border border-hard md:p-4 p-2 rounded-lg text-title'>
+                <HiOutlineClipboardDocumentCheck className='text-hard' size={50} />
+                <div>
+                    <p className='text-sm'>Withdraw Amount</p>
+                    <h3 className='text-4xl font-semibold'>0</h3>
+                </div>
+            </div>
         </div>
     );
 };

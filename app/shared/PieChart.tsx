@@ -4,7 +4,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend, Plugin } from "chart.js"
 import { Doughnut } from "react-chartjs-2";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const PieChart = () => {
+const PieChart = ({dashboardData}: {dashboardData: any}) => {
 
   const chartRef = useRef<any>(null);
 
@@ -79,14 +79,14 @@ const PieChart = () => {
                 <div className="w-2 h-2 bg-red-700 rounded-full"></div>
                 <div>
                     <h3 className="text-[16px]">Total Sold</h3>
-                    <h2 className="text-xl font-medium">404</h2>
+                    <h2 className="text-xl font-medium">{dashboardData?.totalSold}</h2>
                 </div>
             </div>
             <div className="flex gap-3 items-center">
                 <div className="w-2 h-2 bg-hard rounded-full"></div>
                 <div>
                     <h3 className="text-[16px]">Active Product</h3>
-                    <h2 className="text-xl font-medium">75%</h2>
+                    <h2 className="text-xl font-medium">{dashboardData?.totalProduct}</h2>
                 </div>
             </div>
         </div>

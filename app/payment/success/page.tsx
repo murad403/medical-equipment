@@ -3,7 +3,7 @@ import { useGetCurrentUserBidsQuery, useSavePaymentMutation } from '@/app/redux/
 import { useAppSelector } from '@/app/redux/hook';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const page = () => {
     const [savePayment] = useSavePaymentMutation();
@@ -12,11 +12,13 @@ const page = () => {
     const searchParams = useSearchParams();
     const session_id = searchParams.get("session_id");
     const bidId = searchParams.get("bid");
+    const paymentSaved = useRef(false);
     const currentBid = data?.data?.find((bid: any) => bid?._id === bidId);
     // console.log(currentBid?.sellerId, session_id);
 
     useEffect(() => {
         const savedPaymentData = async() => {
+            if (paymentSaved.current) return;
             const payment = {
                 amount: currentBid?.bidPrice,
                 bidId,
@@ -29,6 +31,7 @@ const page = () => {
             if (session_id && currentBid) {
                 try {
                     await savePayment(payment).unwrap();
+                    paymentSaved.current = true;
                 } catch (error: any) {
                     console.log(error);
                 }
