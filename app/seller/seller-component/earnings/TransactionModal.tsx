@@ -21,10 +21,6 @@ const TransactionModal = ({id}: {id: string}) => {
                             <h3 className="text-lg">Transaction ID:</h3>
                             <p>{payment?.transaction_id}</p>
                         </div>
-                        {/* <div>
-                            <h3 className="text-lg">Type:</h3>
-                            <p>#94585948</p>
-                        </div> */}
                         <div>
                             <h3 className="text-lg">User Name:</h3>
                             <p>{payment?.customerId?.name}</p>

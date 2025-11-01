@@ -175,10 +175,19 @@ const baseApi = createApi({
                 }
             },
             providesTags: ["payments"]
+        }),
+        sellerProfileUpdate: builder.mutation({
+            query: (payload: any) =>{
+                return {
+                    url: "/seller/update-profile",
+                    method: "PATCH",
+                    body: payload
+                }
+            }
         })
         
     })
 })
 
-export const {useGetAllAuctionsQuery, useAddBidMutation, useUpdateProfileMutation, useGetCurrentUserBidsQuery, useRemoveBidMutation, useAddAuctionMutation, useAddReportMutation, useSendMessageMutation, useGetSellerProductQuery, useDeleteProductMutation, useUpdateProductMutation, useGetAllBidderQuery, useAddSellerBidStatusMutation, useChangePasswordMutation, useAddPaymentMutation, useSavePaymentMutation, useGetEarningsQuery} = baseApi;
+export const {useGetAllAuctionsQuery, useAddBidMutation, useUpdateProfileMutation, useGetCurrentUserBidsQuery, useRemoveBidMutation, useAddAuctionMutation, useAddReportMutation, useSendMessageMutation, useGetSellerProductQuery, useDeleteProductMutation, useUpdateProductMutation, useGetAllBidderQuery, useAddSellerBidStatusMutation, useChangePasswordMutation, useAddPaymentMutation, useSavePaymentMutation, useGetEarningsQuery, useSellerProfileUpdateMutation} = baseApi;
 export default baseApi;

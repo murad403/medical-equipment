@@ -2,9 +2,9 @@ import dbConnect from "@/app/backend/config/db";
 import verifySeller from "@/app/backend/middlware/verifySeller";
 import Payment from "@/app/backend/modules/payment/payment.model";
 import { NextRequest, NextResponse } from "next/server";
-// import Product from "@/app/backend/modules/product/product.model";
-// import Bid from "@/app/backend/modules/bid/bid.model";
-// import User from "@/app/backend/modules/user/user.model";
+import Product from "@/app/backend/modules/product/product.model";
+import Bid from "@/app/backend/modules/bid/bid.model";
+import User from "@/app/backend/modules/user/user.model";
 
 export async function GET(req: NextRequest){
     await dbConnect();
