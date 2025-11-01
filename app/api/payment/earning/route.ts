@@ -12,7 +12,7 @@ export async function GET(req: NextRequest){
         const verified = verifySeller(req);
         if(verified instanceof NextResponse) return verified;
         const {_id} = verified?.user?.payload;
-        const result = await Payment.find({sellerId: _id}).populate("customerId", "name photo address").populate("productId", "title price");
+        const result = await Payment.find({sellerId: _id}).populate("customerId", "name photo address").populate("productId").populate("bidId", "bidPrice");
         return NextResponse.json({message: "Get all payment history", data: result}, {status: 200});
     } catch (error) {
         console.log(error);

@@ -2,6 +2,7 @@ import { useAddPaymentMutation, useRemoveBidMutation } from "@/app/redux/api/api
 import getDateAndTime from "@/app/utils/getDateAndTime";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { isNullOrUndefined } from "node:util";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import Swal from "sweetalert2";
 
@@ -98,7 +99,7 @@ const BidCard = ({ bid, activeTab }: { bid: any, activeTab: string }) => {
                                 <div>
                                     {
                                         activeTab === "progress" ?
-                                        <button className="cursor-pointer text-white bg-green-500 px-2 py-1 rounded-lg">Accept Order</button> :
+                                        null :
                                         isOrderPage ? <p className="text-hard bg-normal rounded-lg px-3 py-1 capitalize">{activeTab}</p> : null
                                     }
                                 </div>
