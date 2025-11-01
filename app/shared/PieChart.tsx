@@ -7,12 +7,14 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 const PieChart = ({dashboardData}: {dashboardData: any}) => {
 
   const chartRef = useRef<any>(null);
+  const profit = dashboardData?.profit;
+  const loss = dashboardData?.loss;
 
 //   dynamic value--------------------------------
   const data = {
     datasets: [
       {
-        data: [40, 60],
+        data: [loss || 0, profit || 0],
         backgroundColor: ["#4BC0C0", "#36A2EB"]
       }
     ],
@@ -36,20 +38,17 @@ const PieChart = ({dashboardData}: {dashboardData: any}) => {
   afterDraw: (chart) => {
     const { ctx, chartArea } = chart;
     const { width, height } = chartArea;
-
     ctx.save();
 
-    // Center text (P&L)
     ctx.font = "bold 20px Arial";
     ctx.fillStyle = "#000";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     ctx.fillText("P&L", width / 2, height / 2 - 10);
 
-    // Sub text
-    ctx.font = "13px Arial";
+    ctx.font = "12px Arial";
     ctx.fillStyle = "#555";
-    ctx.fillText("Total profit growth of 65%", width / 2, height / 2 + 15);
+    ctx.fillText(`Total profit growth of ${dashboardData?.totalProfitGrowth || 0}%`, width / 2, height / 2 + 15);
 
     const meta = chart.getDatasetMeta(0);
     const dataset = chart.data.datasets[0];
@@ -79,18 +78,18 @@ const PieChart = ({dashboardData}: {dashboardData: any}) => {
                 <div className="w-2 h-2 bg-red-700 rounded-full"></div>
                 <div>
                     <h3 className="text-[16px]">Total Sold</h3>
-                    <h2 className="text-xl font-medium">{dashboardData?.totalSold}</h2>
+                    <h2 className="text-xl font-medium">{dashboardData?.totalSold || 0}</h2>
                 </div>
             </div>
             <div className="flex gap-3 items-center">
                 <div className="w-2 h-2 bg-hard rounded-full"></div>
                 <div>
                     <h3 className="text-[16px]">Active Product</h3>
-                    <h2 className="text-xl font-medium">{dashboardData?.totalProduct}</h2>
+                    <h2 className="text-xl font-medium">{dashboardData?.totalProduct || 0}</h2>
                 </div>
             </div>
         </div>
-      <Doughnut ref={chartRef} data={data} options={options}  plugins={[centerTextPlugin]}/>
+      <Doughnut key={dashboardData?.totalProfitGrowth} ref={chartRef} data={data} options={options}  plugins={[centerTextPlugin]}/>
     </div>
   );
 }
