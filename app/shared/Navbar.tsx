@@ -86,7 +86,7 @@ const Navbar = () => {
         </div>
 
         <div
-          className={`absolute top-0 z-10 right-0 bg-hard w-[200px] h-screen ${
+          className={`absolute top-0 z-10 right-0 bg-blue-300 w-1/2 h-screen ${
             openMenu ? "block" : "hidden"
           } md:hidden`}
         >
@@ -120,7 +120,7 @@ const Navbar = () => {
                     </li>
                   ))}
                     {user ? (
-                      <Link href={"/profile"}>
+                      <Link  onClick={() => setOpenMenu(false)} href={"/profile"}>
                         <img
                           className="w-12 h-12 border-2 p-[1px] border-hard rounded-full"
                           src={user?.photo}
@@ -128,7 +128,7 @@ const Navbar = () => {
                         ></img>
                       </Link>
                     ) : (
-                      <Link
+                      <Link  onClick={() => setOpenMenu(false)}
                         className="px-8 py-2 text-lg rounded-lg bg-hard text-white"
                         href={"/auth/sign-in"}
                       >
@@ -136,13 +136,13 @@ const Navbar = () => {
                       </Link>
                     )}
                   <div className="flex justify-center items-center gap-2">
-                    <Link
+                    <Link  onClick={() => setOpenMenu(false)}
                       className="bg-normal p-2 rounded-full text-hard"
                       href={"/profile/bids"}
                     >
                       <CiShoppingCart size={20} />
                     </Link>
-                    <button className="bg-normal p-2 rounded-full text-hard cursor-pointer">
+                    <button  onClick={() => setOpenMenu(false)} className="bg-normal p-2 rounded-full text-hard cursor-pointer">
                       <IoIosNotificationsOutline size={20} />
                     </button>
                   </div>

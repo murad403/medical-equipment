@@ -40,7 +40,7 @@ const ContactForm = () => {
                     <p className="text-sm">info@mstassociate.com <br /> support@mstassociate.com</p>
                 </div>
             </div>
-            <div className="w-full lg:w-[75%] bg-normal rounded-xl md:p-5 p-2">
+            <div className="w-full lg:w-[75%] bg-normal rounded-xl md:p-5 p-3">
                 <h3 className="text-2xl font-semibold text-center mb-4">Send Us a Message</h3>
                 <form className="space-y-3" onSubmit={handleSubmit(onSubmit)}>
                     <div className="flex flex-col md:flex-row md:gap-5 gap-3 items-center">

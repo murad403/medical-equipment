@@ -88,7 +88,7 @@ const page = () => {
         <ProtectedRoute>
             <NavigateButton text={"edit product"}></NavigateButton>
             <div className="flex justify-center mt-3 md:mt-4 text-title">
-                <form className="space-y-3 w-full md:w-[80%] bg-normal rounded-xl md:p-5 p-2" onSubmit={handleSubmit(onSubmit)}>
+                <form className="space-y-3 w-full md:w-[80%] bg-normal rounded-xl md:p-5 p-3" onSubmit={handleSubmit(onSubmit)}>
                     <div className="flex flex-col md:flex-row md:gap-5 gap-3 items-center">
                         <div className="w-full">
                             <label className="text-sm font-medium block mb-1">Product Title</label>

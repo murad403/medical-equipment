@@ -20,12 +20,12 @@ const page = () => {
     // console.log(filter);
 
     return (
-        <div className='px-4 md:px-14 lg:px-16 space-y-10 md:space-y-18 flex justify-between md:gap-5 lg:gap-10 gap-3 mt-5'>
+        <div className='px-4 md:px-14 lg:px-16 flex flex-col md:flex-row justify-between md:gap-5 lg:gap-10 gap-3 md:mt-5 mt-0'>
             <div className='md:w-[25%] w-[40%]'>
                 <BreadCrums></BreadCrums>
                 <CollectibleProducts setSearch={setSearch}></CollectibleProducts>
             </div>
-            <div className='md:w-full w-[60%] md:space-y-10 space-y-4'>
+            <div className='md:w-full md:space-y-5'>
                 <SearchProducts setSearch={setSearch}></SearchProducts>
                 <ProductFilter setFilter={setFilter} auctions={auctions} setSearch={setSearch}></ProductFilter>
                 <div className="divider divider-info"></div>

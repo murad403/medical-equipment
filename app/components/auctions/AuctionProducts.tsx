@@ -10,7 +10,7 @@ const AuctionProducts = ({auctions, isLoading}: {auctions: any, isLoading: boole
         <div>
             {
                 auctions?.length > 0 ?
-                <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5'>
+                <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 justify-between gap-5'>
             {
                 auctions?.map((product: any) => <AuctionCard key={product?._id} product={product} bgColor={"bg-normal"}></AuctionCard>)
             }

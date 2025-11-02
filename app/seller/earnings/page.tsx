@@ -38,7 +38,7 @@ const page = () => {
                                 <tr key={payment?._id} className="border-b border-hard text-title">
                                     <th>{index + 1}</th>
                                     <td className="flex items-center gap-1">
-                                        <Image className="w-10 h-10 rounded-full" src={payment?.customerId?.photo || "image"} width={500} height={500} alt="user photo"></Image>
+                                        <Image className="md:size-10 size-8 rounded-full" src={payment?.customerId?.photo || "image"} width={500} height={500} alt="user photo"></Image>
                                         <p>{payment?.customerId?.name}</p>
                                     </td>
                                     <td>{payment?.transaction_id}</td>

@@ -25,6 +25,7 @@ const ProfileMenu = () => {
                     <LogoutModal></LogoutModal>
                 </li>
             </ul>
+
             <div className='drawer md:hidden'>
                 <input id="my-drawer" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content ">
@@ -34,7 +35,7 @@ const ProfileMenu = () => {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
-                    <ul className="bg-normal text-lg min-h-full w-80 space-y-4 p-4">
+                    <ul className="bg-normal text-lg min-h-full w-1/2 space-y-4 p-4">
                         {
                             profileMenuLinks.map((link, index) =>
                                 <li key={index}>

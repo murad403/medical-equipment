@@ -15,7 +15,7 @@ const SearchProducts = ({setSearch}: {setSearch: any}) => {
         <div>
             <form className="w-full space-y-3 space-x-5" onSubmit={handleSubmit(onSubmit)}>
                 <input placeholder="Search your product here..." className="appearance-none md:w-[70%] w-full outline-none border border-hard bg-normal rounded-lg py-2 px-4 text-title" type="text" {...register("searchText", { required: true })} />
-                <button className="rounded-lg cursor-pointer border-hard border w-[27%] text-hard py-2">Search</button>
+                <button className="rounded-lg cursor-pointer border-hard border md:w-[27%] w-full text-hard py-2">Search</button>
             </form>
         </div>
     );

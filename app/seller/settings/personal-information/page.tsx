@@ -56,7 +56,7 @@ const page = () => {
                     <div className="flex items-center gap-3 md:gap-5">
                         <div className="md:w-32 w-24 md:h-32 h-24 relative">
                             <Image className="w-full h-full rounded-full" src={user?.photo || userPhoto} alt={`seller photo`} width={500} height={500}></Image>
-                            <button className="absolute right-0 bottom-5 bg-hard text-white p-[2px] rounded-full"><CiEdit size={24} /></button>
+                            {/* <button className="absolute right-0 bottom-5 bg-hard text-white p-[2px] rounded-full"><CiEdit size={24} /></button> */}
                         </div>
                         <div className="capitalize">
                             <h3 className="text-xl md:text-3xl lg:text-4xl">{user?.name}</h3>
@@ -81,7 +81,7 @@ const page = () => {
                                 <label className="block mb-1 font-semibold">Address</label>
                                 <input defaultValue={user?.address} className="appearance-none w-full outline-none border border-gray-400 rounded-md py-2 px-4" type="text" {...register("address")} />
                             </div>
-                            <div onClick={() => setEditProfile(true)} className={`w-full flex justify-center items-center bg-hard rounded-md text-white py-2 cursor-pointer gap-2 ${editProfile ? "hidden" : "block"}`}>
+                            <div onClick={() => setEditProfile(true)} className={`w-full mt-2 flex justify-center items-center bg-hard rounded-md text-white py-2 cursor-pointer gap-2 ${editProfile ? "hidden" : "block"}`}>
                                 <MdOutlineModeEdit size={20} className="bg-white p-[2px] rounded-full text-red-500" />
                                 <span className="text-white">Edit profile</span>
                             </div>
@@ -96,7 +96,7 @@ const page = () => {
                                         <label className="block mb-1 font-semibold">Bank account number</label>
                                         <input defaultValue={user?.bankAccountNumber} className="appearance-none w-full outline-none border border-gray-400 rounded-md py-2 px-4" type="text" {...register("bankAccountNumber")} />
                                     </div>
-                                    <button className={`w-full flex justify-center items-center bg-hard rounded-md text-white py-2 cursor-pointer font-semibold`}>
+                                    <button className={`w-full flex justify-center items-center bg-hard rounded-md text-white py-2 cursor-pointer font-semibold mt-2`}>
                                         {
                                             isLoading ? <span className="loading loading-spinner text-white"></span> : <p>save & change</p>
                                         }

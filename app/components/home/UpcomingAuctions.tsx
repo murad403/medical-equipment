@@ -28,11 +28,11 @@ const UpcomingAuctions = () => {
                         spaceBetween: 10
                     },
                     1024: {
-                        slidesPerView: 4,
+                        slidesPerView: 3,
                         spaceBetween: 0
                     },
                     1280: {
-                        slidesPerView: 5,
+                        slidesPerView: 4,
                         spaceBetween: 30,
                     },
                 }}>

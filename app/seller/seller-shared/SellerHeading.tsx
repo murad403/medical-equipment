@@ -9,12 +9,13 @@ import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { TbLogout } from "react-icons/tb";
 import { useAppSelector } from "@/app/redux/hook";
+import logo from "../../../public/logo.png";
 
 const SellerHeading = () => {
     const pathName = usePathname();
     const [active, setActive] = useState<string>(pathName);
     const router = useRouter();
-    const {user} = useAppSelector((state) => state?.user);
+    const { user } = useAppSelector((state) => state?.user);
     const handleNotification = () => {
         router.push("/seller/notification")
     }
@@ -29,7 +30,12 @@ const SellerHeading = () => {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
-                    <ul className="menu min-h-full bg-gradient-to-t space-y-3 py-10 to-normal from-hard">
+                    <ul className="menu min-h-full bg-gradient-to-t space-y-3 py-10 to-normal from-hard w-1/2">
+                        <li>
+                            <Link href={'/'} className="flex justify-center">
+                                <Image className="h-12 w-12" alt="logo" width={500} height={500} src={logo}></Image>
+                            </Link>
+                        </li>
                         {
                             sellerMenu.map(link =>
                                 <li key={link?.path}>
@@ -50,7 +56,9 @@ const SellerHeading = () => {
                 <button onClick={handleNotification} className="bg-normal text-hard cursor-pointer p-3 rounded-full">
                     <IoMdNotificationsOutline size={20} />
                 </button>
-                <Image className="w-10 h-10 rounded-full" width={500} height={500} src={user?.photo || userPhoto} alt={`user photo`}></Image>
+                <Link href={'/profile'}>
+                    <Image className="w-10 h-10 rounded-full" width={500} height={500} src={user?.photo || userPhoto} alt={`user photo`}></Image>
+                </Link>
                 <div className="text-white capitalize">
                     <h3 className="text-[17px] font-medium">{user?.name}</h3>
                     <p className="text-sm">{user?.role}</p>
