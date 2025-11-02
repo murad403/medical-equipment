@@ -1,4 +1,5 @@
 "use client";
+import SecureUserRoute from "@/app/hooks/SecureUserRoute";
 import { useAddReportMutation } from "@/app/redux/api/api";
 import { useAppSelector } from "@/app/redux/hook";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -31,6 +32,7 @@ const page = () => {
         reset();
     }
     return (
+        <SecureUserRoute>
         <div className="w-full bg-normal rounded-xl p-5 text-title">
             <form className="space-y-3" onSubmit={handleSubmit(onSubmit)}>
                 <div className="w-full">
@@ -47,6 +49,7 @@ const page = () => {
                 </div>
             </form>
         </div>
+        </SecureUserRoute>
     );
 };
 

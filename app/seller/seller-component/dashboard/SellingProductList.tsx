@@ -2,6 +2,7 @@ import getDateAndTime from '@/app/utils/getDateAndTime';
 import React from 'react';
 
 const SellingProductList = ({product, index} : {product: any, index: number}) => {
+    // console.log(product);
     const createdAt = product?.createdAt;
     const {date, time} = getDateAndTime(createdAt);
     return (

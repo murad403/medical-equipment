@@ -1,6 +1,7 @@
 "use client";
 import BidCard from '@/app/components/profile/BidCard';
 import historyTabs from '@/app/data/history';
+import SecureUserRoute from '@/app/hooks/SecureUserRoute';
 import { useGetCurrentUserBidsQuery } from '@/app/redux/api/api';
 import { useAppSelector } from '@/app/redux/hook';
 import LoadingSpinner from '@/app/shared/LoadingSpinner';
@@ -12,7 +13,7 @@ const page = () => {
     const { data, isLoading } = useGetCurrentUserBidsQuery(user?._id);
     const bids = data?.data?.filter((bid: any) => bid?.status === activeTab);
     return (
-        <div>
+        <SecureUserRoute>
             <div className='space-x-3'>
                 {
                     historyTabs.map(tab =>
@@ -31,7 +32,7 @@ const page = () => {
                     </div>
                 }
             </div>
-        </div>
+        </SecureUserRoute>
     );
 };
 

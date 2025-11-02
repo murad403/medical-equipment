@@ -27,7 +27,7 @@ const RecentSellingProduct = () => {
           </thead>
           <tbody className="space-y-3">
             {
-              products?.slice(0, 3)?.map((product: any, index: number) => <SellingProductList key={product?._id} index={index} product={product}></SellingProductList>)
+              products?.slice(0, 10)?.map((product: any, index: number) => <SellingProductList key={product?._id} index={index} product={product}></SellingProductList>)
             }
           </tbody>
         </table>

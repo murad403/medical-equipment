@@ -7,6 +7,7 @@ import { addUser } from "../redux/features/userSlice";
 import LoadingSpinner from "../shared/LoadingSpinner";
 import { useUpdateProfileMutation } from "../redux/api/api";
 import getImage from "../utils/getImage";
+import SecureUserRoute from "../hooks/SecureUserRoute";
 
 type TInputs = {
     name: string;
@@ -39,7 +40,7 @@ const page = () => {
         }
     }
     return (
-        <div>
+        <SecureUserRoute>
             <form className="space-y-3 bg-normal rounded-xl md:p-5 p-3 text-title" onSubmit={handleSubmit(onSubmit)}>
                 <div className="flex flex-col md:flex-row md:gap-5 gap-3 items-center">
                     <div className="w-full">
@@ -67,7 +68,7 @@ const page = () => {
                     <button className="bg-hard py-2 px-5 rounded-lg text-white cursor-pointer" type="submit">Save</button>
                 </div>
             </form>
-        </div>
+        </SecureUserRoute>
     );
 };
 

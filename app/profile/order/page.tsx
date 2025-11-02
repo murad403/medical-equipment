@@ -2,6 +2,7 @@
 import BidCard from '@/app/components/profile/BidCard';
 import CompleteBidCard from '@/app/components/profile/CompleteBidCard';
 import orderTabs from '@/app/data/order';
+import SecureUserRoute from '@/app/hooks/SecureUserRoute';
 import { useGetCurrentUserBidsQuery } from '@/app/redux/api/api';
 import { useAppSelector } from '@/app/redux/hook';
 import LoadingSpinner from '@/app/shared/LoadingSpinner';
@@ -14,7 +15,7 @@ const page = () => {
     const bids = data?.data?.filter((bid: any) => bid.status === activeTab);
     // console.log(activeTab);
     return (
-        <div>
+        <SecureUserRoute>
             <div className='space-x-2 space-y-2'>
                 {
                     orderTabs.map((tab: any) =>
@@ -35,7 +36,7 @@ const page = () => {
                         </div>
                 }
             </div>
-        </div>
+        </SecureUserRoute>
     );
 };
 
