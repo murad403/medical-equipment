@@ -98,8 +98,8 @@ export async function GET(req: NextRequest){
                 }
             }
         ])
-        const creditPrice = totalProductPrice[0].total || 0;
-        const sellPrice = totalProductSellAmount[0].total || 0;
+        const creditPrice = totalProductPrice[0]?.total || 0;
+        const sellPrice = totalProductSellAmount[0]?.total || 0;
         let profit = 0;
         let loss = 0;
         if(sellPrice > creditPrice){
@@ -107,8 +107,6 @@ export async function GET(req: NextRequest){
         }else{
             loss = Math.floor(((sellPrice - creditPrice) / creditPrice) * 100);
         }
-        
-        // console.log(profit, loss);
 
         const {withdrawAmount} = await User.findById(_id).select("withdrawAmount -_id");
 

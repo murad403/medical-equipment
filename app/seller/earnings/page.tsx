@@ -19,7 +19,10 @@ const page = () => {
     return (
         <ProtectedRoute>
             <NavigateButton text={"earnings"}></NavigateButton>
-            <div className="overflow-x-auto md:mt-4 mt-3 rounded-lg border border-hard">
+            {
+                payments?.length > 0 ? 
+                <div>
+                <div className="overflow-x-auto md:mt-4 mt-3 rounded-lg border border-hard">
                 <table className="table">
                     <thead className="">
                         <tr className="bg-hard text-[14px] text-white">
@@ -59,6 +62,8 @@ const page = () => {
             <div>
                 <TransactionModal id={id}></TransactionModal>
             </div>
+            </div>: <p className="text-center text-red-500">No earnings founds!!!</p>
+            }
         </ProtectedRoute>
     )
 }

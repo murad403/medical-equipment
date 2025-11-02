@@ -7,14 +7,14 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 const PieChart = ({dashboardData}: {dashboardData: any}) => {
 
   const chartRef = useRef<any>(null);
-  const profit = dashboardData?.profit;
-  const loss = dashboardData?.loss;
+  const profit = dashboardData?.profit || 10;
+  const loss = dashboardData?.loss || 10;
 
 //   dynamic value--------------------------------
   const data = {
     datasets: [
       {
-        data: [loss || 0, profit || 0],
+        data: [loss, profit],
         backgroundColor: ["#4BC0C0", "#36A2EB"]
       }
     ],

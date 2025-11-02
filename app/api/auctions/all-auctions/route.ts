@@ -27,8 +27,8 @@ export async function GET(req: NextRequest){
             ]
         }
         const totalAuctions = await Product.countDocuments(mongoQuery);
-        // || await Product.find().estimatedDocumentCount()
-        const result = await Product.find(mongoQuery).populate({ path: "sellerId", select: "_id", strictPopulate: false }).skip(skip).limit(limit);
+
+        const result = await Product.find(mongoQuery).skip(skip).limit(limit).populate({ path: "sellerId", select: "_id", strictPopulate: false });
         // console.log(result);
         return NextResponse.json({message: "Retrieved all auctions", data: {result, totalAuctions}}, {status: 200});
     } catch (error) {

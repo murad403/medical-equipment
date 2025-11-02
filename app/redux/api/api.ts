@@ -52,10 +52,10 @@ const baseApi = createApi({
           url: `/auctions/all-auctions`,
           method: 'GET',
           params: {
-            page: query?.page ?? 1,
-            limit: query?.limit ?? 12,
-            filter: query?.filter ?? '',
-            query: query?.search ?? ''
+            page: query?.page,
+            limit: query?.limit,
+            filter: query?.filter,
+            query: query?.search
           }
         }
       },
