@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 const baseApi = createApi({
     reducerPath: "baseApi",
     baseQuery: fetchBaseQuery({baseUrl: "/api"}),
-    tagTypes: ["auctions", "bids", "payments"],
+    tagTypes: ["auctions", "bids", "payments", "dashboard"],
     endpoints: (builder) =>({ 
         addReport: builder.mutation({
             query: (payload) =>{
@@ -40,7 +40,7 @@ const baseApi = createApi({
                     body: payload
                 }
             },
-            invalidatesTags: ["auctions"]
+            invalidatesTags: ["auctions", 'dashboard']
         }),
         getAllAuctions: builder.query({
             query: (query) =>{
@@ -55,7 +55,7 @@ const baseApi = createApi({
                     params: params
                 }
             },
-            providesTags: ["auctions"] as const
+            providesTags: ["auctions"]
         }),
         addBid: builder.mutation({
             query: (payload) =>{
@@ -65,7 +65,7 @@ const baseApi = createApi({
                     body: payload 
                 }
             },
-            invalidatesTags: ["auctions", "bids"]
+            invalidatesTags: ["auctions", "bids", "dashboard"]
         }),
         getCurrentUserBids: builder.query({
             query: (query) =>{
@@ -79,7 +79,7 @@ const baseApi = createApi({
                     params: params
                 }
             },
-            providesTags: ["bids"] as const
+            providesTags: ["bids"]
         }),
         removeBid: builder.mutation({
             query: (id) =>{
@@ -107,7 +107,7 @@ const baseApi = createApi({
                     method: "DELETE"
                 }
             },
-            invalidatesTags: ["auctions", "bids"]
+            invalidatesTags: ["auctions", "bids", "dashboard"]
         }),
         updateProduct: builder.mutation({
             query: ({id, payload}: {id: string, payload: any}) =>{
@@ -136,7 +136,7 @@ const baseApi = createApi({
                     body: payload
                 }
             },
-            invalidatesTags: ["bids"]
+            invalidatesTags: ["bids", "dashboard"]
         }),
         changePassword: builder.mutation({
             query: (payload) =>{
@@ -165,7 +165,7 @@ const baseApi = createApi({
                     body: payload
                 }
             },
-            invalidatesTags: ["bids", "payments"]
+            invalidatesTags: ["bids", "payments", "dashboard"]
         }),
         getEarnings: builder.query({
             query: () =>{
@@ -192,7 +192,7 @@ const baseApi = createApi({
                     method: "GET"
                 }
             },
-            providesTags: ["auctions", "bids", "payments"]
+            providesTags: ["dashboard"]
         }),
         withdrawBalance: builder.mutation({
             query: (payload: any) =>{
@@ -203,7 +203,7 @@ const baseApi = createApi({
                     body: payload
                 }
             },
-            invalidatesTags: ["auctions", "bids", "payments"]
+            invalidatesTags: ["auctions", "bids", "payments", "dashboard"]
         })
         
     })
