@@ -110,7 +110,7 @@ export async function GET(req: NextRequest){
         
         // console.log(profit, loss);
 
-        const withdrawAmount = await User.findById(_id).select("withdrawAmount");
+        const {withdrawAmount} = await User.findById(_id).select("withdrawAmount -_id");
 
         return NextResponse.json({message: "Get seller dashboard data", data: {totalProduct, totalSold, totalRevenue, withdrawAmount, totalProfitGrowth, profit, loss}}, {status: 200});
     } catch (error) {

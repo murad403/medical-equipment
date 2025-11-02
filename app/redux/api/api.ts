@@ -191,11 +191,23 @@ const baseApi = createApi({
                     url: '/seller/dashboard',
                     method: "GET"
                 }
-            }
+            },
+            providesTags: ["auctions", "bids", "payments"]
+        }),
+        withdrawBalance: builder.mutation({
+            query: (payload: any) =>{
+                // console.log(payload);
+                return {
+                    url: "/seller/withdraw-balance",
+                    method: "PATCH",
+                    body: payload
+                }
+            },
+            invalidatesTags: ["auctions", "bids", "payments"]
         })
         
     })
 })
 
-export const {useGetAllAuctionsQuery, useAddBidMutation, useUpdateProfileMutation, useGetCurrentUserBidsQuery, useRemoveBidMutation, useAddAuctionMutation, useAddReportMutation, useSendMessageMutation, useGetSellerProductQuery, useDeleteProductMutation, useUpdateProductMutation, useGetAllBidderQuery, useAddSellerBidStatusMutation, useChangePasswordMutation, useAddPaymentMutation, useSavePaymentMutation, useGetEarningsQuery, useSellerProfileUpdateMutation, useSellerDashboardQuery} = baseApi;
+export const {useGetAllAuctionsQuery, useAddBidMutation, useUpdateProfileMutation, useGetCurrentUserBidsQuery, useRemoveBidMutation, useAddAuctionMutation, useAddReportMutation, useSendMessageMutation, useGetSellerProductQuery, useDeleteProductMutation, useUpdateProductMutation, useGetAllBidderQuery, useAddSellerBidStatusMutation, useChangePasswordMutation, useAddPaymentMutation, useSavePaymentMutation, useGetEarningsQuery, useSellerProfileUpdateMutation, useSellerDashboardQuery, useWithdrawBalanceMutation} = baseApi;
 export default baseApi;

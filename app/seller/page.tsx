@@ -10,11 +10,10 @@ import { useSellerDashboardQuery } from '../redux/api/api';
 const page = () => {
     const {data, isLoading} = useSellerDashboardQuery(undefined);
     const dashboardData = data?.data;
-    // console.log(dashboardData);
     return (
         <ProtectedRoute>
             <div className='space-y-3 md:space-y-5'>
-                <Withdraw></Withdraw>
+                <Withdraw dashboardData={dashboardData}></Withdraw>
                 <Stats dashboardData={dashboardData}></Stats>
 
                 {/* income ratio */}
