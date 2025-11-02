@@ -3,7 +3,6 @@ import Image from "next/image";
 import logo from "../../../public/logo.png";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { PiEyeSlash, PiEyeLight } from "react-icons/pi";
-import { FaGoogle } from "react-icons/fa";
 import { useState } from "react";
 import Link from "next/link";
 import axios from "axios";
@@ -68,12 +67,6 @@ const page = () => {
                         <button className="w-full bg-hard rounded-lg text-white cursor-pointer py-2">Sign In</button>
                     </form>
                     <div className="flex justify-center items-center gap-5 md:gap-7 flex-col mt-5 md:mt-7 w-full">
-                        <p>or</p>
-                        <p>Sign In With</p>
-                        <button className="flex items-center justify-center text-hard gap-3 py-2 border border-hard rounded-lg w-full">
-                            <FaGoogle/>
-                            <p>Google</p>
-                        </button>
                         <p>Don’t have an account? <Link href={"/auth/sign-up"} className="text-hard">Sign Up</Link></p>
                     </div>
                 </div>

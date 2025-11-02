@@ -1,10 +1,13 @@
 import dbConnect from "@/app/backend/config/db";
+import veryfiToken from "@/app/backend/middlware/verifyToken";
 import Bid from "@/app/backend/modules/bid/bid.model";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function PATCH (req: NextRequest, context: {params: Promise<{id: string}>}) {
     await dbConnect();
     try {
+        const verified = veryfiToken(req);
+        if(verified instanceof NextResponse) return verified;
         const data = await req.json();
         const {id} = await context.params;
         if(!id){

@@ -1,4 +1,5 @@
 import dbConnect from '@/app/backend/config/db'
+import veryfiToken from '@/app/backend/middlware/verifyToken'
 import Bid from '@/app/backend/modules/bid/bid.model'
 import Product from '@/app/backend/modules/product/product.model'
 import User from '@/app/backend/modules/user/user.model'
@@ -8,6 +9,8 @@ import { NextRequest, NextResponse } from 'next/server'
 export async function GET (req: NextRequest) {
   await dbConnect()
   try {
+    const verified = veryfiToken(req);
+    if(verified instanceof NextResponse) return verified;
     const { searchParams } = new URL(req.url)
     const queryId = searchParams.get('query')
     if (!queryId) {

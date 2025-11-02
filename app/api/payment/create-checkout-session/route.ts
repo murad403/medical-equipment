@@ -1,3 +1,4 @@
+import veryfiToken from "@/app/backend/middlware/verifyToken";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
@@ -5,6 +6,8 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 export async function POST (req: NextRequest){
     try {
+        const verified = veryfiToken(req);
+            if(verified instanceof NextResponse) return verified;
         const product = await req.json();
         // console.log(product?.bid);
         const session = await stripe.checkout.sessions.create({

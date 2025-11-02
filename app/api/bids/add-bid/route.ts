@@ -1,4 +1,5 @@
 import dbConnect from '@/app/backend/config/db'
+import veryfiToken from '@/app/backend/middlware/verifyToken';
 import Bid from '@/app/backend/modules/bid/bid.model';
 import Product from '@/app/backend/modules/product/product.model';
 import { NextRequest, NextResponse } from 'next/server'
@@ -6,6 +7,8 @@ import { NextRequest, NextResponse } from 'next/server'
 export async function POST (req: NextRequest) {
   await dbConnect()
   try {
+    const verified = veryfiToken(req);
+    if(verified instanceof NextResponse) return verified;
     const newBid = await req.json();
     const lastBid = await Bid.findOne().sort({createdAt: -1});
     let newOrderNumber = 0;
