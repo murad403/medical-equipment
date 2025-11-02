@@ -11,7 +11,7 @@ import { useGetAllAuctionsQuery } from '@/app/redux/api/api';
 import LoadingSpinner from '@/app/shared/LoadingSpinner';
 
 const UpcomingAuctions = () => {
-    const { data, isLoading, isError } = useGetAllAuctionsQuery(undefined);
+    const { data, isLoading } = useGetAllAuctionsQuery({ page: 1, limit: 12, search: "", filter: "" });
     const auctions = data?.data?.result;
     if(isLoading) return <LoadingSpinner></LoadingSpinner>;
     return (

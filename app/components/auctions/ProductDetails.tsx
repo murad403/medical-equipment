@@ -8,7 +8,7 @@ import LoadingSpinner from '@/app/shared/LoadingSpinner';
 import getTime from '@/app/utils/getTime';
 
 const ProductDetails = ({ setSearch }: { setSearch: any }) => {
-    const { data, isLoading } = useGetAllAuctionsQuery(undefined);
+    const { data, isLoading } = useGetAllAuctionsQuery({ page: 1, limit: 12, search: "", filter: "" });
     const { productId } = useParams();
     const currentProduct = data?.data?.result?.find((product: any) => product._id === productId);
     useEffect(() => {
