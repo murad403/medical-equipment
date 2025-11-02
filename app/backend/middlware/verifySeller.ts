@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 
 const verifySeller = (req: NextRequest) =>{
     const token = req.cookies.get("accessToken")?.value;
+    // console.log(token);
     // console.log("token", token, "secret key", process.env.NEXT_PUBLIC_JWT_SECRET_KEY);
     if(!token){
         return NextResponse.json({message: "Unauthorized access"}, {status: 401});

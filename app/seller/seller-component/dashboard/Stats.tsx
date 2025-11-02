@@ -29,7 +29,7 @@ const Stats = ({ dashboardData }: { dashboardData: any }) => {
                 <HiOutlineClipboardDocumentCheck className='text-hard' size={50} />
                 <div>
                     <p className='text-sm'>Withdraw Amount</p>
-                    <h3 className='text-4xl font-semibold'>0</h3>
+                    <h3 className='text-4xl font-semibold'>${dashboardData?.withdrawAmount || 0}</h3>
                 </div>
             </div>
         </div>

@@ -4,6 +4,7 @@ import Payment from "@/app/backend/modules/payment/payment.model";
 import Product from "@/app/backend/modules/product/product.model";
 import { NextRequest, NextResponse } from "next/server";
 import mongoose from "mongoose";
+import User from "@/app/backend/modules/user/user.model";
 
 //! get year for time compare--------------------------------------------------------
 const now = new Date();
@@ -109,7 +110,9 @@ export async function GET(req: NextRequest){
         
         // console.log(profit, loss);
 
-        return NextResponse.json({message: "Get seller dashboard data", data: {totalProduct, totalSold, totalRevenue, totalProfitGrowth, profit, loss}}, {status: 200});
+        const withdrawAmount = await User.findById(_id).select("withdrawAmount");
+
+        return NextResponse.json({message: "Get seller dashboard data", data: {totalProduct, totalSold, totalRevenue, withdrawAmount, totalProfitGrowth, profit, loss}}, {status: 200});
     } catch (error) {
         console.log(error);
         return NextResponse.json({message: "Internal server error"}, {status: 500});

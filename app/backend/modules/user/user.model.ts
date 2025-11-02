@@ -11,6 +11,7 @@ const userSchema = new Schema<TUser>({
     photo: {type: String, required: true, default: "https://ibb.co.com/jPvsf68T"},
     bankAccountName: {type: String, default: "not provided"},
     bankAccountNumber: {type: String, default: "not provided"},
+    withdrawAmount: {type: Number, default: 0}
 }, {
     timestamps: true
 })

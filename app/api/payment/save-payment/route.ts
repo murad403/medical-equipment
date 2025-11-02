@@ -1,6 +1,7 @@
 import dbConnect from "@/app/backend/config/db";
 import Bid from "@/app/backend/modules/bid/bid.model";
 import Payment from "@/app/backend/modules/payment/payment.model";
+import User from "@/app/backend/modules/user/user.model";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
@@ -10,8 +11,7 @@ export async function POST(req: NextRequest){
     await dbConnect();
     try {
         const paymentData = await req.json();
-        // console.log(paymentData);
-        const {session_id, bidId} = paymentData;
+        const {session_id, bidId, sellerId, amount} = paymentData;
         if(!session_id){
             return NextResponse.json({message: "Sesson id is missing"}, {status: 401});
         }
@@ -19,6 +19,7 @@ export async function POST(req: NextRequest){
         if(session?.payment_status === "paid"){
             await Payment.create({...paymentData, transaction_id: session?.payment_intent});
             await Bid.findByIdAndUpdate(bidId, {payment: "success", status: "pending"}, {new: true});
+            await User.findByIdAndUpdate(sellerId, {$inc: {withdrawAmount: amount}}, {new: true});
             return NextResponse.json({message: "Payment successfully!!!"}, {status: 200});
         }
     } catch (error) {

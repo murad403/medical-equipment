@@ -8,6 +8,7 @@ type TUser = {
     photo: string; 
     bankAccountName: string;
     bankAccountNumber: string;
+    withdrawAmount: number;
 }
 
 export default TUser;

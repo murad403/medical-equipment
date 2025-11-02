@@ -3,7 +3,6 @@ import Image from "next/image";
 import logo from "../../../public/logo.png";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { PiEyeSlash, PiEyeLight } from "react-icons/pi";
-import { FaGoogle } from "react-icons/fa";
 import { useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/bootstrap.css";
@@ -47,7 +46,6 @@ const page = () => {
             console.log(error.response.data.message);
             toast.error(error.response.data.message);
         })
-        // console.log(data, typeof parseNumber);
     }
     return (
         <div className="pt-5 text-title">
