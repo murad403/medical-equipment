@@ -26,8 +26,8 @@ export async function POST (req: NextRequest){
                 }
             ],
             mode: "payment",
-            success_url: `http://localhost:3000/payment/success?session_id={CHECKOUT_SESSION_ID}&bid=${product?.bidId}`,
-            cancel_url: "http://localhost:3000/payment/cancel"
+            success_url: `https://medical-equipment-six.vercel.app/payment/success?session_id={CHECKOUT_SESSION_ID}&bid=${product?.bidId}`,
+            cancel_url: "https://medical-equipment-six.vercel.app/payment/cancel"
         })
         return NextResponse.json({url: session.url}, {status: 200})
     } catch (error) {
